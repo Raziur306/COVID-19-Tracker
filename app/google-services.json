@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "142743092708",
+    "project_id": "covid-19-tracker-e1e3a",
+    "storage_bucket": "covid-19-tracker-e1e3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142743092708:android:dd4f02bc2725730e891bf1",
+        "android_client_info": {
+          "package_name": "com.ronju.covid_19tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142743092708-0kq5l53jkqv8ahedv150v1fhbf106onn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUoC_7pjqWtYY6cYinKKyq8C3Wru7N7tg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142743092708-0kq5l53jkqv8ahedv150v1fhbf106onn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
