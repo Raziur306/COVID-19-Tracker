@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.ronju.covid_19tracker.R;
 
 public class AboutActivity extends Fragment {
-    private TextView abTxt1, abTxt2, abTxt3, abTxt4, abTxt5, abTxt6, aboutTitle, developer, developerName, developerStudy;
+    private TextView abTxt1, abTxt2, abTxt3, abTxt4, abTxt5, abTxt6, aboutTitle, developer, developerName, developerStudy,socialTitle;
     private ImageView facebook, twitter, github, instagram, email, linkedin;
     private String facebookId = "raziur.rahman01";
     private String twitterId = "https://twitter.com/RaziurRahaman01";
@@ -124,6 +124,7 @@ public class AboutActivity extends Fragment {
         developer.setTypeface(typeface);
         developerName.setTypeface(typeface);
         developerStudy.setTypeface(typeface);
+        socialTitle.setTypeface(typeface);
     }
 
 
@@ -144,6 +145,7 @@ public class AboutActivity extends Fragment {
         developer = view.findViewById(R.id.developBy);
         developerName = view.findViewById(R.id.developerName);
         developerStudy = view.findViewById(R.id.developerStudy);
+        socialTitle = view.findViewById(R.id.socialTitle);
     }
 
 }

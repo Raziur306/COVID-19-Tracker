@@ -213,5 +213,15 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/socialTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Social Media"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
