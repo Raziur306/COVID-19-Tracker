@@ -4,16 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
     android:orientation="vertical"
     tools:context=".Activitys.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="right"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="39dp"
+                        android:layout_height="39dp"
+                        app:srcCompat="@drawable/ic_virus" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="COVID-19" />
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="VIRUS TRACKER"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/fragmentViewer"
         android:layout_width="match_parent"
-        android:launchMode="singleTask"
         android:layout_height="0dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:launchMode="singleTask"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_layout"
+
+        />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -26,12 +84,14 @@
 
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/draw_menu"
-        app:headerLayout="@layout/nav_header"
         android:layout_gravity="start"
-        android:fitsSystemWindows="false"
-        />
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/draw_menu">
+
+    </com.google.android.material.navigation.NavigationView>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -15,4 +15,9 @@
     <string name="developer">Developed By</string>
     <string name="developerName">Md. Raziur Rahaman Ronju</string>
     <string name="developerStudy">Department of CSE (IUBAT)</string>
+    
+<!--drawer navigation open & close-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    
 </resources>
