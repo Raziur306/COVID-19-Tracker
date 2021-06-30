@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:background="@drawable/circle_radius_bg"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id="@+id/latestNews_newCase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7664"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" new case " />
+
+    <TextView
+        android:id="@+id/temp_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="and " />
+
+    <TextView
+        android:id="@+id/latestNews_deathCase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="112"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/temp_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" new death" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" in " />
+
+    <TextView
+        android:id="@+id/latestNews_countryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Banladesh"
+        android:textColor="@android:color/holo_blue_light" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:foregroundGravity="center|right"
+        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right" />
+</LinearLayout>
