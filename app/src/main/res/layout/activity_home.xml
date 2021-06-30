@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Take 1 minute everyday to report your health status and help ust to map the spread of coronavirus prevail faster"
+            android:text="Take 1 minute everyday to report your health status and help us to map the spread of coronavirus prevail faster"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="@drawable/circle_radius_bg"
+        android:elevation="2dp"
         android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -481,6 +482,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/latestNewsRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
