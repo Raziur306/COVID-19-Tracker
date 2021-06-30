@@ -45,7 +45,7 @@
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@drawable/recyceler_search_bg"
+        android:background="@drawable/circle_radius_bg"
         android:iconifiedByDefault="false"
         android:queryHint="Search......"
         app:layout_constraintEnd_toEndOf="parent"
