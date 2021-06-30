@@ -60,126 +60,126 @@ public class HomeActivity extends Fragment {
 
 
 
-        loadingDialog = new LoadingDialog(getContext());
-        loadingDialog.show();
+//        loadingDialog = new LoadingDialog(getContext());
+//        loadingDialog.show();
 
 
         //view initializing views
-        initView(view);
-        //getting data from api
-        service();
+//        initView(view);
+//        //getting data from api
+//        service();
 
         //home pie chart
-        pieChart = view.findViewById(R.id.pieChart);
-        pieChartClass = new PieChartClass(getContext());
-        pieChartClass.setupDataChart(pieChart);
+//        pieChart = view.findViewById(R.id.pieChart);
+//        pieChartClass = new PieChartClass(getContext());
+//        pieChartClass.setupDataChart(pieChart);
 
 
-        //click country
-        countryName.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), CountryViewActivity.class);
-            startActivity(intent);
-
-        });
+//        //click country
+//        countryName.setOnClickListener(v -> {
+//            Intent intent = new Intent(getContext(), CountryViewActivity.class);
+//            startActivity(intent);
+//
+//        });
 
 
         return view;
     }
+//
+//    private void clickedItem() {
+//        entries = new ArrayList<>();
 
-    private void clickedItem() {
-        entries = new ArrayList<>();
+//        for (WorldDataItem cItem : worldData) {
+//            if (cItem.getID() == ID) {
+//                entries.add(new PieEntry(cItem.getTotalCases(), "Affected"));
+//                entries.add(new PieEntry(cItem.getTotalRecovered(), "Recovered"));
+//                entries.add(new PieEntry(cItem.getActive(), "Active Case"));
+//                entries.add(new PieEntry(cItem.getTotalDeaths(), "Death"));
+//
+//                countryName.setText(cItem.getCountryName());
+//
+//                totalAffected.setText(String.valueOf(cItem.getTotalCases()));
+//                todayAffected.setText("(+" + cItem.getTodayCases() + ")");
+//
+//                totalRecovered.setText(String.valueOf(cItem.getTotalRecovered()));
+//                todayRecovered.setText("(+" + cItem.getTodayRecovered() + ")");
+//
+//
+//                totalDeaths.setText(String.valueOf(cItem.getTotalDeaths()));
+//                todayDeaths.setText("(+" + cItem.getTodayDeaths() + ")");
+//
+//
+//                totalTest.setText(String.valueOf(cItem.getTests()));
+//
+//                totalActiveCase.setText(String.valueOf(cItem.getActive()));
+//                todayActiveCase.setText("(+" + cItem.getTodayCases() + ")");
+//
+//
+//                population.setText(String.valueOf(cItem.getTotalPopulation()));
+//
+//                setUpdatedTime(cItem.getUpdateTime());
+//
+//                break;
+//            }
+//        }
 
-        for (WorldDataItem cItem : worldData) {
-            if (cItem.getID() == ID) {
-                entries.add(new PieEntry(cItem.getTotalCases(), "Affected"));
-                entries.add(new PieEntry(cItem.getTotalRecovered(), "Recovered"));
-                entries.add(new PieEntry(cItem.getActive(), "Active Case"));
-                entries.add(new PieEntry(cItem.getTotalDeaths(), "Death"));
+//        pieChartClass.loadPieChartData(pieChart, entries);
 
-                countryName.setText(cItem.getCountryName());
+   // }
 
-                totalAffected.setText(String.valueOf(cItem.getTotalCases()));
-                todayAffected.setText("(+" + cItem.getTodayCases() + ")");
-
-                totalRecovered.setText(String.valueOf(cItem.getTotalRecovered()));
-                todayRecovered.setText("(+" + cItem.getTodayRecovered() + ")");
-
-
-                totalDeaths.setText(String.valueOf(cItem.getTotalDeaths()));
-                todayDeaths.setText("(+" + cItem.getTodayDeaths() + ")");
-
-
-                totalTest.setText(String.valueOf(cItem.getTests()));
-
-                totalActiveCase.setText(String.valueOf(cItem.getActive()));
-                todayActiveCase.setText("(+" + cItem.getTodayCases() + ")");
-
-
-                population.setText(String.valueOf(cItem.getTotalPopulation()));
-
-                setUpdatedTime(cItem.getUpdateTime());
-
-                break;
-            }
-        }
-
-        pieChartClass.loadPieChartData(pieChart, entries);
-
-    }
-
-    private void setUpdatedTime(long updateTime) {
-        DateFormat dateFormat = new SimpleDateFormat("dd  MMM, yyyy");
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(updateTime);
-        updated.setText("Last updated at " + dateFormat.format(calendar.getTime()));
+//    private void setUpdatedTime(long updateTime) {
+//        DateFormat dateFormat = new SimpleDateFormat("dd  MMM, yyyy");
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeInMillis(updateTime);
+//        updated.setText("Last updated at " + dateFormat.format(calendar.getTime()));
 
 
-    }
+ //   }
 
     //getting world data
-    private void service() {
-        doInBackground countryData = new doInBackground(getContext());
-        worldData = new ArrayList<>();
-        countryData.CountryDataService(new doInBackground.VolleyResponseListener() {
-            @Override
-            public void onResponse(ArrayList<WorldDataItem> wData) {
-
-                worldData = wData;
-
-                loadingDialog.dismiss();
-                flag = true;
-                clickedItem();
-            }
-
-            @Override
-            public void onErrorResponse() {
-                if (flag) {
-                    Toast.makeText(getContext(), "Check Your Internet Connection", Toast.LENGTH_SHORT).show();
-                    flag = false;
-                }
-                service();
-            }
-        });
-    }
+//    private void service() {
+//        doInBackground countryData = new doInBackground(getContext());
+//        worldData = new ArrayList<>();
+//        countryData.CountryDataService(new doInBackground.VolleyResponseListener() {
+//            @Override
+//            public void onResponse(ArrayList<WorldDataItem> wData) {
+//
+//                worldData = wData;
+//
+//                loadingDialog.dismiss();
+//                flag = true;
+//                clickedItem();
+//            }
+//
+//            @Override
+//            public void onErrorResponse() {
+//                if (flag) {
+//                    Toast.makeText(getContext(), "Check Your Internet Connection", Toast.LENGTH_SHORT).show();
+//                    flag = false;
+//                }
+//                service();
+//            }
+//        });
+//    }
 
 
     //initializing the views
-    private void initView(View view) {
+//    private void initView(View view) {
 
         //show data
-        totalAffected = view.findViewById(R.id.totalAffected);
-        todayAffected = view.findViewById(R.id.todayAffeced);
-        totalRecovered = view.findViewById(R.id.totalRecovered);
-        todayRecovered = view.findViewById(R.id.todayRecovered);
-        totalDeaths = view.findViewById(R.id.totalDeaths);
-        todayDeaths = view.findViewById(R.id.todayDeaths);
-        totalTest = view.findViewById(R.id.totalTests);
-        totalActiveCase = view.findViewById(R.id.activeCase);
-        todayActiveCase = view.findViewById(R.id.todayNewActiveCase);
-        population = view.findViewById(R.id.population);
-        updated = view.findViewById(R.id.updated);
-        countryName = view.findViewById(R.id.countryName);
-    }
+//        totalAffected = view.findViewById(R.id.totalAffected);
+//        todayAffected = view.findViewById(R.id.todayAffeced);
+//        totalRecovered = view.findViewById(R.id.totalRecovered);
+//        todayRecovered = view.findViewById(R.id.todayRecovered);
+//        totalDeaths = view.findViewById(R.id.totalDeaths);
+//        todayDeaths = view.findViewById(R.id.todayDeaths);
+//        totalTest = view.findViewById(R.id.totalTests);
+//        totalActiveCase = view.findViewById(R.id.activeCase);
+//        todayActiveCase = view.findViewById(R.id.todayNewActiveCase);
+//        population = view.findViewById(R.id.population);
+//        updated = view.findViewById(R.id.updated);
+//        countryName = view.findViewById(R.id.countryName);
+  //  }
 
 
 }

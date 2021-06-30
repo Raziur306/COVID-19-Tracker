@@ -34,10 +34,13 @@
             android:text="Take 1 minute everyday to report your health status and help ust to map the spread of coronavirus prevail faster"
             android:textColor="@color/white" />
     </LinearLayout>
+
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:background="@drawable/circle_radius_bg"
         android:orientation="vertical"
         android:padding="20dp"
@@ -202,7 +205,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="3dp"
@@ -210,24 +212,27 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/update_date"
+                android:id="@+id/update_date1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="30 Jun, 2021"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
 
     </LinearLayout>
 
-
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:background="@drawable/circle_radius_bg"
         android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
@@ -240,6 +245,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center">
+
                 <ImageView
                     android:id="@+id/country_flag_img"
                     android:layout_width="30dp"
@@ -260,9 +266,9 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:gravity="center|right"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_height="match_parent">
+                android:gravity="center|right">
 
                 <TextView
                     android:id="@+id/country_chooser"
@@ -270,8 +276,8 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:focusable="true"
-                    android:textColor="@android:color/holo_blue_light"
-                    android:text="Change" />
+                    android:text="Change"
+                    android:textColor="@android:color/holo_blue_light" />
 
             </LinearLayout>
 
@@ -428,7 +434,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="3dp"
@@ -436,15 +441,53 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/update_date"
+                android:id="@+id/update_date2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="30 Jun, 2021"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        tools:layout_editor_absoluteX="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Latest Updates" />
+        <TextView
+            android:gravity="right|center_vertical"
+            android:layout_gravity="center|center_vertical"
+            android:id="@+id/update_date3"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down"
+            android:layout_height="wrap_content"
+            android:text="30 Jun, 2021"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
 
     <!--    <RelativeLayout-->
