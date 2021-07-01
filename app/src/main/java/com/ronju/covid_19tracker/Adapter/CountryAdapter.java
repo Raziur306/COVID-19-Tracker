@@ -3,18 +3,15 @@ package com.ronju.covid_19tracker.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.ronju.covid_19tracker.Activitys.MainActivity;
 import com.ronju.covid_19tracker.R;
 import com.ronju.covid_19tracker.Model.WorldDataItem;
@@ -23,12 +20,12 @@ import com.ronju.covid_19tracker.Model.WorldDataItem;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity.worldData;
+import static com.ronju.covid_19tracker.DoInBackground.doInBackground.allCountryData;
 
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHolder> implements Filterable {
-    private ArrayList<WorldDataItem> allCountry = new ArrayList<>(worldData);
-    private ArrayList<WorldDataItem> countryList = new ArrayList<>(worldData);
+    private ArrayList<WorldDataItem> allCountry = new ArrayList<>(allCountryData);
+    private ArrayList<WorldDataItem> countryList = new ArrayList<>(allCountryData);
     private Context context;
 
     public CountryAdapter(Context context) {
