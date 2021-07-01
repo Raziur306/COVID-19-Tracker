@@ -21,7 +21,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.ronju.covid_19tracker.Activitys.Fragment.BDdataActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
+import com.ronju.covid_19tracker.Model.Bd_dis_item;
+import com.ronju.covid_19tracker.Model.WorldDataItem;
 import com.ronju.covid_19tracker.R;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     NavigationView nav;
@@ -29,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
     FragmentTransaction transaction;
-    private long ID = 50;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +45,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
         transaction = getSupportFragmentManager().beginTransaction();
-
-        if (getIntent().getExtras() != null) {
-            ID = getIntent().getExtras().getLong("ID");
-        }
-
-        transaction.replace(R.id.fragmentViewer, new HomeActivity(ID)).commit();
+        transaction.replace(R.id.fragmentViewer, new HomeActivity()).commit();
         nav.getMenu().getItem(0).setChecked(true);
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -57,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 transaction = getSupportFragmentManager().beginTransaction();
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        transaction.replace(R.id.fragmentViewer, new HomeActivity(ID)).commit();
+                        transaction.replace(R.id.fragmentViewer, new HomeActivity()).commit();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.nav_health_status:

@@ -1,8 +1,6 @@
 package com.ronju.covid_19tracker.DoInBackground;
 
 import android.content.Context;
-import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -17,8 +15,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-
 public class doInBackground {
+    //global data
+    public static long gAffected=0,gNewAffected=0,gDeath=0,gNewDeath=0,gNewRecovered=0,gRecovered=0;
+    public static ArrayList<WorldDataItem> allCountryData = new ArrayList<>();
+    public static ArrayList<Bd_dis_item> bdStateData = new ArrayList<>();
+    public static boolean responseFlag1=true,responseFlag2=true;
+
     private final String COUNTRY_API_URL = "https://corona.lmao.ninja/v2/countries";
     private final String BD_API_DISTRICT = "http://covid19tracker.gov.bd/api/district";
     //private final String DRIVE_DISTRICT_API ="https://drive.google.com/uc?export=download&id=1I5J28gAGs2XmFOL211duVO-b1PAZ5Ogc";
@@ -32,13 +35,12 @@ public class doInBackground {
     //country data service
 
     public interface VolleyResponseListener {
-        void onResponse(ArrayList<WorldDataItem> wData);
+        void onResponse();
 
         void onErrorResponse();
     }
 
     public void CountryDataService(VolleyResponseListener volleyResponseListener) {
-        ArrayList<WorldDataItem> wData = new ArrayList<>();
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, COUNTRY_API_URL, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -58,13 +60,21 @@ public class doInBackground {
                         long totalPopulation = response.getJSONObject(i).getLong("population");
                         long ID = response.getJSONObject(i).getJSONObject("countryInfo").getLong("_id");
 
+                        //total data
+                        gAffected+=totalCases;
+                        gNewAffected+=todayCases;
+                        gDeath+=totalDeaths;
+                        gNewDeath+=todayDeaths;
+                        gNewRecovered+=todayRecovered;
+                        gRecovered+=totalRecovered;
+
                         //adding data inside array
-                        wData.add(new WorldDataItem(flagUrl, countryName, updatedTime, totalCases, todayCases, totalDeaths, todayDeaths, totalRecovered, todayRecovered, activeCase, totalTastes, totalPopulation,ID));
+                        allCountryData.add(new WorldDataItem(flagUrl, countryName, updatedTime, totalCases, todayCases, totalDeaths, todayDeaths, totalRecovered, todayRecovered, activeCase, totalTastes, totalPopulation,ID));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-                volleyResponseListener.onResponse(wData);
+                volleyResponseListener.onResponse();
             }
         }, new Response.ErrorListener() {
             @Override

@@ -1,15 +1,9 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,70 +13,43 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieEntry;
 import com.ronju.covid_19tracker.Activitys.CountryViewActivity;
-import com.ronju.covid_19tracker.Activitys.MainActivity;
 import com.ronju.covid_19tracker.DoInBackground.doInBackground;
 import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.PieChartClass;
 import com.ronju.covid_19tracker.R;
-import com.ronju.covid_19tracker.Model.WorldDataItem;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Calendar;
+
+import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gAffected;
+import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gDeath;
+import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gNewAffected;
+import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gNewDeath;
+import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gNewRecovered;
+import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gRecovered;
+import static com.ronju.covid_19tracker.DoInBackground.doInBackground.responseFlag1;
 
 public class HomeActivity extends Fragment {
     private boolean flag = true;
-    private int i = 0;
-    private LoadingDialog loadingDialog;
-    private String apiUrl = "https://corona.lmao.ninja/v2/countries";
-    public static ArrayList<WorldDataItem> worldData;
-    private ArrayList<PieEntry> entries;
-    private PieChart pieChart;
-    private long ID;
     private View view = null;
-    private PieChartClass pieChartClass;
-    private TextView population, totalAffected, todayAffected, totalRecovered, todayRecovered, totalActiveCase, todayActiveCase, totalDeaths, todayDeaths, totalTest, updated, countryName;
-
-    public  HomeActivity()
-    {}
-
-    public HomeActivity(long ID) {
-        this.ID = ID;
-    }
-
+    private TextView globalAffected, globalNewAffected, globalDeath, globalNewDeath, globalRecovered, globalNewRecovered, countryAffected, countryNewAffected, countryName, countryDeath, countryNewDeath, changeCountry, date1, date2, date3;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.activity_home, container, false);
+        initView(view);
 
 
+        changeCountry.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), CountryViewActivity.class);
+            startActivity(intent);
+        });
 
-//        loadingDialog = new LoadingDialog(getContext());
-//        loadingDialog.show();
-
-
-        //view initializing views
-//        initView(view);
-//        //getting data from api
-//        service();
-
-        //home pie chart
-//        pieChart = view.findViewById(R.id.pieChart);
-//        pieChartClass = new PieChartClass(getContext());
-//        pieChartClass.setupDataChart(pieChart);
-
-
-//        //click country
-//        countryName.setOnClickListener(v -> {
-//            Intent intent = new Intent(getContext(), CountryViewActivity.class);
-//            startActivity(intent);
-//
-//        });
-
-
+        service();
+        if (!responseFlag1) {
+            setValue();
+        }
         return view;
     }
 //
@@ -125,7 +92,7 @@ public class HomeActivity extends Fragment {
 
 //        pieChartClass.loadPieChartData(pieChart, entries);
 
-   // }
+    // }
 
 //    private void setUpdatedTime(long updateTime) {
 //        DateFormat dateFormat = new SimpleDateFormat("dd  MMM, yyyy");
@@ -134,52 +101,66 @@ public class HomeActivity extends Fragment {
 //        updated.setText("Last updated at " + dateFormat.format(calendar.getTime()));
 
 
- //   }
+    //   }
 
     //getting world data
-//    private void service() {
-//        doInBackground countryData = new doInBackground(getContext());
-//        worldData = new ArrayList<>();
-//        countryData.CountryDataService(new doInBackground.VolleyResponseListener() {
-//            @Override
-//            public void onResponse(ArrayList<WorldDataItem> wData) {
-//
-//                worldData = wData;
-//
-//                loadingDialog.dismiss();
-//                flag = true;
-//                clickedItem();
-//            }
-//
-//            @Override
-//            public void onErrorResponse() {
-//                if (flag) {
-//                    Toast.makeText(getContext(), "Check Your Internet Connection", Toast.LENGTH_SHORT).show();
-//                    flag = false;
-//                }
-//                service();
-//            }
-//        });
-//    }
+    private void service() {
+        if (responseFlag1) {
+            doInBackground countryData = new doInBackground(getContext());
+            countryData.CountryDataService(new doInBackground.VolleyResponseListener() {
+                @Override
+                public void onResponse() {
+                    responseFlag1 = false;
+                    flag = true;
+                    setValue();
+                }
+
+                @Override
+                public void onErrorResponse() {
+                    if (flag) {
+                        Toast.makeText(getContext(), "Check Your Internet Connection", Toast.LENGTH_SHORT).show();
+                        flag = false;
+                    }
+                    service();
+                }
+            });
+        }
+    }
+
+    public void setValue() {
+        globalAffected.setText(String.valueOf(gAffected));
+        globalNewAffected.setText(String.valueOf(gNewAffected));
+        globalDeath.setText(String.valueOf(gDeath));
+        globalNewDeath.setText(String.valueOf(gNewDeath));
+        globalNewRecovered.setText(String.valueOf(gNewRecovered));
+        globalRecovered.setText(String.valueOf(gRecovered));
+    }
 
 
     //initializing the views
-//    private void initView(View view) {
+    private void initView(View view) {
+        //global section
+        globalAffected = view.findViewById(R.id.global_affected);
+        globalNewAffected = view.findViewById(R.id.global_new_affected);
+        globalDeath = view.findViewById(R.id.global_death);
+        globalNewDeath = view.findViewById(R.id.global_new_death);
+        globalRecovered = view.findViewById(R.id.global_recovered);
+        globalNewRecovered = view.findViewById(R.id.global_new_recovered);
 
-        //show data
-//        totalAffected = view.findViewById(R.id.totalAffected);
-//        todayAffected = view.findViewById(R.id.todayAffeced);
-//        totalRecovered = view.findViewById(R.id.totalRecovered);
-//        todayRecovered = view.findViewById(R.id.todayRecovered);
-//        totalDeaths = view.findViewById(R.id.totalDeaths);
-//        todayDeaths = view.findViewById(R.id.todayDeaths);
-//        totalTest = view.findViewById(R.id.totalTests);
-//        totalActiveCase = view.findViewById(R.id.activeCase);
-//        todayActiveCase = view.findViewById(R.id.todayNewActiveCase);
-//        population = view.findViewById(R.id.population);
-//        updated = view.findViewById(R.id.updated);
-//        countryName = view.findViewById(R.id.countryName);
-  //  }
+        //country section
+        countryName = view.findViewById(R.id.country_name);
+        countryAffected = view.findViewById(R.id.country_affected);
+        countryNewAffected = view.findViewById(R.id.country_new_affected);
+        countryDeath = view.findViewById(R.id.country_death);
+        countryNewDeath = view.findViewById(R.id.country_new_death);
+
+
+        //others
+        date1 = view.findViewById(R.id.update_date1);
+        date2 = view.findViewById(R.id.update_date2);
+        date3 = view.findViewById(R.id.update_date3);
+        changeCountry = view.findViewById(R.id.country_chooser);
+    }
 
 
 }
