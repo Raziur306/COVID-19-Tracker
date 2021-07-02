@@ -101,7 +101,7 @@
                             android:layout_marginBottom="3dp"
                             android:text="59656"
                             android:textColor="@android:color/holo_blue_light"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -111,7 +111,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="New+ " />
+                                android:text="New+ "
+                                android:textSize="13sp" />
 
                             <TextView
                                 android:id="@+id/global_new_affected"
@@ -136,7 +137,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="Total Death" />
+                            android:text="Deaths" />
 
                         <TextView
                             android:id="@+id/global_death"
@@ -145,7 +146,7 @@
                             android:layout_marginBottom="3dp"
                             android:text="59656"
                             android:textColor="@color/red"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -155,7 +156,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="New+ " />
+                                android:text="New+ "
+                                android:textSize="13sp" />
 
                             <TextView
                                 android:id="@+id/global_new_death"
@@ -180,7 +182,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="Total Recovered" />
+                            android:text="Recovered" />
 
                         <TextView
                             android:id="@+id/global_recovered"
@@ -189,7 +191,7 @@
                             android:layout_marginBottom="3dp"
                             android:text="59656"
                             android:textColor="@color/green"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -199,7 +201,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="New+ " />
+                                android:text="New+ "
+                                android:textSize="13sp" />
 
                             <TextView
                                 android:id="@+id/global_new_recovered"
@@ -331,7 +334,7 @@
                             android:layout_marginBottom="3dp"
                             android:text="59656"
                             android:textColor="@android:color/holo_blue_light"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -341,7 +344,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="New+ " />
+                                android:text="New+ "
+                                android:textSize="13sp" />
 
                             <TextView
                                 android:id="@+id/country_new_affected"
@@ -366,7 +370,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="Total Death" />
+                            android:text="Deaths" />
 
                         <TextView
                             android:id="@+id/country_death"
@@ -375,7 +379,7 @@
                             android:layout_marginBottom="3dp"
                             android:text="59656"
                             android:textColor="@color/red"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -385,7 +389,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="New+ " />
+                                android:text="New+ "
+                                android:textSize="13sp" />
 
                             <TextView
                                 android:id="@+id/country_new_death"
@@ -410,7 +415,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="Total Recovered" />
+                            android:text="Recovered" />
 
                         <TextView
                             android:id="@+id/country_recovered"
@@ -419,7 +424,7 @@
                             android:layout_marginBottom="3dp"
                             android:text="59656"
                             android:textColor="@color/green"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -429,7 +434,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="New+ " />
+                                android:text="New+ "
+                                android:textSize="13sp" />
 
                             <TextView
                                 android:id="@+id/country_new_recovered"
@@ -503,6 +509,7 @@
                 android:id="@+id/latestNewsRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"
                 android:layout_marginTop="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
