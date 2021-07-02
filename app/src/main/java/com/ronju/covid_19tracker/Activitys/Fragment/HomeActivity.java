@@ -1,8 +1,12 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +17,20 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieEntry;
 import com.ronju.covid_19tracker.Activitys.CountryViewActivity;
+import com.ronju.covid_19tracker.Adapter.LatestUpdateAdapter;
 import com.ronju.covid_19tracker.DoInBackground.doInBackground;
 import com.ronju.covid_19tracker.LoadingDialog;
+import com.ronju.covid_19tracker.Model.WorldDataItem;
 import com.ronju.covid_19tracker.PieChartClass;
 import com.ronju.covid_19tracker.R;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import static com.ronju.covid_19tracker.DoInBackground.doInBackground.allCountryData;
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gAffected;
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gDeath;
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gNewAffected;
@@ -32,13 +42,28 @@ import static com.ronju.covid_19tracker.DoInBackground.doInBackground.responseFl
 public class HomeActivity extends Fragment {
     private boolean flag = true;
     private View view = null;
-    private TextView globalAffected, globalNewAffected, globalDeath, globalNewDeath, globalRecovered, globalNewRecovered, countryAffected, countryNewAffected, countryName, countryDeath, countryNewDeath, changeCountry, date1, date2, date3;
-
+    private TextView globalAffected, globalNewAffected, globalDeath, globalNewDeath, globalRecovered, globalNewRecovered, countryAffected, countryNewAffected, countryName, countryDeath, countryNewDeath, countryNewRecovered, countryRecovered, changeCountry, date1, date2, date3;
+    private SharedPreferences sharedPreferences;
+    LoadingDialog loadingDialog;
+    RecyclerView latestNewsRecycler;
+    LatestUpdateAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_home, container, false);
+
+
+        //loading dialog
+        loadingDialog = new LoadingDialog(getContext());
+        loadingDialog.setCancelable(false);
+        loadingDialog.setTitle("Loading....");
+        loadingDialog.show();
+
+        //initialize view
         initView(view);
+
+        //shared preference
+        sharedPreferences = getActivity().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
 
 
         changeCountry.setOnClickListener(v -> {
@@ -52,56 +77,7 @@ public class HomeActivity extends Fragment {
         }
         return view;
     }
-//
-//    private void clickedItem() {
-//        entries = new ArrayList<>();
 
-//        for (WorldDataItem cItem : worldData) {
-//            if (cItem.getID() == ID) {
-//                entries.add(new PieEntry(cItem.getTotalCases(), "Affected"));
-//                entries.add(new PieEntry(cItem.getTotalRecovered(), "Recovered"));
-//                entries.add(new PieEntry(cItem.getActive(), "Active Case"));
-//                entries.add(new PieEntry(cItem.getTotalDeaths(), "Death"));
-//
-//                countryName.setText(cItem.getCountryName());
-//
-//                totalAffected.setText(String.valueOf(cItem.getTotalCases()));
-//                todayAffected.setText("(+" + cItem.getTodayCases() + ")");
-//
-//                totalRecovered.setText(String.valueOf(cItem.getTotalRecovered()));
-//                todayRecovered.setText("(+" + cItem.getTodayRecovered() + ")");
-//
-//
-//                totalDeaths.setText(String.valueOf(cItem.getTotalDeaths()));
-//                todayDeaths.setText("(+" + cItem.getTodayDeaths() + ")");
-//
-//
-//                totalTest.setText(String.valueOf(cItem.getTests()));
-//
-//                totalActiveCase.setText(String.valueOf(cItem.getActive()));
-//                todayActiveCase.setText("(+" + cItem.getTodayCases() + ")");
-//
-//
-//                population.setText(String.valueOf(cItem.getTotalPopulation()));
-//
-//                setUpdatedTime(cItem.getUpdateTime());
-//
-//                break;
-//            }
-//        }
-
-//        pieChartClass.loadPieChartData(pieChart, entries);
-
-    // }
-
-//    private void setUpdatedTime(long updateTime) {
-//        DateFormat dateFormat = new SimpleDateFormat("dd  MMM, yyyy");
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTimeInMillis(updateTime);
-//        updated.setText("Last updated at " + dateFormat.format(calendar.getTime()));
-
-
-    //   }
 
     //getting world data
     private void service() {
@@ -128,14 +104,54 @@ public class HomeActivity extends Fragment {
     }
 
     public void setValue() {
+        //latest news adapter
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        latestNewsRecycler.setLayoutManager(llm);
+        latestNewsRecycler.setHasFixedSize(true);
+        mAdapter = new LatestUpdateAdapter();
+        latestNewsRecycler.setAdapter(mAdapter);
+
+
+        //global item
         globalAffected.setText(String.valueOf(gAffected));
         globalNewAffected.setText(String.valueOf(gNewAffected));
         globalDeath.setText(String.valueOf(gDeath));
         globalNewDeath.setText(String.valueOf(gNewDeath));
         globalNewRecovered.setText(String.valueOf(gNewRecovered));
         globalRecovered.setText(String.valueOf(gRecovered));
+
+
+        //selected country item
+        String countryId = sharedPreferences.getString("country_id", "50");
+        for (WorldDataItem cItem : allCountryData) {
+            if (cItem.getID() == Integer.parseInt(countryId)) {
+
+                countryName.setText(cItem.getCountryName());
+                countryAffected.setText(String.valueOf(cItem.getTotalCases()));
+                countryNewAffected.setText(String.valueOf(cItem.getTodayCases()));
+                countryRecovered.setText(String.valueOf(cItem.getTotalRecovered()));
+                countryNewRecovered.setText(String.valueOf(cItem.getTodayRecovered()));
+                countryDeath.setText(String.valueOf(cItem.getTotalDeaths()));
+                countryNewDeath.setText(String.valueOf(cItem.getTodayDeaths()));
+
+                setUpdatedTime(cItem.getUpdateTime());
+                break;
+            }
+        }
+
     }
 
+    private void setUpdatedTime(long updateTime) {
+        DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy, hh:mm a");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(updateTime);
+        date1.setText(dateFormat.format(calendar.getTime()));
+        date2.setText(dateFormat.format(calendar.getTime()));
+        date3.setText(dateFormat.format(calendar.getTime()));
+        loadingDialog.dismiss();
+
+    }
 
     //initializing the views
     private void initView(View view) {
@@ -153,6 +169,8 @@ public class HomeActivity extends Fragment {
         countryNewAffected = view.findViewById(R.id.country_new_affected);
         countryDeath = view.findViewById(R.id.country_death);
         countryNewDeath = view.findViewById(R.id.country_new_death);
+        countryRecovered = view.findViewById(R.id.country_recovered);
+        countryNewRecovered = view.findViewById(R.id.country_new_recovered);
 
 
         //others
@@ -160,6 +178,7 @@ public class HomeActivity extends Fragment {
         date2 = view.findViewById(R.id.update_date2);
         date3 = view.findViewById(R.id.update_date3);
         changeCountry = view.findViewById(R.id.country_chooser);
+        latestNewsRecycler = view.findViewById(R.id.latestNewsRecycler);
     }
 
 
