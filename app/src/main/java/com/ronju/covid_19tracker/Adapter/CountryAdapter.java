@@ -3,6 +3,7 @@ package com.ronju.covid_19tracker.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,13 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.ronju.covid_19tracker.Activitys.MainActivity;
 import com.ronju.covid_19tracker.R;
 import com.ronju.covid_19tracker.Model.WorldDataItem;
@@ -32,6 +38,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         this.context = context;
     }
 
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.country_view_bg, parent, false);
@@ -46,10 +53,25 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         Glide.with(context).load(countryList.get(position).getFlagUrl()).into(holder.cFlag);
 
         holder.itemView.setOnClickListener(v -> {
+
+            //shared preference
+            SharedPreferences sharedPreferences = v.getContext().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("country_id", String.valueOf(countryList.get(position).getID()));
+            editor.apply();
+            editor.commit();
+
+
+            //start home activity
             Intent intent = new Intent(v.getContext(), MainActivity.class);
-            intent.putExtra("ID",countryList.get(position).getID());
             v.getContext().startActivity(intent);
-            ((Activity)context).finish();
+
+//            HomeActivity fragment = new HomeActivity();
+//            MainActivity mainActivity = (MainActivity)v.getContext();
+//            mainActivity.getFragmentManager().beginTransaction().replace(R.id.fragmentViewer, fragment).commit();
+
+
+            ((Activity) context).finish();
         });
     }
 
