@@ -1,31 +1,24 @@
 package com.ronju.covid_19tracker.Activitys;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
-
 import androidx.appcompat.widget.Toolbar;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.ronju.covid_19tracker.Activitys.Fragment.AboutActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.BDdataActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
-import com.ronju.covid_19tracker.Model.Bd_dis_item;
-import com.ronju.covid_19tracker.Model.WorldDataItem;
 import com.ronju.covid_19tracker.R;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     NavigationView nav;
@@ -33,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
     FragmentTransaction transaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +38,13 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragmentViewer, new HomeActivity()).commit();
-        nav.getMenu().getItem(0).setChecked(true);
+        Fragment fragment = new HomeActivity();
 
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragmentViewer, fragment).commit();
+
+
+        nav.getMenu().getItem(0).setChecked(true);
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -55,34 +52,34 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
                         transaction.replace(R.id.fragmentViewer, new HomeActivity()).commit();
-                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.nav_health_status:
                         transaction.replace(R.id.fragmentViewer, new HealthCareActivity()).commit();
-                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.nav_prevention:
                         break;
                     case R.id.nav_state_data:
                         transaction.replace(R.id.fragmentViewer, new BDdataActivity()).commit();
-                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.nav_symptoms:
                         //transaction.replace(R.id.fragmentViewer, new ).commit();
-                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.question:
+                        //transaction.replace(R.id.fragmentViewer, new ).commit();
+                        break;
+                    case R.id.nav_about:
+                        transaction.replace(R.id.fragmentViewer,new AboutActivity()).commit();
                         break;
                 }
-
-
-
+                drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
 
 
-   //settings
-           //dark_mode
-        SwitchCompat switchCompat = (SwitchCompat)nav.getMenu().findItem(R.id.dark_menu).getActionView();
+        //settings
+        //dark_mode
+        SwitchCompat switchCompat = (SwitchCompat) nav.getMenu().findItem(R.id.dark_menu).getActionView();
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
