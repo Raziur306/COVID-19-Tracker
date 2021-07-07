@@ -20,4 +20,12 @@
     </style>
 
 
+    <!--Bottom sheet theme-->
+    <style name="bottomSheetTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyle</item>
+    </style>
+
+    <style name="bottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

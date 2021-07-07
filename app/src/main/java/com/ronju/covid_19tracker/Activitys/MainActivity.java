@@ -7,12 +7,15 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.navigation.NavigationView;
 import com.ronju.covid_19tracker.Activitys.Fragment.AboutActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.BDdataActivity;
@@ -42,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentViewer, fragment).commit();
-
-
         nav.getMenu().getItem(0).setChecked(true);
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -68,16 +69,14 @@ public class MainActivity extends AppCompatActivity {
                         //transaction.replace(R.id.fragmentViewer, new ).commit();
                         break;
                     case R.id.nav_about:
-                        transaction.replace(R.id.fragmentViewer,new AboutActivity()).commit();
+                        transaction.replace(R.id.fragmentViewer, new AboutActivity()).commit();
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
-
-
-        //settings
+//settings
         //dark_mode
         SwitchCompat switchCompat = (SwitchCompat) nav.getMenu().findItem(R.id.dark_menu).getActionView();
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -89,11 +88,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     public void clickDrawerCloser(View view) {
         drawerLayout.closeDrawer(GravityCompat.START);
     }
-
 
     @Override
     public void onBackPressed() {
