@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +49,7 @@ public class HomeActivity extends Fragment {
     LoadingDialog loadingDialog;
     RecyclerView latestNewsRecycler;
     LatestUpdateAdapter mAdapter;
+    ImageView countryFlag;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -171,7 +174,7 @@ public class HomeActivity extends Fragment {
         countryNewDeath = view.findViewById(R.id.country_new_death);
         countryRecovered = view.findViewById(R.id.country_recovered);
         countryNewRecovered = view.findViewById(R.id.country_new_recovered);
-
+        countryFlag = view.findViewById(R.id.country_flag_img);
 
         //others
         date1 = view.findViewById(R.id.update_date1);
