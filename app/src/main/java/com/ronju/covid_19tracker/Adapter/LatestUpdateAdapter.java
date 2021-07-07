@@ -1,10 +1,15 @@
 package com.ronju.covid_19tracker.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
+import com.ronju.covid_19tracker.Activitys.MainActivity;
 import com.ronju.covid_19tracker.Model.WorldDataItem;
 import com.ronju.covid_19tracker.R;
 import java.util.ArrayList;
@@ -49,6 +54,14 @@ public class LatestUpdateAdapter extends RecyclerView.Adapter<LatestUpdateAdapte
                 holder.temp_2.setVisibility(GONE);
             }
         }
+
+        //on item clicked
+        holder.itemView.setOnClickListener(v->{
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(v.getContext(),R.style.bottomSheetTheme);
+            bottomSheetDialog.setContentView(R.layout.bottom_sheet_layout);
+            bottomSheetDialog.show();
+
+        });
     }
 
     @Override
