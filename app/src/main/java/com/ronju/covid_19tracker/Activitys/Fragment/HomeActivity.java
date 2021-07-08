@@ -1,13 +1,14 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,20 +17,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.PieEntry;
-import com.ronju.covid_19tracker.Activitys.CountryViewActivity;
+import com.bumptech.glide.Glide;
 import com.ronju.covid_19tracker.Adapter.LatestUpdateAdapter;
 import com.ronju.covid_19tracker.DoInBackground.doInBackground;
 import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.Model.WorldDataItem;
-import com.ronju.covid_19tracker.PieChartClass;
 import com.ronju.covid_19tracker.R;
 
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.allCountryData;
@@ -51,9 +48,11 @@ public class HomeActivity extends Fragment {
     LatestUpdateAdapter mAdapter;
     ImageView countryFlag;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_home, container, false);
+
 
 
         //loading dialog
@@ -70,13 +69,13 @@ public class HomeActivity extends Fragment {
 
 
         changeCountry.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), CountryViewActivity.class);
-            startActivity(intent);
+           getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer,new CountryViewActivity()).commit();
         });
 
         service();
         if (!responseFlag1) {
             setValue();
+
         }
         return view;
     }
@@ -92,6 +91,7 @@ public class HomeActivity extends Fragment {
                     responseFlag1 = false;
                     flag = true;
                     setValue();
+
                 }
 
                 @Override
@@ -106,30 +106,35 @@ public class HomeActivity extends Fragment {
         }
     }
 
+
     public void setValue() {
-        //latest news adapter
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        latestNewsRecycler.setLayoutManager(llm);
-        latestNewsRecycler.setHasFixedSize(true);
-        mAdapter = new LatestUpdateAdapter();
-        latestNewsRecycler.setAdapter(mAdapter);
+
+//latest news adapter
+            LinearLayoutManager llm = new LinearLayoutManager(getContext());
+            llm.setOrientation(LinearLayoutManager.VERTICAL);
+            latestNewsRecycler.setLayoutManager(llm);
+            latestNewsRecycler.setHasFixedSize(true);
+            mAdapter = new LatestUpdateAdapter();
+            latestNewsRecycler.setAdapter(mAdapter);
+
+            //global item
+            globalAffected.setText(String.valueOf(gAffected));
+            globalNewAffected.setText(String.valueOf(gNewAffected));
+            globalDeath.setText(String.valueOf(gDeath));
+            globalNewDeath.setText(String.valueOf(gNewDeath));
+            globalNewRecovered.setText(String.valueOf(gNewRecovered));
+            globalRecovered.setText(String.valueOf(gRecovered));
 
 
-        //global item
-        globalAffected.setText(String.valueOf(gAffected));
-        globalNewAffected.setText(String.valueOf(gNewAffected));
-        globalDeath.setText(String.valueOf(gDeath));
-        globalNewDeath.setText(String.valueOf(gNewDeath));
-        globalNewRecovered.setText(String.valueOf(gNewRecovered));
-        globalRecovered.setText(String.valueOf(gRecovered));
+
+
 
 
         //selected country item
+
         String countryId = sharedPreferences.getString("country_id", "50");
         for (WorldDataItem cItem : allCountryData) {
             if (cItem.getID() == Integer.parseInt(countryId)) {
-
                 countryName.setText(cItem.getCountryName());
                 countryAffected.setText(String.valueOf(cItem.getTotalCases()));
                 countryNewAffected.setText(String.valueOf(cItem.getTodayCases()));
@@ -137,12 +142,11 @@ public class HomeActivity extends Fragment {
                 countryNewRecovered.setText(String.valueOf(cItem.getTodayRecovered()));
                 countryDeath.setText(String.valueOf(cItem.getTotalDeaths()));
                 countryNewDeath.setText(String.valueOf(cItem.getTodayDeaths()));
-
+                Glide.with(getContext()).load(cItem.getFlagUrl()).into(countryFlag);
                 setUpdatedTime(cItem.getUpdateTime());
                 break;
             }
         }
-
     }
 
     private void setUpdatedTime(long updateTime) {
@@ -155,6 +159,7 @@ public class HomeActivity extends Fragment {
         loadingDialog.dismiss();
 
     }
+
 
     //initializing the views
     private void initView(View view) {

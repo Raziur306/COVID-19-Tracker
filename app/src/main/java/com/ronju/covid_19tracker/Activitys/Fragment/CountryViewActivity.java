@@ -1,38 +1,46 @@
-package com.ronju.covid_19tracker.Activitys;
+package com.ronju.covid_19tracker.Activitys.Fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ronju.covid_19tracker.Adapter.CountryAdapter;
 import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.R;
 
-public class CountryViewActivity extends AppCompatActivity {
+public class CountryViewActivity extends Fragment {
     private RecyclerView recyclerView;
     private CountryAdapter mAdapter;
     private LoadingDialog loadingDialog;
     private SearchView searchView;
     private TextView backPress;
+    private View view = null;
+    private FragmentVi
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_country_view);
-        loadingDialog = new LoadingDialog(this);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.activity_country_view, container, false);
+        loadingDialog = new LoadingDialog(getContext());
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+
 
         intView();
 
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
         recyclerView.setHasFixedSize(true);
-        mAdapter = new CountryAdapter(this);
+        mAdapter = new CountryAdapter(getContext());
         recyclerView.setAdapter(mAdapter);
 
 
@@ -49,22 +57,18 @@ public class CountryViewActivity extends AppCompatActivity {
             }
         });
 
-        backPress.setOnClickListener(v->{
-            onBackPressed();
+        backPress.setOnClickListener(v -> {
+
         });
 
+        return view;
     }
 
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
 
     private void intView() {
-        recyclerView = findViewById(R.id.countryItemView);
-        searchView = findViewById(R.id.cSearch);
-        backPress = findViewById(R.id.backPress);
+        recyclerView = view.findViewById(R.id.countryItemView);
+        searchView = view.findViewById(R.id.cSearch);
+        backPress = view.findViewById(R.id.backPress);
     }
 
 
