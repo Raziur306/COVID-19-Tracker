@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".Activitys.MainActivity">
 
     <RelativeLayout
@@ -60,18 +61,18 @@
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
+        <FrameLayout
+            android:id="@+id/fragmentViewer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:launchMode="singleTask"
+            />
+
+
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/fragmentViewer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:launchMode="singleTask"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_layout"
 
-        />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_menu"
