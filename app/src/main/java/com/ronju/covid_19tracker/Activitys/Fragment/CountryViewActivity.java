@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -24,14 +26,18 @@ public class CountryViewActivity extends Fragment {
     private SearchView searchView;
     private TextView backPress;
     private View view = null;
-    private FragmentVi
+    private FrameLayout frameLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_country_view, container, false);
         loadingDialog = new LoadingDialog(getContext());
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        frameLayout = view.findViewById(R.id.fragmentViewer);
 
+//        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
+//        layoutParams.setMargins(0,0,0,0);
+//        frameLayout.setLayoutParams(layoutParams);
 
         intView();
 
@@ -59,6 +65,9 @@ public class CountryViewActivity extends Fragment {
 
         backPress.setOnClickListener(v -> {
 
+//                    ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer,new HomeActivity()).commit();
         });
 
         return view;

@@ -1,5 +1,6 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -52,6 +53,8 @@ public class HomeActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_home, container, false);
+        //showing toolbar
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
 
 
 

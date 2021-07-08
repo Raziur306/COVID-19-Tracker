@@ -24,10 +24,11 @@
         android:layout_height="wrap_content"
         android:background="@drawable/ic_baseline_arrow_back"
         android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintEnd_toStartOf="@+id/textView6"
         app:layout_constraintHorizontal_bias="0.766"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView6" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/countryItemView"
