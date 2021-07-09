@@ -1,19 +1,27 @@
 package com.ronju.covid_19tracker.Adapter;
 
 import android.content.Context;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.textservice.TextInfo;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.ronju.covid_19tracker.Activitys.MainActivity;
 import com.ronju.covid_19tracker.Model.WorldDataItem;
 import com.ronju.covid_19tracker.R;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import static android.view.View.GONE;
+import static android.view.View.TEXT_ALIGNMENT_CENTER;
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.allCountryData;
 
 
@@ -59,6 +67,31 @@ public class LatestUpdateAdapter extends RecyclerView.Adapter<LatestUpdateAdapte
         holder.itemView.setOnClickListener(v->{
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(v.getContext(),R.style.bottomSheetTheme);
             bottomSheetDialog.setContentView(R.layout.bottom_sheet_layout);
+
+
+
+            TextView countryName = bottomSheetDialog.findViewById(R.id.bottomSheet_countryName);
+            ImageView countryFlag = bottomSheetDialog.findViewById(R.id.bottomSheetCountry_flag);
+            TextView affected = bottomSheetDialog.findViewById(R.id.bottomSheet_country_affected);
+            TextView newAffected = bottomSheetDialog.findViewById(R.id.bottomSheet_country_new_affected);
+            TextView death = bottomSheetDialog.findViewById(R.id.bottomSheet_country_death);
+            TextView newDeath = bottomSheetDialog.findViewById(R.id.bottomSheet_country_new_death);
+            TextView recovered = bottomSheetDialog.findViewById(R.id.bottomSheet_country_recovered);
+            TextView newRecovered = bottomSheetDialog.findViewById(R.id.bottomSheet_country_new_recovered);
+            TextView tests = bottomSheetDialog.findViewById(R.id.bottomSheet_tests);
+            TextView population = bottomSheetDialog.findViewById(R.id.bottomSheet_population);
+
+            countryName.setText(latestData.get(position).getCountryName());
+            Glide.with(v.getContext()).load(latestData.get(position).getFlagUrl()).into(countryFlag);
+            affected.setText(String.valueOf(latestData.get(position).getTotalCases()));
+            newAffected.setText(String.valueOf(latestData.get(position).getTodayCases()));
+            death.setText(String.valueOf(latestData.get(position).getTotalDeaths()));
+            newDeath.setText(String.valueOf(latestData.get(position).getTodayDeaths()));
+            recovered.setText(String.valueOf(latestData.get(position).getTotalRecovered()));
+            newRecovered.setText(String.valueOf(latestData.get(position).getTotalRecovered()));
+            tests.setText(String.valueOf(latestData.get(position).getTests()));
+            population.setText(String.valueOf(latestData.get(position).getTotalPopulation()));
+
             bottomSheetDialog.show();
 
         });

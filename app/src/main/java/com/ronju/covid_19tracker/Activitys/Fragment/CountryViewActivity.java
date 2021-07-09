@@ -35,10 +35,6 @@ public class CountryViewActivity extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
         frameLayout = view.findViewById(R.id.fragmentViewer);
 
-//        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
-//        layoutParams.setMargins(0,0,0,0);
-//        frameLayout.setLayoutParams(layoutParams);
-
         intView();
 
 
@@ -64,14 +60,14 @@ public class CountryViewActivity extends Fragment {
         });
 
         backPress.setOnClickListener(v -> {
-
-//                    ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer,new HomeActivity()).commit();
         });
 
+
+
         return view;
     }
+
 
 
     private void intView() {
