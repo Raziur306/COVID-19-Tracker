@@ -146,20 +146,21 @@ public class HomeActivity extends Fragment {
                 countryDeath.setText(String.valueOf(cItem.getTotalDeaths()));
                 countryNewDeath.setText(String.valueOf(cItem.getTodayDeaths()));
                 Glide.with(getContext()).load(cItem.getFlagUrl()).into(countryFlag);
-                setUpdatedTime(cItem.getUpdateTime());
+                Calendar calendar = setUpdatedTime(cItem.getUpdateTime());
+
+                date1.setText(new SimpleDateFormat("dd MMM, yyyy, hh:mm a").format(calendar.getTime()));
+                date2.setText(new SimpleDateFormat("dd MMM, yyyy, hh:mm a").format(calendar.getTime()));
+                date3.setText(new SimpleDateFormat("dd MMM, yyyy").format(calendar.getTime()));
+
+                loadingDialog.dismiss();
                 break;
             }
         }
     }
-
-    private void setUpdatedTime(long updateTime) {
-        DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy, hh:mm a");
+    private Calendar setUpdatedTime(long updateTime) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(updateTime);
-        date1.setText(dateFormat.format(calendar.getTime()));
-        date2.setText(dateFormat.format(calendar.getTime()));
-        date3.setText(dateFormat.format(calendar.getTime()));
-        loadingDialog.dismiss();
+        return calendar;
 
     }
 
