@@ -13,7 +13,7 @@
     <color name="green">#26A84B</color>
 
 <!--    Light Mode Colors-->
-
-
+    <color name="block_bg">#23313C</color>
+    <color name="main_bg">16202A</color>
 
 </resources>
