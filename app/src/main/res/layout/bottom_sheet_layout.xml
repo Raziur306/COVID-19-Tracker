@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:backgroundTint="?attr/background_color"
     android:background="@drawable/corner_shape"
     android:padding="15dp">
 
@@ -29,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Country Name"
+            android:textColor="?attr/text_color"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -53,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:textColor="?attr/text_color"
             android:text="Total Case"
             android:textStyle="bold" />
 
@@ -107,6 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="Deaths"
+            android:textColor="?attr/text_color"
             android:textStyle="bold" />
 
         <TextView
@@ -160,6 +164,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="Recovered"
+            android:textColor="?attr/text_color"
             android:textStyle="bold" />
 
         <TextView
@@ -213,6 +218,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="Tests"
+            android:textColor="?attr/text_color"
             android:textStyle="bold" />
 
         <TextView
@@ -245,6 +251,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="?attr/text_color"
             android:layout_marginBottom="10dp"
             android:text="Population"
             android:textStyle="bold" />

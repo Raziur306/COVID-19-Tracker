@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:elevation="2dp"
     android:background="?attr/background_color"
+    android:elevation="2dp"
     android:padding="15dp"
     tools:context=".Activitys.Fragment.HomeActivity">
 
@@ -70,6 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Coronavirus Global"
+                    android:textColor="?attr/text_color"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -93,7 +94,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="Total Case" />
+                            android:text="Total Case"
+                            android:textColor="?attr/text_color" />
 
                         <TextView
                             android:id="@+id/global_affected"
@@ -113,6 +115,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="New+ "
+                                android:textColor="?attr/text_color"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -138,7 +141,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="Deaths" />
+                            android:text="Deaths"
+                            android:textColor="?attr/text_color" />
 
                         <TextView
                             android:id="@+id/global_death"
@@ -158,6 +162,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="New+ "
+                                android:textColor="?attr/text_color"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -203,6 +208,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="New+ "
+                                android:textColor="?attr/text_color"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -230,6 +236,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="Last updated: "
+                        android:textColor="?attr/text_color"
                         android:textSize="12sp" />
 
                     <TextView
@@ -280,6 +287,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="Bangladesh"
+                            android:textColor="?attr/text_color"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -326,7 +334,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="Total Case" />
+                            android:text="Total Case"
+                            android:textColor="?attr/text_color" />
 
                         <TextView
                             android:id="@+id/country_affected"
@@ -346,6 +355,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="New+ "
+                                android:textColor="?attr/text_color"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -371,7 +381,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="Deaths" />
+                            android:text="Deaths"
+                            android:textColor="?attr/text_color" />
 
                         <TextView
                             android:id="@+id/country_death"
@@ -391,6 +402,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="New+ "
+                                android:textColor="?attr/text_color"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -416,7 +428,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="Recovered" />
+                            android:text="Recovered"
+                            android:textColor="?attr/text_color" />
 
                         <TextView
                             android:id="@+id/country_recovered"
@@ -436,6 +449,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="New+ "
+                                android:textColor="?attr/text_color"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -463,6 +477,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="Last updated: "
+                        android:textColor="?attr/text_color"
                         android:textSize="12sp" />
 
                     <TextView
@@ -470,6 +485,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="30 Jun, 2021"
+                        android:textColor="?attr/text_color"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -489,6 +505,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Latest Updates"
+                    android:textColor="?attr/text_color"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -501,6 +518,7 @@
                     android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down"
                     android:gravity="right|center_vertical"
                     android:text="30 Jun, 2021"
+                    android:textColor="?attr/text_color"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -510,8 +528,8 @@
                 android:id="@+id/latestNewsRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:nestedScrollingEnabled="false"
                 android:layout_marginTop="15dp"
+                android:nestedScrollingEnabled="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -21,10 +21,6 @@
     </style>
 
 
-    <style name="textViewColor">
-        <item name="android:textColor">@color/white</item>
-    </style>
-
 
     <!--Bottom sheet theme-->
     <style name="bottomSheetTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
