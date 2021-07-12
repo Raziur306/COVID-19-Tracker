@@ -2,8 +2,7 @@ package com.ronju.covid_19tracker.Activitys.Fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,9 +29,6 @@ import com.ronju.covid_19tracker.R;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import xander.elasticity.ElasticityHelper;
-
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.allCountryData;
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gAffected;
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gDeath;
