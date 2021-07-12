@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activitys.Fragment.CommunityJobActivity"></activity>
+        <activity android:name=".Activitys.Fragment.CommunityJobActivity"/>
         <activity android:name=".Activitys.Fragment.CountryViewActivity" />
         <activity android:name=".Activitys.Fragment.HealthCareActivity" />
         <activity android:name=".Activitys.Fragment.BDdataActivity" />
@@ -31,6 +31,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+       <meta-data
+        android:name="com.google.android.gms.ads.APPLICATION_ID"
+        android:value="ca-app-pub-1283407186797080~4201179598"/>
+
+
     </application>
 
 </manifest>

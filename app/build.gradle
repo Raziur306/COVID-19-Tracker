@@ -59,4 +59,10 @@ dependencies {
     implementation "androidx.browser:browser:1.3.0"
 
 
+    //adsmob
+    implementation 'com.google.android.gms:play-services-ads:20.2.0'
+
+
+    //over scroll effect
+
 }

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,8 @@ import com.ronju.covid_19tracker.R;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import xander.elasticity.ElasticityHelper;
 
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.allCountryData;
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gAffected;
@@ -48,7 +51,7 @@ public class HomeActivity extends Fragment {
     RecyclerView latestNewsRecycler;
     LatestUpdateAdapter mAdapter;
     ImageView countryFlag;
-
+    ScrollView scrollView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,6 +69,9 @@ public class HomeActivity extends Fragment {
 
         //initialize view
         initView(view);
+
+//        ElasticityHelper.setUpOverScroll(scrollView);
+
 
         //shared preference
         sharedPreferences = getActivity().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
@@ -191,6 +197,8 @@ public class HomeActivity extends Fragment {
         date3 = view.findViewById(R.id.update_date3);
         changeCountry = view.findViewById(R.id.country_chooser);
         latestNewsRecycler = view.findViewById(R.id.latestNewsRecycler);
+        scrollView = view.findViewById(R.id.home_scrollView);
+
     }
 
 
