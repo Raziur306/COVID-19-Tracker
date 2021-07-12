@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,15 +43,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = MainActivity.this.getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
-        if(sharedPreferences.getInt("DarkMode",0)==1)
-        {
+        if (sharedPreferences.getInt("DarkMode", 0) == 1) {
             setTheme(R.style.Theme_Dark);
-        }
-        else
-        {
+        } else {
             setTheme(R.style.Theme_Light);
         }
         setContentView(R.layout.activity_main);
+//        if (sharedPreferences.getInt("DarkMode", 1) == 0) {
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//        }
+
+
 
         initView();
 
@@ -110,28 +113,32 @@ public class MainActivity extends AppCompatActivity {
 
 //settings
         //dark_mode
+
         themeSwitchCompat = (SwitchCompat) nav.getMenu().findItem(R.id.dark_menu).getActionView();
+        if (sharedPreferences.getInt("DarkMode", 0) == 1) {
+            themeSwitchCompat.setChecked(true);
+        }
+
         themeSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 if (isChecked) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                   Toast.makeText(MainActivity.this, "Dark Mode", Toast.LENGTH_SHORT).show();
+                   AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     setTheme(R.style.Theme_Dark);
                     editor.putInt("DarkMode", 1);
+                  //  recreate();
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    setTheme(R.style.Theme_Light);
-                    editor.putInt("DarkMode", 0);
+                   setTheme(R.style.Theme_Light);
+                   editor.putInt("DarkMode", 0);
+                   //recreate();
                 }
                 editor.apply();
                 editor.commit();
             }
         });
-        if(sharedPreferences.getInt("DarkMode",0)==1)
-        {
-            themeSwitchCompat.setChecked(true);
-        }
     }
 
 

@@ -16,7 +16,7 @@
         <item name="background_color">@color/white</item>
         <item name="text_color">#808080</item>
         <item name="block_back">@color/white</item>
-
+        <item name="nav_text_color">@color/black</item>
 
     </style>
 

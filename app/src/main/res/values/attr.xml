@@ -4,6 +4,7 @@
         <attr name="background_color" format="color"/>
         <attr name="block_back" format="color"/>
         <attr name="text_color" format="color"/>
+        <attr name="nav_text_color" format="color"/>
     </declare-styleable>
 
 </resources>
