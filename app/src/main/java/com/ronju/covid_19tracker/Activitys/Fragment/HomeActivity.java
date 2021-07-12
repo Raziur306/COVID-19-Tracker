@@ -24,9 +24,6 @@ import com.ronju.covid_19tracker.DoInBackground.doInBackground;
 import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.Model.WorldDataItem;
 import com.ronju.covid_19tracker.R;
-
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.allCountryData;
