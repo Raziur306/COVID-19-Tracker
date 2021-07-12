@@ -22,6 +22,8 @@
         <item
             android:id="@+id/question"
             android:title="Popular Question" />
+        <item android:id="@+id/community_job"
+            android:title="Community Job"/>
         <item
             android:id="@+id/nav_about"
             android:title="About" />

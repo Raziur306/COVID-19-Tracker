@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ronju.covid_19tracker">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,15 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activitys.Fragment.CountryViewActivity"/>
+        <activity android:name=".Activitys.Fragment.CommunityJobActivity"></activity>
+        <activity android:name=".Activitys.Fragment.CountryViewActivity" />
         <activity android:name=".Activitys.Fragment.HealthCareActivity" />
         <activity android:name=".Activitys.Fragment.BDdataActivity" />
         <activity android:name=".Activitys.Fragment.AboutActivity" />
-        <activity android:name=".Activitys.Fragment.HomeActivity"/>
-        <activity android:name=".Activitys.MainActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".Activitys.SplashActivity" android:screenOrientation="portrait">
+        <activity android:name=".Activitys.Fragment.HomeActivity" />
+        <activity
+            android:name=".Activitys.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activitys.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
