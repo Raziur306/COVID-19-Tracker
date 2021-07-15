@@ -16,6 +16,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            android:theme="@style/myToolbar"
             android:layout_width="match_parent"
             android:background="?attr/background_color"
             android:layout_height="?attr/actionBarSize">
@@ -82,6 +83,7 @@
         app:itemTextColor="?attr/nav_text_color"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
+        android:theme="@style/navigation_divider_title_border"
         app:menu="@menu/draw_menu">
 
     </com.google.android.material.navigation.NavigationView>

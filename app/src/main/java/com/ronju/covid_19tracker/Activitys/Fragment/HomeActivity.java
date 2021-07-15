@@ -190,8 +190,6 @@ public class HomeActivity extends Fragment {
         date3 = view.findViewById(R.id.update_date3);
         changeCountry = view.findViewById(R.id.country_chooser);
         latestNewsRecycler = view.findViewById(R.id.latestNewsRecycler);
-        scrollView = view.findViewById(R.id.home_scrollView);
-
     }
 
 

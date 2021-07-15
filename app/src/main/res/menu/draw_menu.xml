@@ -37,7 +37,8 @@
             <item
                 android:id="@+id/location_menu"
                 android:title="Location"
-                app:actionViewClass="androidx.appcompat.widget.SwitchCompat" />
+               app:actionLayout="@layout/nav_switch_button"
+                />
             <item
                 android:id="@+id/dark_menu"
                 android:title="Dark Mode"

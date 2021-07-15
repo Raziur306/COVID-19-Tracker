@@ -36,11 +36,11 @@ import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.ronju.covid_19tracker.R;
 
 public class MainActivity extends AppCompatActivity {
-    NavigationView nav;
-    Toolbar toolbar;
-    ActionBarDrawerToggle toggle;
-    DrawerLayout drawerLayout;
-    FragmentTransaction transaction;
+    private NavigationView nav;
+    private Toolbar toolbar;
+    private ActionBarDrawerToggle toggle;
+    private DrawerLayout drawerLayout;
+    private FragmentTransaction transaction;
     private SwitchCompat themeSwitchCompat;
     private SharedPreferences sharedPreferences;
     private final Handler handler = new Handler();

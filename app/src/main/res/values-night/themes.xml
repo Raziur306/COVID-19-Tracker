@@ -30,4 +30,22 @@
     <style name="bottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
     </style>
+
+    <!--    Toolbar Icon Color-->
+    <style name="myToolbar" parent="ThemeOverlay.AppCompat">
+        <item name="drawerArrowStyle">@style/WhiteDrawerIconStyle</item>
+    </style>
+    <style name="WhiteDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@color/fade_white</item>
+    </style>
+
+
+    <!--    navigation title color-->
+    <style name="navigation_divider_title_border" parent="">
+        <item name="android:textColorSecondary">@color/red</item>
+        <item name="android:listDivider">@color/design_default_color_primary</item>
+    </style>
+
+
 </resources>

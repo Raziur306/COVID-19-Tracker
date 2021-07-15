@@ -15,5 +15,5 @@
 <!--    Light Mode Colors-->
     <color name="block_bg">#23313C</color>
     <color name="main_bg">#16202A</color>
-
+    <color name="fade_white">#E0E1E4</color>
 </resources>
