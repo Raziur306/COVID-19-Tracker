@@ -17,6 +17,7 @@
         android:textOff="Off"
         app:layout_constraintTop_toTopOf="parent"
         android:thumb="@drawable/thumb1"
+        android:track="@drawable/tack"
          />
 
 
