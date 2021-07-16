@@ -4,15 +4,15 @@
     <item android:state_checked="false">
         <shape android:shape="oval">
             <solid android:color="@color/white" />
-            <size android:width="0dp" android:height="30dp" />
-            <stroke android:width="1dp" android:color="#8e8e8e" />
+            <size android:width="25dp" android:height="25dp" />
+            <stroke android:width="1.5dp" android:color="@color/red" />
         </shape>
     </item>
     <item android:state_checked="true">
         <shape android:shape="oval">
             <solid android:color="@color/white" />
-            <size android:width="0dp" android:height="30dp" />
-            <stroke android:width="1dp" android:color="@color/green" />
+            <size android:width="25dp" android:height="25dp" />
+            <stroke android:width="1.5dp" android:color="@color/green" />
         </shape>
     </item>
 </selector>

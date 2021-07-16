@@ -1,6 +1,5 @@
 package com.ronju.covid_19tracker.Activitys;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -10,15 +9,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Activity;
-import android.app.UiModeManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.UriMatcher;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private FragmentTransaction transaction;
     private SwitchCompat themeSwitchCompat;
+    private SwitchCompat locationSwitchCompat;
     private SharedPreferences sharedPreferences;
     private final Handler handler = new Handler();
     private int fragmentIndex = 0;
@@ -135,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 //settings
         //dark_mode
 
-        themeSwitchCompat = (SwitchCompat) nav.getMenu().findItem(R.id.dark_menu).getActionView();
+        themeSwitchCompat = (SwitchCompat) nav.getMenu().findItem(R.id.dark_menu).getActionView().findViewById(R.id.nav_switch_item);
         if (sharedPreferences.getInt("DarkMode", 0) == 1) {
             themeSwitchCompat.setChecked(true);
         }
@@ -145,15 +140,10 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 if (isChecked) {
-
-                    //setTheme(R.style.Theme_Dark);
                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_YES);
-
                     editor.putInt("DarkMode", 1);
                 } else {
                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_NO);
-
-                    //setTheme(R.style.Theme_Light);
                     editor.putInt("DarkMode", 0);
                 }
                 editor.apply();
@@ -161,6 +151,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //location
+        locationSwitchCompat = (SwitchCompat) nav.getMenu().findItem(R.id.location_menu).getActionView().findViewById(R.id.nav_switch_item);
+        locationSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Toast.makeText(MainActivity.this, "Item Changed", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -171,8 +169,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Dark Mode Enabled", Toast.LENGTH_LONG).show();
         else
             Toast.makeText(MainActivity.this, "Dark Mode Disabled", Toast.LENGTH_LONG).show();
-        transaction.replace(R.id.fragmentViewer, new AboutActivity());
         recreate();
+      //  transaction.replace(R.id.fragmentViewer, new AboutActivity());
     }
 
     public void clickDrawerCloser(View view) {

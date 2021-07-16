@@ -22,27 +22,27 @@
         <item
             android:id="@+id/question"
             android:title="Popular Question" />
-        <item android:id="@+id/community_job"
-            android:title="Community Job"/>
+        <item
+            android:id="@+id/community_job"
+            android:title="Community Job" />
         <item
             android:id="@+id/nav_about"
             android:title="About" />
     </group>
-    <item android:title="Settings">
+    <item android:title="SETTINGS">
         <menu>
             <item
                 android:id="@+id/notification_menu"
                 android:title="Notification"
-                app:actionViewClass="androidx.appcompat.widget.SwitchCompat" />
+               app:actionLayout="@layout/nav_switch_button" />
             <item
                 android:id="@+id/location_menu"
                 android:title="Location"
-               app:actionLayout="@layout/nav_switch_button"
-                />
+                app:actionLayout="@layout/nav_switch_button" />
             <item
                 android:id="@+id/dark_menu"
                 android:title="Dark Mode"
-                app:actionViewClass="androidx.appcompat.widget.SwitchCompat" />
+               app:actionLayout="@layout/nav_switch_button" />
         </menu>
     </item>
 </menu>

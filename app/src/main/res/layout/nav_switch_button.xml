@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Switch
-        android:id="@+id/switch1"
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/nav_switch_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,7 +17,7 @@
         android:textOff="Off"
         app:layout_constraintTop_toTopOf="parent"
         android:thumb="@drawable/thumb1"
-        android:track="@drawable/tack"
+        app:track="@drawable/tack"
          />
 
 

@@ -17,13 +17,10 @@
         <item name="text_color">#000000</item>
         <item name="block_back">@color/white</item>
         <item name="nav_text_color">@color/black</item>
+        <item name="toolbar_icon_color">@color/black</item>
 
     </style>
 
-
-    <style name="textViewColor">
-        <item name="android:textColor">@color/black</item>
-    </style>
 
     <!--Bottom sheet theme-->
     <style name="bottomSheetTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
@@ -41,13 +38,17 @@
     </style>
     <style name="BlackDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
-        <item name="color">@color/black</item>
+        <item name="color">?attr/toolbar_icon_color</item>
     </style>
 
 
     <!--    navigation title color-->
     <style name="navigation_divider_title_border" parent="">
         <item name="android:textColorSecondary">@color/red</item>
-        <item name="android:listDivider">@color/design_default_color_primary</item>
+        <item name="android:listDivider">@color/dark_blue</item>
     </style>
+
+
+
+
 </resources>
