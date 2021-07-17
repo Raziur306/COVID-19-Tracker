@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +23,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.ronju.covid_19tracker.Activitys.MainActivity;
 import com.ronju.covid_19tracker.Adapter.LatestUpdateAdapter;
 import com.ronju.covid_19tracker.DoInBackground.doInBackground;
 import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.Model.WorldDataItem;
 import com.ronju.covid_19tracker.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.allCountryData;
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gAffected;
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.gDeath;
@@ -44,14 +51,13 @@ public class HomeActivity extends Fragment {
     RecyclerView latestNewsRecycler;
     LatestUpdateAdapter mAdapter;
     ImageView countryFlag;
-    ScrollView scrollView;
+    Handler handler = new Handler();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_home, container, false);
         //showing toolbar
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
 
         //loading dialog
@@ -63,15 +69,12 @@ public class HomeActivity extends Fragment {
         //initialize view
         initView(view);
 
-//        ElasticityHelper.setUpOverScroll(scrollView);
-
-
         //shared preference
         sharedPreferences = getActivity().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
 
 
         changeCountry.setOnClickListener(v -> {
-           getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer,new CountryViewActivity()).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer, new CountryViewActivity()).commit();
         });
 
         service();
@@ -79,6 +82,8 @@ public class HomeActivity extends Fragment {
             setValue();
 
         }
+
+
         return view;
     }
 
@@ -110,30 +115,23 @@ public class HomeActivity extends Fragment {
 
 
     public void setValue() {
-
-//latest news adapter
-            LinearLayoutManager llm = new LinearLayoutManager(getContext());
-            llm.setOrientation(LinearLayoutManager.VERTICAL);
-            latestNewsRecycler.setLayoutManager(llm);
-            latestNewsRecycler.setHasFixedSize(true);
-            mAdapter = new LatestUpdateAdapter();
-            latestNewsRecycler.setAdapter(mAdapter);
-
-            //global item
-            globalAffected.setText(String.valueOf(gAffected));
-            globalNewAffected.setText(String.valueOf(gNewAffected));
-            globalDeath.setText(String.valueOf(gDeath));
-            globalNewDeath.setText(String.valueOf(gNewDeath));
-            globalNewRecovered.setText(String.valueOf(gNewRecovered));
-            globalRecovered.setText(String.valueOf(gRecovered));
-
-
-
-
+        //latest news adapter
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        latestNewsRecycler.setLayoutManager(llm);
+        latestNewsRecycler.setHasFixedSize(true);
+        mAdapter = new LatestUpdateAdapter();
+        latestNewsRecycler.setAdapter(mAdapter);
+        //global item
+        globalAffected.setText(String.valueOf(gAffected));
+        globalNewAffected.setText(String.valueOf(gNewAffected));
+        globalDeath.setText(String.valueOf(gDeath));
+        globalNewDeath.setText(String.valueOf(gNewDeath));
+        globalNewRecovered.setText(String.valueOf(gNewRecovered));
+        globalRecovered.setText(String.valueOf(gRecovered));
 
 
         //selected country item
-
         String countryId = sharedPreferences.getString("country_id", "50");
         for (WorldDataItem cItem : allCountryData) {
             if (cItem.getID() == Integer.parseInt(countryId)) {
@@ -150,17 +148,16 @@ public class HomeActivity extends Fragment {
                 date1.setText(new SimpleDateFormat("dd MMM, yyyy, hh:mm a").format(calendar.getTime()));
                 date2.setText(new SimpleDateFormat("dd MMM, yyyy, hh:mm a").format(calendar.getTime()));
                 date3.setText(new SimpleDateFormat("dd MMM, yyyy").format(calendar.getTime()));
-
                 loadingDialog.dismiss();
                 break;
             }
         }
     }
+
     private Calendar setUpdatedTime(long updateTime) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(updateTime);
         return calendar;
-
     }
 
 
