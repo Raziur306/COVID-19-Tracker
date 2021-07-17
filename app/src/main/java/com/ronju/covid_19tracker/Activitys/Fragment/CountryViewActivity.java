@@ -23,7 +23,7 @@ public class CountryViewActivity extends Fragment {
     private RecyclerView recyclerView;
     private CountryAdapter mAdapter;
     private LoadingDialog loadingDialog;
-    private SearchView searchView;
+    private androidx.appcompat.widget.SearchView searchView;
     private TextView backPress;
     private View view = null;
     private FrameLayout frameLayout;
@@ -46,7 +46,7 @@ public class CountryViewActivity extends Fragment {
         recyclerView.setAdapter(mAdapter);
 
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;

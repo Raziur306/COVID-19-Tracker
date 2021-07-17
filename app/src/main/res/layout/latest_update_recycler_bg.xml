@@ -12,6 +12,7 @@
     <TextView
         android:id="@+id/latestNews_newCase"
         android:layout_width="wrap_content"
+        android:textColor="?attr/fade_dark"
         android:layout_height="wrap_content"
         android:text="7664"
         android:textSize="14sp" />
@@ -20,13 +21,14 @@
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" new case "
+        android:textColor="?attr/fade_dark"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/temp_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="?attr/fade_dark"
         android:text="and "
         android:textSize="12sp" />
 
@@ -34,6 +36,7 @@
         android:id="@+id/latestNews_deathCase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="?attr/fade_dark"
         android:text="112"
         android:textSize="14sp" />
 
@@ -42,6 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" new death"
+        android:textColor="?attr/fade_dark"
         android:textSize="12sp" />
 
     <TextView
@@ -49,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" in "
+        android:textColor="?attr/fade_dark"
         android:textSize="12sp" />
 
     <TextView

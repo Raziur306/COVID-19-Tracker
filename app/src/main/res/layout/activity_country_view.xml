@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="104dp"
+        android:textColor="?attr/text_color"
         android:text="Choose your country"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -42,17 +43,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cSearch" />
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/cSearch"
-        android:layout_width="310dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+
+        android:textColorHint="@color/red"
+        android:layout_marginTop="16dp"
         android:background="@drawable/circle_radius_bg"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search......"
+        app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:queryBackground="@null"
+        app:queryHint="Search...."
+        app:searchIcon="@drawable/ic_baseline_search" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

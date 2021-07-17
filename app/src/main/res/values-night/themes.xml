@@ -18,6 +18,9 @@
         <item name="text_color">@color/white</item>
         <item name="nav_text_color">@color/white</item>
         <item name="toolbar_icon_color">@color/white</item>
+        <item name="nav_item_setting_title_text_color">@color/fade_white</item>
+        <item name="fade_dark">@color/fade_white</item>
+        <item name="divider_color">#75C3BCBC</item>
     </style>
 
 
@@ -43,9 +46,15 @@
 
     <!--    navigation title color-->
     <style name="navigation_divider_title_border" parent="">
-        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColorSecondary">?attr/nav_item_setting_title_text_color</item>
         <item name="android:listDivider">@color/nav_divider_1</item>
     </style>
+    <!--    search view hint color-->
 
-
+    <!--    search view hint color-->
+    <style name="search_view_hint" parent="Widget.AppCompat.Light.SearchView">
+        <item name="android:maxWidth">10000dp</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="editTextColor">?text_color</item>
+    </style>
 </resources>
