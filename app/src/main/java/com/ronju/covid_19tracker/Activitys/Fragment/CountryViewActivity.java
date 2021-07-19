@@ -1,5 +1,6 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -64,10 +65,8 @@ public class CountryViewActivity extends Fragment {
         });
 
 
-
         return view;
     }
-
 
 
     private void intView() {

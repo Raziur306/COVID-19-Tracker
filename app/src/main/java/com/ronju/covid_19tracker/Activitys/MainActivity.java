@@ -24,7 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.ronju.covid_19tracker.Activitys.Fragment.AboutActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.BDdataActivity;
-import com.ronju.covid_19tracker.Activitys.Fragment.CommunityJobActivity;
+import com.ronju.covid_19tracker.Activitys.Fragment.LoginCommunityJobActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.ronju.covid_19tracker.R;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private final Handler handler = new Handler();
     private int fragmentIndex = 0;
-    private Fragment allFragment[] = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new CommunityJobActivity(), new AboutActivity()};
+    private Fragment allFragment[] = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new LoginCommunityJobActivity(), new AboutActivity()};
 
 
     //saving current Fragment activity
@@ -140,9 +140,11 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_YES);
                     editor.putInt("DarkMode", 1);
                 } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_NO);
                     editor.putInt("DarkMode", 0);
                 }
@@ -170,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         else
             Toast.makeText(MainActivity.this, "Dark Mode Disabled", Toast.LENGTH_LONG).show();
         recreate();
-      //  transaction.replace(R.id.fragmentViewer, new AboutActivity());
+        //  transaction.replace(R.id.fragmentViewer, new AboutActivity());
     }
 
     public void clickDrawerCloser(View view) {
@@ -181,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
+        } else if (getSupportFragmentManager().findFragmentByTag("country_view_fragment") != null) {
+            getSupportFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }

@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.ronju.covid_19tracker.Activitys.MainActivity;
 import com.ronju.covid_19tracker.Adapter.LatestUpdateAdapter;
 import com.ronju.covid_19tracker.DoInBackground.doInBackground;
@@ -52,13 +54,13 @@ public class HomeActivity extends Fragment {
     LatestUpdateAdapter mAdapter;
     ImageView countryFlag;
     Handler handler = new Handler();
+    AdView home_banner_ad_view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_home, container, false);
         //showing toolbar
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-
 
         //loading dialog
         loadingDialog = new LoadingDialog(getContext());
@@ -68,13 +70,13 @@ public class HomeActivity extends Fragment {
 
         //initialize view
         initView(view);
-
+        home_banner_ad_view.loadAd(new AdRequest.Builder().build());
         //shared preference
         sharedPreferences = getActivity().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
 
 
         changeCountry.setOnClickListener(v -> {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer, new CountryViewActivity()).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer, new CountryViewActivity(),"country_view_fragment").addToBackStack(null).commit();
         });
 
         service();
@@ -160,7 +162,6 @@ public class HomeActivity extends Fragment {
         return calendar;
     }
 
-
     //initializing the views
     private void initView(View view) {
         //global section
@@ -187,6 +188,8 @@ public class HomeActivity extends Fragment {
         date3 = view.findViewById(R.id.update_date3);
         changeCountry = view.findViewById(R.id.country_chooser);
         latestNewsRecycler = view.findViewById(R.id.latestNewsRecycler);
+        //ads view
+        home_banner_ad_view = view.findViewById(R.id.home_banner_ads_unit);
     }
 
 

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activitys.Fragment.CommunityJobActivity"/>
+        <activity android:name=".Activitys.Fragment.LoginCommunityJobActivity"/>
         <activity android:name=".Activitys.Fragment.CountryViewActivity" />
         <activity android:name=".Activitys.Fragment.HealthCareActivity" />
         <activity android:name=".Activitys.Fragment.BDdataActivity" />
