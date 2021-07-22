@@ -14,6 +14,8 @@
     <color name="app_native_color">#FFEB5569</color>
     <color name="light_blue">#3FACFF</color>
     <color name="fade_light_blue">#813FACFF</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" >@color/fade_white</color>
 <!--    Light Mode Colors-->
     <color name="block_bg">#23313C</color>
     <color name="main_bg">#16202A</color>
