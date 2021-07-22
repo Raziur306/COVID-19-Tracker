@@ -107,6 +107,7 @@ public class HomeActivity extends Fragment {
                 public void onErrorResponse() {
                     if (flag) {
                         Toast.makeText(getContext(), "Check Your Internet Connection", Toast.LENGTH_SHORT).show();
+                        loadingDialog.dismiss();
                         flag = false;
                     }
                     service();

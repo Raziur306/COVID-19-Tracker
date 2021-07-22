@@ -11,7 +11,9 @@
     <color name="yellow">#C8B726</color>
     <color name="red">#F44336</color>
     <color name="green">#26A84B</color>
-
+    <color name="app_native_color">#FFEB5569</color>
+    <color name="light_blue">#3FACFF</color>
+    <color name="fade_light_blue">#813FACFF</color>
 <!--    Light Mode Colors-->
     <color name="block_bg">#23313C</color>
     <color name="main_bg">#16202A</color>

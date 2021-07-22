@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.ronju.covid_19tracker.Activitys.Fragment.AboutActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.BDdataActivity;
-import com.ronju.covid_19tracker.Activitys.Fragment.LoginCommunityJobActivity;
+import com.ronju.covid_19tracker.Activitys.Fragment.LoginRegisterTabActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.ronju.covid_19tracker.R;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private final Handler handler = new Handler();
     private int fragmentIndex = 0;
-    private Fragment allFragment[] = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new LoginCommunityJobActivity(), new AboutActivity()};
+    private Fragment allFragment[] = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new LoginRegisterTabActivity(), new AboutActivity()};
 
 
     //saving current Fragment activity
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("current_fragment", fragmentIndex);
-        Log.d("Saving_fragment", "" + fragmentIndex);
     }
 
 
@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        if (savedInstanceState != null)
+        if (savedInstanceState != null) {
             fragmentIndex = savedInstanceState.getInt("current_fragment", 0);
-        Log.d("Saving_fragment_currr", "" + fragmentIndex);
+        }
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
         nav.getMenu().getItem(0).setChecked(true);
@@ -162,6 +162,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //closing keyboard
+        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                super.onDrawerStateChanged(newState);
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (inputMethodManager.isAcceptingText())
+                    inputMethodManager.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), 0);
+            }
+        });
     }
 
     @Override

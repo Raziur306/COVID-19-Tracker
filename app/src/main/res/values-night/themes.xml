@@ -57,4 +57,28 @@
         <item name="android:textColorHint">@android:color/white</item>
         <item name="editTextColor">?text_color</item>
     </style>
+
+
+
+    <!--   login panel textInput-->
+    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/light_blue</item>
+        <item name="hintTextColor">@color/light_blue</item>
+        <item name="android:textColorHint">@color/fade_light_blue</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="backgroundTint">@color/dark_blue</item>
+    </style>
+
+    <style name="login_button" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">50dp</item>
+        <item name="backgroundTint">@color/app_native_color</item>
+    </style>
+
+
+
+
+
 </resources>
