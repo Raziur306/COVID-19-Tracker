@@ -13,8 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activitys.Fragment.OTPVerificationActivity"></activity>
         <activity android:name=".Activitys.Fragment.RegisterActivity" />
-        <activity android:name=".Activitys.Fragment.LoginRegisterTabActivity"/>
+        <activity android:name=".Activitys.Fragment.LoginRegisterTabActivity" />
         <activity android:name=".Activitys.Fragment.LoginActivity" />
         <activity android:name=".Activitys.Fragment.CountryViewActivity" />
         <activity android:name=".Activitys.Fragment.HealthCareActivity" />
@@ -24,8 +25,7 @@
         <activity
             android:name=".Activitys.MainActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"
-            />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activitys.SplashActivity"
             android:screenOrientation="portrait">

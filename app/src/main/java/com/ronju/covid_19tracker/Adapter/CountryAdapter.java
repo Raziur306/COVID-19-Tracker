@@ -11,21 +11,13 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.ronju.covid_19tracker.Activitys.MainActivity;
 import com.ronju.covid_19tracker.R;
 import com.ronju.covid_19tracker.Model.WorldDataItem;
-
-
 import java.util.ArrayList;
 import java.util.Collection;
-
 import static com.ronju.covid_19tracker.DoInBackground.doInBackground.allCountryData;
 
 

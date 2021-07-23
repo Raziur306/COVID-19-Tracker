@@ -5,27 +5,19 @@ import androidx.fragment.app.Fragment;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.ronju.covid_19tracker.Activitys.MainActivity;
 import com.ronju.covid_19tracker.Adapter.LatestUpdateAdapter;
 import com.ronju.covid_19tracker.DoInBackground.doInBackground;
 import com.ronju.covid_19tracker.LoadingDialog;
@@ -53,7 +45,6 @@ public class HomeActivity extends Fragment {
     RecyclerView latestNewsRecycler;
     LatestUpdateAdapter mAdapter;
     ImageView countryFlag;
-    Handler handler = new Handler();
     AdView home_banner_ad_view;
 
     @Override

@@ -20,6 +20,7 @@ allprojects {
         mavenCentral()
         mavenCentral()
     }
+
 }
 
 task clean(type: Delete) {

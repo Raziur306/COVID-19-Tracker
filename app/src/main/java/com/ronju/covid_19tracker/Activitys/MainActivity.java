@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.ronju.covid_19tracker.Activitys.Fragment.BDdataActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.LoginRegisterTabActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
+import com.ronju.covid_19tracker.Activitys.Fragment.OTPVerificationActivity;
 import com.ronju.covid_19tracker.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private SwitchCompat themeSwitchCompat;
     private SwitchCompat locationSwitchCompat;
     private SharedPreferences sharedPreferences;
-    private final Handler handler = new Handler();
     private int fragmentIndex = 0;
     private Fragment allFragment[] = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new LoginRegisterTabActivity(), new AboutActivity()};
 
@@ -75,14 +76,12 @@ public class MainActivity extends AppCompatActivity {
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
         nav.getMenu().getItem(0).setChecked(true);
-
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 transaction = getSupportFragmentManager().beginTransaction();
                 drawerLayout.closeDrawer(GravityCompat.START);
-
-                handler.postDelayed(new Runnable() {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
 
