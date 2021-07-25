@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.ronju.covid_19tracker.Adapter.LoginAdapter;
 import com.ronju.covid_19tracker.R;
 
@@ -20,6 +21,7 @@ public class LoginRegisterTabActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_login_register_tab, container, false);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         viewPager2 = view.findViewById(R.id.viewPager);
         tabLayout = view.findViewById(R.id.tabLayout);

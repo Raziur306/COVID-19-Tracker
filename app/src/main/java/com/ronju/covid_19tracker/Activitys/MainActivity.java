@@ -14,7 +14,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -29,7 +28,6 @@ import com.ronju.covid_19tracker.Activitys.Fragment.BDdataActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.LoginRegisterTabActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
-import com.ronju.covid_19tracker.Activitys.Fragment.OTPVerificationActivity;
 import com.ronju.covid_19tracker.R;
 
 public class MainActivity extends AppCompatActivity {
