@@ -65,12 +65,13 @@
         android:layout_marginRight="32dp"
         android:backgroundTint="@color/app_native_color"
         android:padding="12dp"
-        android:text="Verify"
+        android:text="Verify Now"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/showEmail"
+        app:layout_constraintVertical_bias="0.595" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -81,14 +82,14 @@
         app:layout_constraintHorizontal_bias="0.74"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/showEmail"
-        app:layout_constraintVertical_bias="0.79">
+        app:layout_constraintVertical_bias="0.78">
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Didn't get email "
+            android:text="Didn't get email ? "
             android:textColor="?attr/fade_dark" />
 
         <TextView
@@ -96,8 +97,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Resend"
-            android:textColor="@color/red" />
+            android:clickable="false"
+            android:focusable="true"
+            android:text="60 (s)"
+            android:textColor="@color/red"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

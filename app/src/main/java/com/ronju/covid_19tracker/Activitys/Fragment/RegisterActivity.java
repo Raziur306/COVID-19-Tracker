@@ -1,6 +1,5 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
-import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -22,8 +21,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.ronju.covid_19tracker.R;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 
@@ -32,9 +36,9 @@ public class RegisterActivity extends Fragment {
     private TextInputLayout nameLayout, numberLayout, passwordLayout, confirmPasswordLayout, emailLayout;
     private Button signInBtn;
     ProgressBar progressBar;
-    String userPassword = "", userName = "", validPass = "";
-    Boolean passValidity = false;
+    private String email = "", number = "", password = "", confirmPassword = "", name = "";
     FirebaseAuth mAuth;
+    FirebaseFirestore fStore;
     private final String CANT_BE_EMPTY = "Field can't be empty.";
     private final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
 
@@ -43,22 +47,21 @@ public class RegisterActivity extends Fragment {
         View view = inflater.inflate(R.layout.activity_register, container, false);
         mAuth = FirebaseAuth.getInstance();
         intiView(view);
-        userInputValidity();
+        inputFieldValidity();
 
 
+//register Button
         signInBtn.setOnClickListener(v -> {
-            getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-            progressBar.setVisibility(View.VISIBLE);
-            makeBundle();
+            disableScreenTouch();
+            registerCall();
 
         });
-
 
         return view;
     }
 
-    private void userInputValidity() {
-        //on text changed
+    private void inputFieldValidity() {
+//on text changed
         editTextName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -74,13 +77,7 @@ public class RegisterActivity extends Fragment {
                 if (s.toString().length() < 3 && !s.toString().trim().isEmpty()) {
                     nameLayout.setError("Name must contain minimum 3 character!");
                 } else {
-
                     nameLayout.setError(null);
-                    if (s.toString().trim().length() > 2) {
-                        userName = s.toString().trim();
-                    } else {
-                        userName = "";
-                    }
                 }
             }
         });
@@ -103,7 +100,7 @@ public class RegisterActivity extends Fragment {
                 } else {
                     passwordLayout.setError(null);
                     if (s.toString().trim().length() >= 8)
-                        userPassword = s.toString();
+                        password = s.toString();
                 }
             }
         });
@@ -121,17 +118,12 @@ public class RegisterActivity extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (!s.toString().equals(userPassword)) {
+                if (!s.toString().equals(password)) {
                     confirmPasswordLayout.setError("Password not match.");
                 } else {
                     confirmPasswordLayout.setError(null);
-                    if (!s.toString().isEmpty() && s.toString().equals(userPassword)) {
-                        passValidity = true;
+                    if (!s.toString().isEmpty() && s.toString().equals(password)) {
                         confirmPasswordLayout.setBoxStrokeColor(ContextCompat.getColor(getContext(), R.color.green));
-                        validPass = s.toString().trim();
-                    } else {
-                        passValidity = false;
-                        validPass = "";
                     }
                 }
             }
@@ -158,80 +150,115 @@ public class RegisterActivity extends Fragment {
         });
     }
 
-    private void makeBundle() {
-        boolean valid = userInfoValidity();
+    private void registerCall() {
+        name = editTextName.getText().toString().trim();
+        email = editTextEmail.getText().toString().trim();
+        password = editTextPassword.getText().toString();
+        confirmPassword = editTextConfirmPassword.getText().toString();
+        number = "+880"+editTextPhoneNumber.getText().toString();
+        boolean valid = userInfoValidity(name, email, password, confirmPassword, number);
         if (!valid) {
-            progressBar.setVisibility(View.GONE);
+            disableScreenTouch();
             Toast.makeText(getContext(), "Recheck your info", Toast.LENGTH_SHORT).show();
         } else {
-//            Bundle bundle = new Bundle();
-//            bundle.putBoolean("registration",true);
-//            bundle.putString("userName", userName);
-//            bundle.putString("userPhoneNumber", "+880" + editTextPhoneNumber.getText());
-//            bundle.putString("userEmail",editTextEmail.getText().toString().trim());
-//            bundle.putString("userPassword", validPass);
-//            getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragmentViewer, new VerificationActivity(bundle)).commit();
-            register();
+            onEmailCheckListener();
         }
 
     }
 
 
-    private void register() {
-
-        mAuth.createUserWithEmailAndPassword(editTextEmail.getText().toString().trim(), validPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    private void onEmailCheckListener()
+    {
+        mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
             @Override
-            public void onComplete(Task<AuthResult> task) {
-                if(task.isSuccessful())
+            public void onComplete( Task<SignInMethodQueryResult> task) {
+                if(task.getResult().getSignInMethods().size()==0)
                 {
-                   getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer,new DashboardActivity()).commit();
+                    register();
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "Failed to register", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Email Already Exist", Toast.LENGTH_LONG).show();
+                    enableScreenTouch();
+                    emailLayout.setError("Email Already Exist.");
                 }
-                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                progressBar.setVisibility(View.GONE);
             }
         });
     }
 
 
-    private boolean userInfoValidity() {
-        if (editTextName.getText().toString().trim().isEmpty()) {
-            Toast.makeText(getContext(), "" + (editTextName.getText().toString().isEmpty()), Toast.LENGTH_SHORT).show();
+
+    private void register() {
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    fStore = FirebaseFirestore.getInstance();
+                    DocumentReference documentReference = fStore.collection("user").document(mAuth.getCurrentUser().getUid());
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("name",name);
+                    user.put("pNumber",number);
+                    user.put("email",email);
+                    documentReference.set(user);
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer, new VerificationActivity()).commit();
+                } else {
+                    Toast.makeText(getContext(), "Failed to register", Toast.LENGTH_SHORT).show();
+                }
+                enableScreenTouch();
+
+            }
+        });
+    }
+
+
+    private void disableScreenTouch()
+    {
+        progressBar.setVisibility(View.VISIBLE);
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+    }
+    private void enableScreenTouch()
+    {
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        progressBar.setVisibility(View.GONE);
+    }
+
+    private boolean userInfoValidity(String name, String email, String password, String confirmPassword, String number) {
+        if (name.isEmpty()) {
             nameLayout.setError(CANT_BE_EMPTY);
             return false;
-        } else if (userName.length() < 3) {
+        } else if (name.length() < 3) {
             nameLayout.setError("Name must contain minimum 3 character");
             return false;
         }
-        if (editTextEmail.getText().toString().trim().isEmpty()) {
+        if (email.isEmpty()) {
             emailLayout.setError(CANT_BE_EMPTY);
             return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(editTextEmail.getText().toString().trim()).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailLayout.setError("Invalid Email");
             return false;
         }
 
-        if (editTextPhoneNumber.getText().toString().trim().isEmpty()) {
+        if (number.isEmpty()) {
             numberLayout.setError(CANT_BE_EMPTY);
             return false;
-        } else if (editTextPhoneNumber.getText().toString().trim().length() < 10) {
+        } else if (number.length() < 10) {
             numberLayout.setError("Invalid number");
             return false;
         }
-        if (editTextPassword.getText().toString().trim().isEmpty()) {
+        if (password.isEmpty()) {
             passwordLayout.setError(CANT_BE_EMPTY);
             return false;
         }
-        if (editTextConfirmPassword.getText().toString().isEmpty()) {
+        if (confirmPassword.isEmpty()) {
             confirmPasswordLayout.setError(CANT_BE_EMPTY);
             return false;
         }
-        if (!passValidity) {
+        if (!password.equals(confirmPassword)) {
+            confirmPasswordLayout.setError("Password not match");
             return false;
         }
+
+
         return true;
     }
 

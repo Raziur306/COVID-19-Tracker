@@ -146,6 +146,7 @@
                 android:layout_marginBottom="32dp"
                 android:layout_weight="1"
                 android:padding="10dp"
+                android:textColor="@color/white"
                 android:text="SignUp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

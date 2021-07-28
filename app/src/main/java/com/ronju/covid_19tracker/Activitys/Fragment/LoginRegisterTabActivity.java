@@ -4,9 +4,13 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,12 +21,9 @@ public class LoginRegisterTabActivity extends Fragment {
     private View view = null;
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_login_register_tab, container, false);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
         viewPager2 = view.findViewById(R.id.viewPager);
         tabLayout = view.findViewById(R.id.tabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("Login"));
@@ -31,8 +32,6 @@ public class LoginRegisterTabActivity extends Fragment {
         viewPager2.setSaveEnabled(false);
         LoginAdapter mTabAdapter = new LoginAdapter(getChildFragmentManager(), getLifecycle(), tabLayout.getTabCount());
         viewPager2.setAdapter(mTabAdapter);
-
-
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -59,4 +58,5 @@ public class LoginRegisterTabActivity extends Fragment {
 
         return view;
     }
+
 }

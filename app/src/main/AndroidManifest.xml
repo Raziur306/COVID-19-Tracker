@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activitys.Fragment.DashboardActivity"></activity>
+        <activity android:name=".Activitys.Fragment.AdsActivity"></activity>
+        <activity android:name=".Activitys.Fragment.DashboardActivity" />
         <activity android:name=".Activitys.Fragment.VerificationActivity" />
         <activity android:name=".Activitys.Fragment.RegisterActivity" />
         <activity android:name=".Activitys.Fragment.LoginRegisterTabActivity" />
