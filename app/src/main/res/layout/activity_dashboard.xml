@@ -81,7 +81,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circle_radius_bg"
         android:backgroundTint="?attr/block_back"
@@ -129,23 +129,23 @@
                 android:id="@+id/textView18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#5A5D9F"
-                android:textStyle="bold"
                 android:gravity="center"
                 android:text="Current Balance"
-                android:textSize="16sp" />
+                android:textColor="#5A5D9F"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_width="108dp"
+            android:layout_height="47dp"
             android:background="@drawable/button_bg_layout"
             android:backgroundTint="#FF9800"
             android:gravity="center"
+            android:padding="10dp"
             android:text="Withdraw"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -162,10 +162,54 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <LinearLayout
+            android:id="@+id/linearLayout15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout16"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_baseline_video_library" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Watch Video" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout15">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_baseline_video_library" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Install App" />
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
