@@ -1,6 +1,5 @@
 package com.ronju.covid_19tracker.Activitys;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -15,7 +14,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -41,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private SwitchCompat themeSwitchCompat;
     private SwitchCompat locationSwitchCompat;
     private SharedPreferences sharedPreferences;
+
+
     private int fragmentIndex = 0;
     private Fragment allFragment[] = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new LoginRegisterTabActivity(), new AboutActivity()};
 
@@ -54,13 +54,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         sharedPreferences = MainActivity.this.getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
+
+
         if (sharedPreferences.getInt("DarkMode", 0) == 1) {
             setTheme(R.style.Theme_Dark);
         } else {
             setTheme(R.style.Theme_Light);
         }
+        super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 
         initView();
@@ -138,12 +142,12 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 if (isChecked) {
-                   // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                  //  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_YES);
                     editor.putInt("DarkMode", 1);
                 } else {
-                  //  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    onNightModeChanged(AppCompatDelegate.MODE_NIGHT_NO);
+                    // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_NO);
                     editor.putInt("DarkMode", 0);
                 }
                 editor.apply();
@@ -176,12 +180,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onNightModeChanged(int mode) {
         super.onNightModeChanged(mode);
-        if (mode == AppCompatDelegate.MODE_NIGHT_YES)
+        if (mode == AppCompatDelegate.MODE_NIGHT_YES) {
             Toast.makeText(MainActivity.this, "Dark Mode Enabled", Toast.LENGTH_LONG).show();
-        else
+
+        } else {
             Toast.makeText(MainActivity.this, "Dark Mode Disabled", Toast.LENGTH_LONG).show();
+        }
         recreate();
-        //  transaction.replace(R.id.fragmentViewer, new AboutActivity());
     }
 
     public void clickDrawerCloser(View view) {
