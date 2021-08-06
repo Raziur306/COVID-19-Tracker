@@ -10,7 +10,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +55,7 @@ public class HomeActivity extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         //loading dialog
-        loadingDialog = LoadingDialog.showLoadingDialog(getContext());
+        loadingDialog = LoadingDialog.getCustomLoadingDialog(getContext());
         loadingDialog.show();
 
         //initialize view

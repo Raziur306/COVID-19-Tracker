@@ -34,7 +34,7 @@ public class BDdataActivity extends Fragment {
          view = inflater.inflate(R.layout.activity_bddata, container, false);
          swipeRefreshLayout = view.findViewById(R.id.swapLayout);
       //  loading dialog
-        loadingDialog = LoadingDialog.showLoadingDialog(getContext());
+        loadingDialog = LoadingDialog.getCustomLoadingDialog(getContext());
         loadingDialog.show();
 
         //recycler

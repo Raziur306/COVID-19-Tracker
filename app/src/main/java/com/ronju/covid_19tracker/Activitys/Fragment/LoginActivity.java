@@ -1,20 +1,13 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.RadialGradient;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,20 +27,13 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.R;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginActivity extends Fragment {
     private View view = null;
     private Button loginBtn;
+    Dialog loadingDialog;
     TextInputEditText email, password;
     TextInputLayout emailLayout, passwordLayout;
     FirebaseAuth mAuth;
@@ -56,25 +42,10 @@ public class LoginActivity extends Fragment {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     String userEmail, userPassword;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_login, container, false);
-
-        Dialog dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.custom_loading_dialog);
-        dialog.setCancelable(false);
-        dialog.show();
-        if(dialog.getWindow()!=null)
-        {
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-        }
-
-
-
-
-
+        loadingDialog = LoadingDialog.getCustomLoadingDialog(getContext());
         initView();
         mAuth = FirebaseAuth.getInstance();
         sharedPreferences = getActivity().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
@@ -144,10 +115,8 @@ public class LoginActivity extends Fragment {
 
 
     private void loggingIn(String email, String password) {
-        progressBar.setVisibility(View.VISIBLE);
+        loadingDialog.show();
         loginWarning.setVisibility(View.GONE);
-        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(Task<AuthResult> task) {
@@ -158,19 +127,17 @@ public class LoginActivity extends Fragment {
 
                     FirebaseUser user = mAuth.getCurrentUser();
                     if (user.isEmailVerified()) {
-
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer, new DashboardActivity()).commit();
                     }
                     else
                     {
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer,new VerificationActivity()).commit();
                     }
-                } else {
-                    progressBar.setVisibility(View.GONE);
+                }
+                   loadingDialog.dismiss();
                     loginWarning.setVisibility(View.VISIBLE);
                     loginWarning.setText("Wrong/Invalid Email or Password");
-                }
-                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
             }
         });
 

@@ -12,7 +12,7 @@ import android.view.WindowManager;
 
 public class LoadingDialog {
 
-    public static Dialog showLoadingDialog(Context context)
+    public static Dialog getCustomLoadingDialog(Context context)
     {
         Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.custom_loading_dialog);
