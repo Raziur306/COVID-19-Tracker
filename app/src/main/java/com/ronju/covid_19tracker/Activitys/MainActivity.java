@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -29,6 +30,10 @@ import com.ronju.covid_19tracker.Activitys.Fragment.LoginRegisterTabActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.ronju.covid_19tracker.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
     private NavigationView nav;
@@ -175,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
                     inputMethodManager.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), 0);
             }
         });
+
     }
 
     @Override
@@ -210,6 +216,8 @@ public class MainActivity extends AppCompatActivity {
         nav = findViewById(R.id.nav_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
     }
+
+
 
 
 }

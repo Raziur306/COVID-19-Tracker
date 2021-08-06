@@ -4,4 +4,5 @@
     <dimen name="standard_105">105dp</dimen>
     <dimen name="standard_115">115dp</dimen>
     <dimen name="standard_21">21dp</dimen>
+    <dimen name="standard_30">30dp</dimen>
 </resources>

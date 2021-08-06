@@ -11,8 +11,6 @@ import android.widget.Button;
 
 import com.ronju.covid_19tracker.R;
 import com.unity3d.ads.UnityAds;
-import com.unity3d.services.UnityServices;
-import com.unity3d.services.monetization.UnityMonetization;
 
 public class AdsActivity extends Fragment {
     private final String GAME_ID ="4218577";
@@ -23,9 +21,8 @@ public class AdsActivity extends Fragment {
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_ads,container,false);
 
-
         UnityAds.initialize(getActivity(),GAME_ID,testsMode);
-        Button showAds = view.findViewById(R.id.showAdsBtn);
+        Button showAds = view.findViewById(R.id.server_1_btn);
         showAds.setOnClickListener(v->{
             showingAds();
         });

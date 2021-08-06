@@ -19,13 +19,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ronju.covid_19tracker.R;
 
+import java.lang.ref.Reference;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -40,7 +44,6 @@ public class RegisterActivity extends Fragment {
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
     private final String CANT_BE_EMPTY = "Field can't be empty.";
-    private final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -95,8 +98,8 @@ public class RegisterActivity extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (!(PASSWORD_PATTERN.matcher(s.toString().trim()).matches()) && !s.toString().isEmpty()) {
-                    passwordLayout.setError("Password must include:\n 8-16 character.\nNo white space< >\nAt least one number(0-9).\nAt least one capital letter(A-Z).\nAt least one small letter(a-z).\nAt least one special symbol (@#$%^&+=).");
+                if (s.toString().isEmpty() || s.toString().length()<9) {
+                    passwordLayout.setError("Password length must be 8-16 character.");
                 } else {
                     passwordLayout.setError(null);
                     if (s.toString().trim().length() >= 8)
@@ -155,7 +158,7 @@ public class RegisterActivity extends Fragment {
         email = editTextEmail.getText().toString().trim();
         password = editTextPassword.getText().toString();
         confirmPassword = editTextConfirmPassword.getText().toString();
-        number = "+880"+editTextPhoneNumber.getText().toString();
+        number = "+880" + editTextPhoneNumber.getText().toString();
         boolean valid = userInfoValidity(name, email, password, confirmPassword, number);
         if (!valid) {
             disableScreenTouch();
@@ -167,17 +170,13 @@ public class RegisterActivity extends Fragment {
     }
 
 
-    private void onEmailCheckListener()
-    {
+    private void onEmailCheckListener() {
         mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
             @Override
-            public void onComplete( Task<SignInMethodQueryResult> task) {
-                if(task.getResult().getSignInMethods().size()==0)
-                {
+            public void onComplete(Task<SignInMethodQueryResult> task) {
+                if (task.getResult().getSignInMethods().size() == 0) {
                     register();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(getContext(), "Email Already Exist", Toast.LENGTH_LONG).show();
                     enableScreenTouch();
                     emailLayout.setError("Email Already Exist.");
@@ -187,18 +186,18 @@ public class RegisterActivity extends Fragment {
     }
 
 
-
     private void register() {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+
                     fStore = FirebaseFirestore.getInstance();
                     DocumentReference documentReference = fStore.collection("user").document(mAuth.getCurrentUser().getUid());
                     Map<String, Object> user = new HashMap<>();
-                    user.put("name",name);
-                    user.put("pNumber",number);
-                    user.put("email",email);
+                    user.put("name", name);
+                    user.put("pNumber", number);
+                    user.put("email", email);
                     documentReference.set(user);
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer, new VerificationActivity()).commit();
                 } else {
@@ -211,13 +210,14 @@ public class RegisterActivity extends Fragment {
     }
 
 
-    private void disableScreenTouch()
-    {
+
+
+    private void disableScreenTouch() {
         progressBar.setVisibility(View.VISIBLE);
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
-    private void enableScreenTouch()
-    {
+
+    private void enableScreenTouch() {
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         progressBar.setVisibility(View.GONE);
     }

@@ -141,7 +141,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button"
             android:layout_width="108dp"
-            android:layout_height="47dp"
+            android:layout_height="48dp"
             android:background="@drawable/button_bg_layout"
             android:backgroundTint="#FF9800"
             android:focusable="true"
@@ -170,7 +170,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <LinearLayout
-            android:id="@+id/linearLayout15"
+            android:id="@+id/watch_video"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/circle_radius_bg"
@@ -211,7 +211,7 @@
             android:paddingBottom="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout15">
+            app:layout_constraintStart_toEndOf="@+id/watch_video">
 
             <ImageView
                 android:layout_width="50dp"
@@ -240,7 +240,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout15"
+            app:layout_constraintTop_toBottomOf="@+id/watch_video"
             app:layout_constraintVertical_bias="0.24000001">
 
 
@@ -335,36 +335,85 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+            android:id="@+id/main_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:clickable="true"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="@color/app_native_color"
+            android:clickable="true"
             android:src="@drawable/ic_baseline_add_24"
+            app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/payments"
             app:tint="@color/white" />
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/helpDesk"
-            android:layout_width="@dimen/standard_55"
-            android:layout_height="@dimen/standard_55"
-            android:backgroundTint="@color/app_native_color"
-            android:layout_marginBottom="@dimen/standard_21"
-            android:clickable="true"
-            android:src="@drawable/help_desk_icon"
-            app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
-            app:layout_constraintEnd_toEndOf="@+id/floatingActionButton"
-            app:layout_constraintStart_toStartOf="@+id/floatingActionButton"
-            app:tint="@color/white" />
+        <LinearLayout
+            android:id="@+id/helpDesk_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toTopOf="@+id/main_fab"
+            app:layout_constraintEnd_toEndOf="@+id/main_fab">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Help Desk" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/app_native_color"
+                android:clickable="true"
+                android:src="@drawable/help_desk_icon"
+                app:fabSize="mini"
+                app:tint="@color/white" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/feedback_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toTopOf="@+id/helpDesk_fab"
+            app:layout_constraintEnd_toEndOf="@+id/helpDesk_fab">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Feedback" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/feed_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/app_native_color"
+                android:clickable="true"
+                android:src="@drawable/ic_baseline_feedback"
+                app:fabSize="mini"
+                app:tint="@color/white" />
+
+
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:background="#6FD3C7C7"-->
+<!--        android:layout_height="match_parent"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

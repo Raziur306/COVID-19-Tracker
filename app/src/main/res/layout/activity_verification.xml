@@ -95,13 +95,24 @@
         <TextView
             android:id="@+id/resendMail"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:clickable="false"
             android:focusable="true"
-            android:text="60 (s)"
+            android:text="Resend"
             android:textColor="@color/red"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/vProgress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/openEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
