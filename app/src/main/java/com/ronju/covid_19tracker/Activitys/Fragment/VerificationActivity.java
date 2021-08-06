@@ -130,8 +130,6 @@ public class VerificationActivity extends Fragment {
             DatabaseReference today_status = mReference.child("today_status");
             today_status.child("date").setValue(currentDate());
             today_status.child("count").setValue(0);
-//            today_status
-
 
             Toast.makeText(getContext(), "Thanks for verifying your email", Toast.LENGTH_LONG).show();
             new Handler(Looper.myLooper()).postDelayed(new Runnable() {
