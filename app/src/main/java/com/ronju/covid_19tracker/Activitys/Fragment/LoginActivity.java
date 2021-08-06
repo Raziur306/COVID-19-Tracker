@@ -37,7 +37,6 @@ public class LoginActivity extends Fragment {
     TextInputEditText email, password;
     TextInputLayout emailLayout, passwordLayout;
     FirebaseAuth mAuth;
-    ProgressBar progressBar;
     TextView loginWarning, forgetPassword;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -154,8 +153,6 @@ public class LoginActivity extends Fragment {
         loginBtn = view.findViewById(R.id.login_button);
         email = view.findViewById(R.id.loginEmail);
         password = view.findViewById(R.id.loginPassword);
-
-        progressBar = view.findViewById(R.id.loginProgress);
         loginWarning = view.findViewById(R.id.loginWarning);
         forgetPassword = view.findViewById(R.id.forget_password);
     }

@@ -3,6 +3,7 @@ package com.ronju.covid_19tracker.Activitys.Fragment;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.R;
 
 import java.lang.ref.Reference;
@@ -39,7 +41,7 @@ public class RegisterActivity extends Fragment {
     private TextInputEditText editTextName, editTextPhoneNumber, editTextPassword, editTextConfirmPassword, editTextEmail;
     private TextInputLayout nameLayout, numberLayout, passwordLayout, confirmPasswordLayout, emailLayout;
     private Button signInBtn;
-    ProgressBar progressBar;
+    Dialog loadingDialog;
     private String email = "", number = "", password = "", confirmPassword = "", name = "";
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
@@ -48,6 +50,8 @@ public class RegisterActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_register, container, false);
+        loadingDialog = LoadingDialog.getCustomLoadingDialog(getContext());
+
         mAuth = FirebaseAuth.getInstance();
         intiView(view);
         inputFieldValidity();
@@ -213,13 +217,13 @@ public class RegisterActivity extends Fragment {
 
 
     private void disableScreenTouch() {
-        progressBar.setVisibility(View.VISIBLE);
+       loadingDialog.show();
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
     private void enableScreenTouch() {
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        progressBar.setVisibility(View.GONE);
+      loadingDialog.dismiss();
     }
 
     private boolean userInfoValidity(String name, String email, String password, String confirmPassword, String number) {
@@ -277,7 +281,6 @@ public class RegisterActivity extends Fragment {
         editTextPassword = view.findViewById(R.id.registerPassword);
         editTextConfirmPassword = view.findViewById(R.id.registerConfirmPassword);
         signInBtn = view.findViewById(R.id.signupBtn);
-        progressBar = view.findViewById(R.id.regisActivityProgressbar);
         editTextEmail = view.findViewById(R.id.registerEmail);
     }
 }
