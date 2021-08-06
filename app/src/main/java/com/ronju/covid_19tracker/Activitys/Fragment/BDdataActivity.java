@@ -1,5 +1,6 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public class BDdataActivity extends Fragment {
     private ArrayList<Bd_dis_item> disData;
     private RecyclerView recyclerView;
-    private LoadingDialog loadingDialog;
+    private Dialog loadingDialog;
     private BD_DisRecyclerAdapter mAdapter;
     private boolean flag = true;
     private  View view = null;
@@ -33,7 +34,7 @@ public class BDdataActivity extends Fragment {
          view = inflater.inflate(R.layout.activity_bddata, container, false);
          swipeRefreshLayout = view.findViewById(R.id.swapLayout);
       //  loading dialog
-        loadingDialog = new LoadingDialog(getContext());
+        loadingDialog = LoadingDialog.showLoadingDialog(getContext());
         loadingDialog.show();
 
         //recycler

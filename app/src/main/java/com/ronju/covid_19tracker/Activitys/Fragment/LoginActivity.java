@@ -5,9 +5,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.RadialGradient;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -57,11 +61,24 @@ public class LoginActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_login, container, false);
+
+        Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.custom_loading_dialog);
+        dialog.setCancelable(false);
+        dialog.show();
+        if(dialog.getWindow()!=null)
+        {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+
+
+
+
+
         initView();
         mAuth = FirebaseAuth.getInstance();
         sharedPreferences = getActivity().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-
         userEmail = sharedPreferences.getString("email", null);
         userPassword = sharedPreferences.getString("password", null);
         if (userEmail != null && userPassword != null) {

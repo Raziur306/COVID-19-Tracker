@@ -4,17 +4,12 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.ronju.covid_19tracker.Adapter.LoginAdapter;
+import com.ronju.covid_19tracker.Adapter.login_register_adapter;
 import com.ronju.covid_19tracker.R;
 
 public class LoginRegisterTabActivity extends Fragment {
@@ -30,7 +25,7 @@ public class LoginRegisterTabActivity extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Sign Up"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         viewPager2.setSaveEnabled(false);
-        LoginAdapter mTabAdapter = new LoginAdapter(getChildFragmentManager(), getLifecycle(), tabLayout.getTabCount());
+        login_register_adapter mTabAdapter = new login_register_adapter(getChildFragmentManager(), getLifecycle(), tabLayout.getTabCount());
         viewPager2.setAdapter(mTabAdapter);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

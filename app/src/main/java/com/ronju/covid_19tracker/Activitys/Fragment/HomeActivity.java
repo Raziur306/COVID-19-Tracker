@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -41,7 +43,7 @@ public class HomeActivity extends Fragment {
     private View view = null;
     private TextView globalAffected, globalNewAffected, globalDeath, globalNewDeath, globalRecovered, globalNewRecovered, countryAffected, countryNewAffected, countryName, countryDeath, countryNewDeath, countryNewRecovered, countryRecovered, changeCountry, date1, date2, date3;
     private SharedPreferences sharedPreferences;
-    LoadingDialog loadingDialog;
+    Dialog loadingDialog;
     RecyclerView latestNewsRecycler;
     LatestUpdateAdapter mAdapter;
     ImageView countryFlag;
@@ -54,9 +56,7 @@ public class HomeActivity extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         //loading dialog
-        loadingDialog = new LoadingDialog(getContext());
-        loadingDialog.setCancelable(false);
-        loadingDialog.setTitle("Loading....");
+        loadingDialog = LoadingDialog.showLoadingDialog(getContext());
         loadingDialog.show();
 
         //initialize view

@@ -10,11 +10,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.ronju.covid_19tracker.Activitys.Fragment.LoginActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.RegisterActivity;
 
-public class LoginAdapter extends FragmentStateAdapter {
+public class login_register_adapter extends FragmentStateAdapter {
     private Context context;
     private int totalTabs;
 
-    public LoginAdapter(FragmentManager fragmentManager, Lifecycle lifecycle, int totalTabs) {
+    public login_register_adapter(FragmentManager fragmentManager, Lifecycle lifecycle, int totalTabs) {
         super(fragmentManager, lifecycle);
         this.totalTabs = totalTabs;
     }

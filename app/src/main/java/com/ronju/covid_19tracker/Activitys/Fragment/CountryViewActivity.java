@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -23,7 +24,7 @@ import com.ronju.covid_19tracker.R;
 public class CountryViewActivity extends Fragment {
     private RecyclerView recyclerView;
     private CountryAdapter mAdapter;
-    private LoadingDialog loadingDialog;
+    private Dialog loadingDialog;
     private androidx.appcompat.widget.SearchView searchView;
     private TextView backPress;
     private View view = null;
@@ -32,7 +33,7 @@ public class CountryViewActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_country_view, container, false);
-        loadingDialog = new LoadingDialog(getContext());
+        loadingDialog = LoadingDialog.showLoadingDialog(getContext());
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
         frameLayout = view.findViewById(R.id.fragmentViewer);
 
