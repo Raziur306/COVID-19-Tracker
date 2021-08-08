@@ -45,6 +45,7 @@ public class VerificationActivity extends Fragment {
     TextView resentEmail;
     long resendTime = 30000;
     Button openEmail;
+    CountDownTimer countDownTimer;
     String profileId;
     ProgressBar progressBar;
 
@@ -93,7 +94,7 @@ public class VerificationActivity extends Fragment {
 
 
     private void counter() {
-        new CountDownTimer(resendTime, 1000) {
+        countDownTimer = new CountDownTimer(resendTime, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 resentEmail.setText("Resend in " + millisUntilFinished / 1000 + " (s)");
@@ -113,6 +114,7 @@ public class VerificationActivity extends Fragment {
         user.reload();
         user = mAuth.getCurrentUser();
         if (user.isEmailVerified()) {
+            countDownTimer.cancel();
             progressBar.setVisibility(View.VISIBLE);
             getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
@@ -121,7 +123,7 @@ public class VerificationActivity extends Fragment {
             DocumentReference documentReference = fStore.collection("user").document(mAuth.getCurrentUser().getUid());
             Map<String, Object> user = new HashMap<>();
             user.put("profile_id", profileId);
-            user.put("account_status", "Activated");
+            user.put("account_status", "verified");
             documentReference.update(user);
 
             FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
@@ -151,7 +153,7 @@ public class VerificationActivity extends Fragment {
     private String currentDate() {
         TimeZone tz = TimeZone.getTimeZone("GMT+6");
         Calendar c = Calendar.getInstance(tz);
-        String date = new SimpleDateFormat("dd MMM, yyyy").format(c.getTime());
+        String date = new SimpleDateFormat("dd").format(c.getTime());
         return date;
     }
 

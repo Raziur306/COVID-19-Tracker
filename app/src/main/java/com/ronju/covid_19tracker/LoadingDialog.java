@@ -21,4 +21,13 @@ public class LoadingDialog {
     return dialog;
     }
 
+    public static Dialog getUnitDialog(Context context)
+    {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.ads_layout_dialog);
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        return dialog;
+    }
+
 }
