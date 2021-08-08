@@ -3,10 +3,8 @@ package com.ronju.covid_19tracker.Activitys.Fragment;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
-
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +12,6 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,13 +20,15 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.R;
 
+import org.w3c.dom.Text;
+
 public class DashboardActivity extends Fragment {
     private Button clickHereForWork;
     FloatingActionButton fab;
     LinearLayout helpDesk, feedBack, watchVideo;
     boolean isFabOpen = false;
     Dialog dialog;
-    String serverMaintenance="0";
+    String serverMaintenance="0",dialogMessage;
 
 
     @Override
@@ -48,13 +46,9 @@ public class DashboardActivity extends Fragment {
         });
 
 
-        watchVideo.setOnClickListener(v -> {
-            if (serverStatus()) {
-                ((TextView) dialog.findViewById(R.id.ads_dialog_text)).setText("We are currently performing server maintenance please try again later.");
-                dialog.show();
 
-            } else
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragmentViewer, new AdsActivity()).commit();
+        watchVideo.setOnClickListener(v -> {
+            serverStatus();
         });
 
         dialog.findViewById(R.id.ads_dialog_cancel_btn).setOnClickListener(v -> {
@@ -64,8 +58,7 @@ public class DashboardActivity extends Fragment {
         return view;
     }
 
-
-    private boolean serverStatus() {
+    private void serverStatus() {
         FirebaseRemoteConfig mConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
                 .setMinimumFetchIntervalInSeconds(0)
@@ -76,12 +69,26 @@ public class DashboardActivity extends Fragment {
             public void onComplete(@NonNull Task<Boolean> task) {
                 if (task.isSuccessful()) {
                     serverMaintenance = mConfig.getString("server_maintenance");
+                    dialogMessage = mConfig.getString("dialog_message");
+
+                    if(serverMaintenance.equals("1"))
+                    {
+                        showDialog();
+                    }
+                    else
+                    {
+                        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragmentViewer, new AdsActivity()).commit();
+
+                    }
                 }
             }
         });
-        return serverMaintenance.equals("1");
     }
 
+    private void showDialog(){
+        ((TextView)dialog.findViewById(R.id.ads_dialog_text)).setText(dialogMessage);
+        dialog.show();
+    }
 
     private void openFab() {
         helpDesk.setVisibility(View.VISIBLE);
@@ -91,8 +98,8 @@ public class DashboardActivity extends Fragment {
         helpDesk.animate().translationY(-getResources().getDimension(R.dimen.standard_21));
         feedBack.animate().translationY(-getResources().getDimension(R.dimen.standard_30));
     }
-
-    private void closeFab() {
+    private void closeFab()
+    {
         isFabOpen = false;
         ViewCompat.animate(fab).rotation(0.0F).withLayer().setDuration(300).setInterpolator(new OvershootInterpolator(10.0F)).start();
         helpDesk.animate().translationY(getResources().getDimension(R.dimen.standard_21));
@@ -100,7 +107,6 @@ public class DashboardActivity extends Fragment {
         helpDesk.setVisibility(View.GONE);
         feedBack.setVisibility(View.GONE);
     }
-
     private void initView(View view) {
         fab = view.findViewById(R.id.main_fab);
         helpDesk = view.findViewById(R.id.helpDesk_fab);

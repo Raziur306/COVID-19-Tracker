@@ -18,6 +18,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="?attr/block_back"
             android:gravity="bottom|center_horizontal"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,6 +34,7 @@
                 android:gravity="center|center_horizontal"
                 android:paddingLeft="15dp"
                 android:paddingTop="25dp"
+                android:textAlignment="center"
                 android:paddingRight="15dp"
                 android:paddingBottom="15dp"
                 android:textColor="?attr/text_color"
