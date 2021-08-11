@@ -28,15 +28,15 @@
 
             <TextView
                 android:id="@+id/ads_dialog_text"
-                android:minWidth="250dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center|center_horizontal"
+                android:minWidth="250dp"
                 android:paddingLeft="15dp"
                 android:paddingTop="25dp"
-                android:textAlignment="center"
                 android:paddingRight="15dp"
                 android:paddingBottom="15dp"
+                android:textAlignment="center"
                 android:textColor="?attr/text_color"
                 android:textSize="16sp" />
 

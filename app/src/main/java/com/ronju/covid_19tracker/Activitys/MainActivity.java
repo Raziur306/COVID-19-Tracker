@@ -24,8 +24,10 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.ronju.covid_19tracker.Activitys.Fragment.AboutActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.BDdataActivity;
+import com.ronju.covid_19tracker.Activitys.Fragment.DashboardActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.LoginRegisterTabActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
@@ -81,8 +83,20 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             fragmentIndex = savedInstanceState.getInt("current_fragment", 0);
         }
+
         transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
+
+
+        if (fragmentIndex == 6) {
+            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                transaction.replace(R.id.fragmentViewer, new DashboardActivity()).commit();
+            } else {
+                transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
+            }
+        } else {
+            transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
+        }
+
         nav.getMenu().getItem(0).setChecked(true);
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -121,7 +135,10 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.community_job:
                                 fragmentIndex = 6;
-                                transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
+                                if (FirebaseAuth.getInstance().getCurrentUser() != null)
+                                    transaction.replace(R.id.fragmentViewer, new DashboardActivity()).commit();
+                                else
+                                    transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
                                 break;
                             case R.id.nav_about:
                                 fragmentIndex = 7;
@@ -147,12 +164,12 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 if (isChecked) {
-                  //  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    //  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_YES);
                     editor.putInt("DarkMode", 1);
                 } else {
                     // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_NO);
+                    onNightModeChanged(AppCompatDelegate.MODE_NIGHT_NO);
                     editor.putInt("DarkMode", 0);
                 }
                 editor.apply();
@@ -216,8 +233,6 @@ public class MainActivity extends AppCompatActivity {
         nav = findViewById(R.id.nav_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
     }
-
-
 
 
 }

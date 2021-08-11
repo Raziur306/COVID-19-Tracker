@@ -1,6 +1,7 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import android.app.Dialog;
@@ -13,29 +14,53 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.R;
 
-import org.w3c.dom.Text;
+import java.util.concurrent.Executor;
 
 public class DashboardActivity extends Fragment {
     private Button clickHereForWork;
     FloatingActionButton fab;
-    LinearLayout helpDesk, feedBack, watchVideo;
+    LinearLayout helpDesk, feedBack, watchVideo,installApps;
     boolean isFabOpen = false;
     Dialog dialog;
+    FirebaseDatabase firebaseDatabase;
     String serverMaintenance="0",dialogMessage;
-
+    FirebaseAuth mAuth;
+    FirebaseFirestore fireStore;
+    String uid;
+    String profile_id;
+    Dialog loadingDialog;
+    TextView name,profileId,balance;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_dashboard, container, false);
-        dialog = LoadingDialog.getUnitDialog(getContext());
+        loadingDialog = LoadingDialog.getCustomLoadingDialog(getContext());
+        loadingDialog.show();
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        fireStore = FirebaseFirestore.getInstance();
+        uid = mAuth.getCurrentUser().getUid();
+        fetchData();
 
+
+        dialog = LoadingDialog.getUnitDialog(getContext());
         initView(view);
         fab.setOnClickListener(v -> {
             if (isFabOpen) {
@@ -45,10 +70,13 @@ public class DashboardActivity extends Fragment {
             }
         });
 
-
-
         watchVideo.setOnClickListener(v -> {
             serverStatus();
+        });
+
+        installApps.setOnClickListener(v->{
+            ((TextView)dialog.findViewById(R.id.ads_dialog_text)).setText("Coming soon.....");
+            dialog.show();
         });
 
         dialog.findViewById(R.id.ads_dialog_cancel_btn).setOnClickListener(v -> {
@@ -85,6 +113,36 @@ public class DashboardActivity extends Fragment {
         });
     }
 
+    private void fetchData()
+    {
+        DocumentReference documentReference = fireStore.collection("user").document(uid);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                name.setText(documentSnapshot.getString("name"));
+                profile_id =documentSnapshot.getString("profile_id");
+                profileId.setText(profile_id);
+               currentBalance(profile_id);
+
+            }
+        });
+
+
+
+    }
+
+    private void currentBalance(String profile_id) {
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
+        databaseReference.child("user").child(profile_id).child("balance").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                balance.setText(task.getResult().getValue().toString());
+                loadingDialog.dismiss();
+            }
+        });
+    }
+
+
     private void showDialog(){
         ((TextView)dialog.findViewById(R.id.ads_dialog_text)).setText(dialogMessage);
         dialog.show();
@@ -112,5 +170,9 @@ public class DashboardActivity extends Fragment {
         helpDesk = view.findViewById(R.id.helpDesk_fab);
         feedBack = view.findViewById(R.id.feedback_fab);
         watchVideo = view.findViewById(R.id.watch_video);
+        installApps = view.findViewById(R.id.install_apps);
+        name = view.findViewById(R.id.profileName);
+        balance = view.findViewById(R.id.currentBalance);
+        profileId = view.findViewById(R.id.profileId);
     }
 }
