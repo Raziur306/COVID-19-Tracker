@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +14,10 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,19 +38,19 @@ import com.ronju.covid_19tracker.R;
 import java.util.concurrent.Executor;
 
 public class DashboardActivity extends Fragment {
-    private Button clickHereForWork;
+    private Button withdrawBtn;
     FloatingActionButton fab;
-    LinearLayout helpDesk, feedBack, watchVideo,installApps;
+    LinearLayout helpDesk, feedBack, watchVideo, installApps;
     boolean isFabOpen = false;
     Dialog dialog;
     FirebaseDatabase firebaseDatabase;
-    String serverMaintenance="0",dialogMessage;
+    String serverMaintenance = "0", dialogMessage;
     FirebaseAuth mAuth;
     FirebaseFirestore fireStore;
     String uid;
     String profile_id;
     Dialog loadingDialog;
-    TextView name,profileId,balance;
+    TextView name, profileId, balance;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,9 +63,13 @@ public class DashboardActivity extends Fragment {
         uid = mAuth.getCurrentUser().getUid();
         fetchData();
 
-
         dialog = LoadingDialog.getUnitDialog(getContext());
         initView(view);
+
+        withdrawBtn.setOnClickListener(v -> {
+            withdrawProcess();
+        });
+
         fab.setOnClickListener(v -> {
             if (isFabOpen) {
                 closeFab();
@@ -74,8 +82,8 @@ public class DashboardActivity extends Fragment {
             serverStatus();
         });
 
-        installApps.setOnClickListener(v->{
-            ((TextView)dialog.findViewById(R.id.ads_dialog_text)).setText("Coming soon.....");
+        installApps.setOnClickListener(v -> {
+            ((TextView) dialog.findViewById(R.id.ads_dialog_text)).setText("Coming soon.....");
             dialog.show();
         });
 
@@ -84,6 +92,10 @@ public class DashboardActivity extends Fragment {
         });
 
         return view;
+    }
+
+    private void withdrawProcess() {
+
     }
 
     private void serverStatus() {
@@ -99,12 +111,9 @@ public class DashboardActivity extends Fragment {
                     serverMaintenance = mConfig.getString("server_maintenance");
                     dialogMessage = mConfig.getString("dialog_message");
 
-                    if(serverMaintenance.equals("1"))
-                    {
+                    if (serverMaintenance.equals("1")) {
                         showDialog();
-                    }
-                    else
-                    {
+                    } else {
                         getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragmentViewer, new AdsActivity()).commit();
 
                     }
@@ -113,38 +122,45 @@ public class DashboardActivity extends Fragment {
         });
     }
 
-    private void fetchData()
-    {
+    private void fetchData() {
         DocumentReference documentReference = fireStore.collection("user").document(uid);
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 name.setText(documentSnapshot.getString("name"));
-                profile_id =documentSnapshot.getString("profile_id");
+                profile_id = documentSnapshot.getString("profile_id");
                 profileId.setText(profile_id);
-               currentBalance(profile_id);
+                currentBalance(profile_id);
 
             }
         });
-
 
 
     }
 
     private void currentBalance(String profile_id) {
         DatabaseReference databaseReference = firebaseDatabase.getReference();
-        databaseReference.child("user").child(profile_id).child("balance").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
+        databaseReference.child("user").child(profile_id).child("balance").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                balance.setText(task.getResult().getValue().toString());
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                balance.setText(dataSnapshot.getValue().toString());
                 loadingDialog.dismiss();
             }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Toast.makeText(getContext(), "Please check your network.", Toast.LENGTH_SHORT).show();
+                currentBalance(profile_id);
+            }
         });
+
+
     }
 
 
-    private void showDialog(){
-        ((TextView)dialog.findViewById(R.id.ads_dialog_text)).setText(dialogMessage);
+    private void showDialog() {
+        ((TextView) dialog.findViewById(R.id.ads_dialog_text)).setText(dialogMessage);
         dialog.show();
     }
 
@@ -156,8 +172,8 @@ public class DashboardActivity extends Fragment {
         helpDesk.animate().translationY(-getResources().getDimension(R.dimen.standard_21));
         feedBack.animate().translationY(-getResources().getDimension(R.dimen.standard_30));
     }
-    private void closeFab()
-    {
+
+    private void closeFab() {
         isFabOpen = false;
         ViewCompat.animate(fab).rotation(0.0F).withLayer().setDuration(300).setInterpolator(new OvershootInterpolator(10.0F)).start();
         helpDesk.animate().translationY(getResources().getDimension(R.dimen.standard_21));
@@ -165,6 +181,7 @@ public class DashboardActivity extends Fragment {
         helpDesk.setVisibility(View.GONE);
         feedBack.setVisibility(View.GONE);
     }
+
     private void initView(View view) {
         fab = view.findViewById(R.id.main_fab);
         helpDesk = view.findViewById(R.id.helpDesk_fab);
@@ -174,5 +191,6 @@ public class DashboardActivity extends Fragment {
         name = view.findViewById(R.id.profileName);
         balance = view.findViewById(R.id.currentBalance);
         profileId = view.findViewById(R.id.profileId);
+        withdrawBtn = view.findViewById(R.id.withdraw_btn);
     }
 }
