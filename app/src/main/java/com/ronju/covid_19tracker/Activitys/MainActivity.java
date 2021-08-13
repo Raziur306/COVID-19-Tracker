@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -66,11 +68,15 @@ public class MainActivity extends AppCompatActivity {
 
         if (sharedPreferences.getInt("DarkMode", 0) == 1) {
             setTheme(R.style.Theme_Dark);
+
         } else {
             setTheme(R.style.Theme_Light);
         }
         super.onCreate(savedInstanceState);
 
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+            getWindow().setStatusBarColor(getResources().getColor(R.color.black));
 
         setContentView(R.layout.activity_main);
 
@@ -168,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_YES);
                     editor.putInt("DarkMode", 1);
                 } else {
-                    // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                  //   AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_NO);
                     editor.putInt("DarkMode", 0);
                 }
@@ -200,6 +206,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+
     @Override
     protected void onNightModeChanged(int mode) {
         super.onNightModeChanged(mode);
@@ -209,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(MainActivity.this, "Dark Mode Disabled", Toast.LENGTH_LONG).show();
         }
-        recreate();
+       recreate();
     }
 
     public void clickDrawerCloser(View view) {

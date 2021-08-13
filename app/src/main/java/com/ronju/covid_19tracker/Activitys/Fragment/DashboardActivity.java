@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ import java.util.concurrent.Executor;
 public class DashboardActivity extends Fragment {
     private Button withdrawBtn;
     FloatingActionButton fab;
+    ImageView editProfile;
     LinearLayout helpDesk, feedBack, watchVideo, installApps;
     boolean isFabOpen = false;
     Dialog dialog;
@@ -65,6 +67,10 @@ public class DashboardActivity extends Fragment {
 
         dialog = LoadingDialog.getUnitDialog(getContext());
         initView(view);
+
+        editProfile.setOnClickListener(v->{
+
+        });
 
         withdrawBtn.setOnClickListener(v -> {
             withdrawProcess();
@@ -192,5 +198,6 @@ public class DashboardActivity extends Fragment {
         balance = view.findViewById(R.id.currentBalance);
         profileId = view.findViewById(R.id.profileId);
         withdrawBtn = view.findViewById(R.id.withdraw_btn);
+        editProfile = view.findViewById(R.id.edit_profile);
     }
 }

@@ -10,7 +10,8 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/background_color</item>
         <!-- Customize your theme here. -->
         
 
@@ -21,7 +22,6 @@
         <item name="toolbar_icon_color">@color/white</item>
         <item name="nav_item_setting_title_text_color">@color/fade_white</item>
         <item name="fade_dark">@color/fade_white</item>
-        <item name="divider_color">#75C3BCBC</item>
 
     </style>
 
@@ -49,7 +49,7 @@
     <!--    navigation title color-->
     <style name="navigation_divider_title_border" parent="">
         <item name="android:textColorSecondary">?attr/nav_item_setting_title_text_color</item>
-        <item name="android:listDivider">@color/nav_divider_1</item>
+        <item name="android:listDivider">@color/nav_list_divider</item>
     </style>
     <!--    search view hint color-->
 

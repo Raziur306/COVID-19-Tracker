@@ -425,7 +425,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/edit_profile"
         android:layout_width="wrap_content"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintVertical_bias="0.1"
