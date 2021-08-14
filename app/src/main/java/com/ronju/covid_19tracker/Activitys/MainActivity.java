@@ -61,10 +61,12 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt("current_fragment", fragmentIndex);
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sharedPreferences = MainActivity.this.getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
 
+
+        sharedPreferences = MainActivity.this.getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
 
         if (sharedPreferences.getInt("DarkMode", 0) == 1) {
             setTheme(R.style.Theme_Dark);
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             setTheme(R.style.Theme_Light);
         }
+
         super.onCreate(savedInstanceState);
 
 
@@ -174,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_YES);
                     editor.putInt("DarkMode", 1);
                 } else {
-                  //   AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    //   AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     onNightModeChanged(AppCompatDelegate.MODE_NIGHT_NO);
                     editor.putInt("DarkMode", 0);
                 }
@@ -182,8 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.commit();
             }
         });
-
-        //location
+//location
         locationSwitchCompat = (SwitchCompat) nav.getMenu().findItem(R.id.location_menu).getActionView().findViewById(R.id.nav_switch_item);
         locationSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -193,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //closing keyboard
+//closing keyboard
         drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
             @Override
             public void onDrawerStateChanged(int newState) {
@@ -203,10 +205,7 @@ public class MainActivity extends AppCompatActivity {
                     inputMethodManager.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), 0);
             }
         });
-
     }
-
-
 
 
     @Override
@@ -218,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(MainActivity.this, "Dark Mode Disabled", Toast.LENGTH_LONG).show();
         }
-       recreate();
+        recreate();
     }
 
     public void clickDrawerCloser(View view) {
@@ -242,6 +241,5 @@ public class MainActivity extends AppCompatActivity {
         nav = findViewById(R.id.nav_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
     }
-
 
 }

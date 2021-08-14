@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.Light" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -9,14 +9,12 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
+        <!-- Force Dark mode. -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <!-- Status bar color. -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/background_color</item>
         <!-- Customize your theme here. -->
-        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
-
-
-
         <item name="background_color">#FAF8F8</item>
         <item name="text_color">#000000</item>
         <item name="block_back">@color/white</item>
@@ -27,6 +25,24 @@
 
     </style>
 
+
+    <!--    Dark theme-->
+    <style name="Theme.Dark" parent="">
+        <!-- Status bar color. -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/background_color</item>
+        <!-- Customize your theme here. -->
+        <item name="background_color">@color/main_bg</item>
+        <item name="block_back">@color/block_bg</item>
+        <item name="text_color">@color/white</item>
+        <item name="nav_text_color">@color/white</item>
+        <item name="toolbar_icon_color">@color/white</item>
+        <item name="nav_item_setting_title_text_color">@color/fade_white</item>
+        <item name="fade_dark">@color/fade_white</item>
+
+    </style>
+
+<!--Others customization-->
 
     <!--Bottom sheet theme-->
     <style name="bottomSheetTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">

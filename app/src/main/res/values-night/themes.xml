@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Dark" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.NotUsed" parent="Theme.AppCompat.Light">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -9,78 +9,7 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/background_color</item>
         <!-- Customize your theme here. -->
-        
-
-        <item name="background_color">@color/main_bg</item>
-        <item name="block_back">@color/block_bg</item>
-        <item name="text_color">@color/white</item>
-        <item name="nav_text_color">@color/white</item>
-        <item name="toolbar_icon_color">@color/white</item>
-        <item name="nav_item_setting_title_text_color">@color/fade_white</item>
-        <item name="fade_dark">@color/fade_white</item>
-
     </style>
-
-
-    <!--Bottom sheet theme-->
-    <style name="bottomSheetTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/bottomSheetStyle</item>
-    </style>
-
-    <style name="bottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@android:color/transparent</item>
-    </style>
-
-    <!--    Toolbar Icon Color-->
-    <style name="myToolbar" parent="ThemeOverlay.AppCompat">
-        <item name="drawerArrowStyle">@style/WhiteDrawerIconStyle</item>
-    </style>
-
-    <style name="WhiteDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="spinBars">true</item>
-        <item name="color">?attr/toolbar_icon_color</item>
-    </style>
-
-
-    <!--    navigation title color-->
-    <style name="navigation_divider_title_border" parent="">
-        <item name="android:textColorSecondary">?attr/nav_item_setting_title_text_color</item>
-        <item name="android:listDivider">@color/nav_list_divider</item>
-    </style>
-    <!--    search view hint color-->
-
-    <!--    search view hint color-->
-    <style name="search_view_hint" parent="Widget.AppCompat.Light.SearchView">
-        <item name="android:maxWidth">10000dp</item>
-        <item name="android:textColorHint">@android:color/white</item>
-        <item name="editTextColor">?text_color</item>
-    </style>
-
-
-
-    <!--   login panel textInput-->
-    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="boxStrokeColor">@color/light_blue</item>
-        <item name="hintTextColor">@color/light_blue</item>
-        <item name="android:textColorHint">@color/fade_light_blue</item>
-        <item name="boxCornerRadiusBottomEnd">10dp</item>
-        <item name="boxCornerRadiusBottomStart">10dp</item>
-        <item name="boxCornerRadiusTopEnd">10dp</item>
-        <item name="boxCornerRadiusTopStart">10dp</item>
-        <item name="backgroundTint">@color/dark_blue</item>
-    </style>
-
-    <style name="login_button" parent="Widget.MaterialComponents.Button">
-        <item name="cornerRadius">50dp</item>
-        <item name="backgroundTint">@color/app_native_color</item>
-    </style>
-
-
-
-
 
 </resources>
