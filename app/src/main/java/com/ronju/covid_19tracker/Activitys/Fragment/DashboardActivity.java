@@ -69,7 +69,7 @@ public class DashboardActivity extends Fragment {
         initView(view);
 
         editProfile.setOnClickListener(v->{
-
+            getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.fragmentViewer,new EditProfileActivity()).commit();
         });
 
         withdrawBtn.setOnClickListener(v -> {
