@@ -1,5 +1,4 @@
 package com.ronju.covid_19tracker.Activitys;
-
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -7,16 +6,16 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -34,10 +33,6 @@ import com.ronju.covid_19tracker.Activitys.Fragment.LoginRegisterTabActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.ronju.covid_19tracker.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
     private NavigationView nav;
@@ -202,6 +197,33 @@ public class MainActivity extends AppCompatActivity {
                     inputMethodManager.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), 0);
             }
         });
+
+
+
+
+
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                if(getSupportFragmentManager().getBackStackEntryCount()>0)
+                {
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    toggle.setDrawerIndicatorEnabled(false);
+                    getSupportActionBar().setDisplayShowTitleEnabled(true);
+                }
+                else
+                {
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                    toggle.setDrawerIndicatorEnabled(true);
+                    getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+                }
+            }
+        });
+
+
+
+
     }
 
 
@@ -231,6 +253,8 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+
 
     private void initView() {
         toolbar = findViewById(R.id.toolbar);

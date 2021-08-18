@@ -22,6 +22,7 @@
         <item name="toolbar_icon_color">@color/black</item>
         <item name="nav_item_setting_title_text_color">@color/black</item>
         <item name="fade_dark">#5A5B5C</item>
+        <item name="divider_color">@color/divider_transparent_white</item>
 
     </style>
 
@@ -68,7 +69,7 @@
     <!--    navigation title color-->
     <style name="navigation_divider_title_border" parent="">
         <item name="android:textColorSecondary">?attr/nav_item_setting_title_text_color</item>
-        <item name="android:listDivider">@color/nav_list_divider</item>
+        <item name="android:listDivider">@color/divider_transparent_white</item>
     </style>
 
     <!--    search view hint color-->

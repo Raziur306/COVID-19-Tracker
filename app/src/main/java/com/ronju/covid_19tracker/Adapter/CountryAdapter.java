@@ -40,7 +40,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(CountryAdapter.ViewHolder holder, int position) {
-        holder.slNo.setText(String.valueOf(position + 1));
+        holder.slNo.setText((position + 1)+".");
         holder.countryName.setText(countryList.get(position).getCountryName());
         Glide.with(context).load(countryList.get(position).getFlagUrl()).into(holder.cFlag);
 
@@ -57,12 +57,6 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
             //start home activity
             Intent intent = new Intent(v.getContext(), MainActivity.class);
             v.getContext().startActivity(intent);
-
-//            HomeActivity fragment = new HomeActivity();
-//            MainActivity mainActivity = (MainActivity)v.getContext();
-//            mainActivity.getFragmentManager().beginTransaction().replace(R.id.fragmentViewer, fragment).commit();
-
-
             ((Activity) context).finish();
         });
     }
