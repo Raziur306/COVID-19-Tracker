@@ -1,4 +1,5 @@
 package com.ronju.covid_19tracker.Activitys;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -16,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -199,29 +201,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
-                if(getSupportFragmentManager().getBackStackEntryCount()>0)
-                {
+                if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                    toggle.setDrawerIndicatorEnabled(false);
+                    toolbar.findViewById(R.id.toolbar_data).setVisibility(View.GONE);
                     getSupportActionBar().setDisplayShowTitleEnabled(true);
-                }
-                else
-                {
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onBackPressed();
+                        }
+                    });
+                } else {
+                    toolbar.findViewById(R.id.toolbar_data).setVisibility(View.VISIBLE);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                    toggle.setDrawerIndicatorEnabled(true);
                     getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                    toggle.syncState();
+                    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            drawerLayout.openDrawer(GravityCompat.START);
+                        }
+                    });
                 }
             }
         });
-
-
 
 
     }
@@ -247,13 +255,12 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        } else if (getSupportFragmentManager().findFragmentByTag("country_view_fragment") != null) {
+        } else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
     }
-
 
 
     private void initView() {

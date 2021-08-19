@@ -15,10 +15,12 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:theme="@style/myToolbar"
             android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
             android:background="?attr/background_color"
-            android:layout_height="?attr/actionBarSize">
+            android:theme="@style/myToolbar"
+            app:titleTextColor="?attr/text_color">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -27,6 +29,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/toolbar_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
@@ -45,18 +48,18 @@
                         <TextView
                             android:id="@+id/textView"
                             android:layout_width="wrap_content"
-                            android:textColor="?attr/fade_dark"
                             android:layout_height="wrap_content"
                             android:maxLines="1"
                             android:minLines="1"
-                            android:text="COVID-19" />
+                            android:text="COVID-19"
+                            android:textColor="?attr/fade_dark" />
 
                         <TextView
                             android:id="@+id/textView4"
                             android:layout_width="wrap_content"
-                            android:textColor="?attr/fade_dark"
                             android:layout_height="wrap_content"
                             android:text="VIRUS TRACKER"
+                            android:textColor="?attr/fade_dark"
                             android:textSize="10sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -68,23 +71,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/toolbar"
-            android:launchMode="singleTask"
-            />
+            android:launchMode="singleTask" />
 
 
     </RelativeLayout>
 
 
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_menu"
-        android:background="?attr/background_color"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:itemTextColor="?attr/nav_text_color"
         android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
+        android:background="?attr/background_color"
         android:theme="@style/navigation_divider_title_border"
+        app:headerLayout="@layout/nav_header"
+        app:itemTextColor="?attr/nav_text_color"
         app:menu="@menu/draw_menu">
 
     </com.google.android.material.navigation.NavigationView>

@@ -57,12 +57,8 @@
 
     <!--    Toolbar Icon Color-->
     <style name="myToolbar" parent="ThemeOverlay.AppCompat">
-        <item name="drawerArrowStyle">@style/BlackDrawerIconStyle</item>
-    </style>
-
-    <style name="BlackDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="spinBars">true</item>
-        <item name="color">?attr/toolbar_icon_color</item>
+        <item name="colorControlNormal">?attr/toolbar_icon_color</item>
+        <item name="collapsedTitleGravity">center</item>
     </style>
 
 
