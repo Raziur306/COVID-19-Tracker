@@ -22,7 +22,6 @@ public class CountryViewActivity extends Fragment {
     private CountryAdapter mAdapter;
     private Dialog loadingDialog;
     private androidx.appcompat.widget.SearchView searchView;
-    private TextView backPress;
     private View view = null;
     private FrameLayout frameLayout;
 
@@ -30,7 +29,7 @@ public class CountryViewActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_country_view, container, false);
         loadingDialog = LoadingDialog.getCustomLoadingDialog(getContext());
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Choose your country");
         frameLayout = view.findViewById(R.id.fragmentViewer);
 
         intView();
@@ -57,9 +56,6 @@ public class CountryViewActivity extends Fragment {
             }
         });
 
-        backPress.setOnClickListener(v -> {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer,new HomeActivity()).commit();
-        });
 
 
         return view;
@@ -69,7 +65,6 @@ public class CountryViewActivity extends Fragment {
     private void intView() {
         recyclerView = view.findViewById(R.id.countryItemView);
         searchView = view.findViewById(R.id.cSearch);
-        backPress = view.findViewById(R.id.backPress);
     }
 
 

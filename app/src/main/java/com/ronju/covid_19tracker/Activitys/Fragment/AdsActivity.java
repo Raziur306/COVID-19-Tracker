@@ -1,5 +1,6 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.app.Dialog;
@@ -28,6 +29,7 @@ public class AdsActivity extends Fragment {
     @Override
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_ads,container,false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Click Here For Work");
         unitDialog = LoadingDialog.getUnitDialog(getContext());
        TextView textView =  unitDialog.findViewById(R.id.ads_dialog_text);
        unitDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));

@@ -32,14 +32,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="Download App" />
+                android:text="Download App"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/download_app"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="1" />
+                android:text="1"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -57,14 +59,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="Remaining Views" />
+                android:text="Remaining Views"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/remaining"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0" />
+                android:text="0"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -82,14 +86,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="Total Views" />
+                android:text="Total Views"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/totalView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0" />
+                android:text="0"
+                android:textSize="18sp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -137,5 +143,22 @@
         app:layout_constraintEnd_toEndOf="@+id/server_2_btn"
         app:layout_constraintStart_toStartOf="@+id/server_2_btn" />
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Watch Ads and Earn Money"
+        android:textAlignment="center"
+        android:textColor="@color/light_blue"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13999999" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
