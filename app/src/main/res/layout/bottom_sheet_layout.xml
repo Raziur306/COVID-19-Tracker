@@ -20,10 +20,10 @@
 
         <ImageView
             android:id="@+id/bottomSheetCountry_flag"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
             android:layout_marginRight="15dp"
-            android:src="@drawable/bangladesh_flag" />
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/bottomSheet_countryName"

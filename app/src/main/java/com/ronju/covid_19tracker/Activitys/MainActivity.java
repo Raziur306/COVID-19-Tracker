@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.community_job:
                                 fragmentIndex = 6;
-                                if (FirebaseAuth.getInstance().getCurrentUser() != null)
+                                if (FirebaseAuth.getInstance().getCurrentUser() != null && getApplicationContext().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE).getString("email",null)!=null)
                                     transaction.replace(R.id.fragmentViewer, new DashboardActivity()).commit();
                                 else
                                     transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();

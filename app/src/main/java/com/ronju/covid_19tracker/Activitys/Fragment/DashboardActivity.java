@@ -129,7 +129,7 @@ public class DashboardActivity extends Fragment {
     }
 
     private void fetchData() {
-        DocumentReference documentReference = fireStore.collection("user").document(uid);
+        DocumentReference documentReference = fireStore.collection("users").document(uid);
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -147,7 +147,7 @@ public class DashboardActivity extends Fragment {
     private void currentBalance(String profile_id) {
         DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-        databaseReference.child("user").child(profile_id).child("balance").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+        databaseReference.child("users").child(profile_id).child("balance").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
                 balance.setText(dataSnapshot.getValue().toString());

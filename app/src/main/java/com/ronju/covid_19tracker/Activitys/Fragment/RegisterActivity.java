@@ -197,7 +197,7 @@ public class RegisterActivity extends Fragment {
                 if (task.isSuccessful()) {
 
                     fStore = FirebaseFirestore.getInstance();
-                    DocumentReference documentReference = fStore.collection("user").document(mAuth.getCurrentUser().getUid());
+                    DocumentReference documentReference = fStore.collection("users").document(mAuth.getCurrentUser().getUid());
                     Map<String, Object> user = new HashMap<>();
                     user.put("name", name);
                     user.put("pNumber", number);

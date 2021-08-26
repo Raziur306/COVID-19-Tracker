@@ -120,14 +120,14 @@ public class VerificationActivity extends Fragment {
 
             profile_id();
             FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-            DocumentReference documentReference = fStore.collection("user").document(mAuth.getCurrentUser().getUid());
+            DocumentReference documentReference = fStore.collection("users").document(mAuth.getCurrentUser().getUid());
             Map<String, Object> user = new HashMap<>();
             user.put("profile_id", profileId);
             user.put("account_status", "verified");
             documentReference.update(user);
 
             FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
-            DatabaseReference mReference = mDatabase.getReference("user").child(profileId);
+            DatabaseReference mReference = mDatabase.getReference("users").child(profileId);
             mReference.child("balance").setValue(0);
             DatabaseReference today_status = mReference.child("today_status");
             today_status.child("date").setValue(currentDate());
