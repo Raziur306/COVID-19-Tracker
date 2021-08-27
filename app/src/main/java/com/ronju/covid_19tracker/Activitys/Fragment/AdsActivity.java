@@ -49,6 +49,10 @@ public class AdsActivity extends Fragment {
     FirebaseAuth mAuth;
     String profile_id;
     FirebaseRemoteConfig mConfig;
+    DatabaseReference firebaseReference;
+    String adsLimit;
+    boolean adsLimitFlag = false;
+    int adsCounter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,7 +70,7 @@ public class AdsActivity extends Fragment {
         initializeAdsUnit();
         server_1.setOnClickListener(v -> {
 
-            if (UnityAds.isReady())
+            if (UnityAds.isReady() && !limitOver())
                 UnityAds.show(getActivity(), INTERSTITIAL_ID);
         });
 
@@ -84,25 +88,26 @@ public class AdsActivity extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        DatabaseReference firebaseReference = firebaseDatabase.getReference("users");
+        firebaseReference = firebaseDatabase.getReference("users");
         firebaseFirestore.collection("users").document(mAuth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 profile_id = documentSnapshot.getString("profile_id");
 
-                firebaseReference.child(profile_id).addListenerForSingleValueEvent(new ValueEventListener() {
+                firebaseReference.child(profile_id).child("today_status").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        Log.d("Ronju",""+snapshot);
+                        Log.d("Ronju", "" + snapshot);
                         if (snapshot.exists()) {
 
-                            if (!snapshot.child("today_status").child("date").getValue(String.class).equals(currentDate())) {
+                            if (!snapshot.child("date").getValue(String.class).equals(currentDate())) {
                                 firebaseReference.child(profile_id).child("today_status").child("date").setValue(currentDate());
                                 firebaseReference.child(profile_id).child("today_status").child("count").setValue("0");
                             }
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
@@ -121,9 +126,9 @@ public class AdsActivity extends Fragment {
         mConfig.fetchAndActivate().addOnCompleteListener(new OnCompleteListener<Boolean>() {
             @Override
             public void onComplete(@NonNull Task<Boolean> task) {
-                if(task.isSuccessful())
-                {
-                    totalView.setText(mConfig.getString("ads_limit"));
+                if (task.isSuccessful()) {
+                    adsLimit = mConfig.getString("ads_limit");
+                    totalView.setText(adsLimit);
                 }
             }
         });
@@ -133,14 +138,14 @@ public class AdsActivity extends Fragment {
 
 
     private void initializeAdsUnit() {
-        if(!UnityAds.isInitialized())
+        if (!UnityAds.isInitialized())
             server_1.setText("Preparing");
         UnityAds.initialize(getActivity(), GAME_ID, testsMode);
         UnityAds.addListener(unityAdsListener);
     }
 
 
- //unity ads listener
+    //unity ads listener
     public class UnityAdsListener implements IUnityAdsListener {
         @Override
         public void onUnityAdsReady(String s) {
@@ -155,8 +160,17 @@ public class AdsActivity extends Fragment {
         @Override
         public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
             server_1.setText("Preparing");
-            ((TextView) unitDialog.findViewById(R.id.ads_dialog_text)).setText("Ad seen successfully");
-            unitDialog.show();
+            if (!limitOver()) {
+                firebaseReference.child("today_status").child("count").setValue(adsCounter + 1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                        ((TextView) unitDialog.findViewById(R.id.ads_dialog_text)).setText("Ad seen successfully");
+                        unitDialog.show();
+
+                    }
+                });
+            }
             initializeAdsUnit();
         }
 
@@ -164,6 +178,28 @@ public class AdsActivity extends Fragment {
         public void onUnityAdsError(UnityAds.UnityAdsError unityAdsError, String s) {
             initializeAdsUnit();
         }
+    }
+
+    private boolean limitOver() {
+        firebaseReference.child(profile_id).child("today_status").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    adsCounter = Integer.parseInt(snapshot.child("count").getValue(String.class));
+                    if (snapshot.child("count").getValue(String.class).equals(adsLimit)) {
+                        ((TextView) unitDialog.findViewById(R.id.ads_dialog_text)).setText("বিজ্ঞাপন সিমা শেষ");
+                        unitDialog.show();
+                        adsLimitFlag = true;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return adsLimitFlag;
     }
 
 

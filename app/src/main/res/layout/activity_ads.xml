@@ -34,9 +34,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:textColor="@color/light_blue"
+                android:layout_marginBottom="5dp"
                 android:text="Download App"
+                android:textColor="@color/light_blue"
                 android:textSize="20sp" />
 
             <TextView
@@ -46,6 +46,7 @@
                 android:gravity="center"
                 android:textColor="?attr/fade_dark"
                 android:text="1"
+                android:layout_marginBottom="5dp"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -63,7 +64,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="5dp"
                 android:text="Remaining Views"
                 android:textColor="@color/light_blue"
                 android:textSize="20sp" />
@@ -74,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="0"
+                android:layout_marginBottom="5dp"
                 android:textColor="?attr/fade_dark"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -92,7 +94,7 @@
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="5dp"
                 android:textColor="@color/light_blue"
                 android:text="Total Views"
                 android:textSize="20sp" />
@@ -102,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginBottom="5dp"
                 android:textColor="?attr/fade_dark"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -175,7 +178,7 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#BCD6F3"
+        android:background="#4FBCD6F3"
         android:padding="5dp"
         android:text="প্রতি বিজ্ঞানপনে ০.৫০ টাকা করে আয় করুন "
         android:textColor="@color/light_blue"
