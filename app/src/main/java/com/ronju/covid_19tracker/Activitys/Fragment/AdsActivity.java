@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,29 +14,30 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.R;
 import com.unity3d.ads.IUnityAdsListener;
 import com.unity3d.ads.UnityAds;
 
-import org.w3c.dom.Text;
-
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
 
 public class AdsActivity extends Fragment {
+    TextView totalView, remainingView;
     private final String GAME_ID = "4218577";
     private final String INTERSTITIAL_ID = "Interstitial_Android";
     Dialog unitDialog;
@@ -49,7 +47,8 @@ public class AdsActivity extends Fragment {
     FirebaseDatabase firebaseDatabase;
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth mAuth;
-    String UID, profile_id;
+    String profile_id;
+    FirebaseRemoteConfig mConfig;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,13 +62,8 @@ public class AdsActivity extends Fragment {
         });
 
         updateData();
-
-
         unityAdsListener = new UnityAdsListener();
-
-
         initializeAdsUnit();
-
         server_1.setOnClickListener(v -> {
 
             if (UnityAds.isReady())
@@ -90,12 +84,13 @@ public class AdsActivity extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        DatabaseReference firebaseReference = firebaseDatabase.getReference("users");
         firebaseFirestore.collection("users").document(mAuth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 profile_id = documentSnapshot.getString("profile_id");
 
-               firebaseDatabase.getReference("users").child(profile_id).addListenerForSingleValueEvent(new ValueEventListener() {
+                firebaseReference.child(profile_id).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -103,10 +98,9 @@ public class AdsActivity extends Fragment {
                         if (snapshot.exists()) {
 
                             if (!snapshot.child("today_status").child("date").getValue(String.class).equals(currentDate())) {
-                                firebaseDatabase.getReference("users").child("today_status").child("date").setValue(currentDate());
-                                firebaseDatabase.getReference("users").child("today_status").child("count").setValue("0");
+                                firebaseReference.child(profile_id).child("today_status").child("date").setValue(currentDate());
+                                firebaseReference.child(profile_id).child("today_status").child("count").setValue("0");
                             }
-
                         }
                     }
                     @Override
@@ -117,35 +111,53 @@ public class AdsActivity extends Fragment {
 
             }
         });
+
+//ads limit set
+        mConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setMinimumFetchIntervalInSeconds(0)
+                .build();
+        mConfig.setConfigSettingsAsync(configSettings);
+        mConfig.fetchAndActivate().addOnCompleteListener(new OnCompleteListener<Boolean>() {
+            @Override
+            public void onComplete(@NonNull Task<Boolean> task) {
+                if(task.isSuccessful())
+                {
+                    totalView.setText(mConfig.getString("ads_limit"));
+                }
+            }
+        });
+
+
     }
 
 
     private void initializeAdsUnit() {
+        if(!UnityAds.isInitialized())
+            server_1.setText("Preparing");
         UnityAds.initialize(getActivity(), GAME_ID, testsMode);
         UnityAds.addListener(unityAdsListener);
-        if (UnityAds.isInitialized()) {
-            server_1.setText("Show Now");
-        }
     }
 
 
-    //unity ads listener
+ //unity ads listener
     public class UnityAdsListener implements IUnityAdsListener {
         @Override
         public void onUnityAdsReady(String s) {
-            server_1.setText("Show Now");
+            server_1.setText("ভিডিও দেখুন");
         }
 
         @Override
         public void onUnityAdsStart(String s) {
-            server_1.setText("Preparing");
             initializeAdsUnit();
         }
 
         @Override
         public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
+            server_1.setText("Preparing");
             ((TextView) unitDialog.findViewById(R.id.ads_dialog_text)).setText("Ad seen successfully");
             unitDialog.show();
+            initializeAdsUnit();
         }
 
         @Override
@@ -166,6 +178,8 @@ public class AdsActivity extends Fragment {
     private void initView(View view) {
         server_1 = view.findViewById(R.id.server_1_btn);
         server_2 = view.findViewById(R.id.server_2_btn);
+        totalView = view.findViewById(R.id.total_view);
+        remainingView = view.findViewById(R.id.remaining_view);
     }
 
 }

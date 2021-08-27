@@ -20,5 +20,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="preparing">Preparing</string>
+    <string name="show_ad">ভিডিও দেখুন</string>
 
 </resources>

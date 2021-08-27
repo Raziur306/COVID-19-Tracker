@@ -10,6 +10,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
+        android:background="@drawable/circle_radius_bg"
+        android:padding="10dp"
+        android:backgroundTint="?attr/block_back"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -32,6 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
+                android:textColor="@color/light_blue"
                 android:text="Download App"
                 android:textSize="20sp" />
 
@@ -40,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textColor="?attr/fade_dark"
                 android:text="1"
                 android:textSize="18sp" />
 
@@ -60,14 +65,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:text="Remaining Views"
+                android:textColor="@color/light_blue"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/remaining"
+                android:id="@+id/remaining_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="0"
+                android:textColor="?attr/fade_dark"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -86,15 +93,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
+                android:textColor="@color/light_blue"
                 android:text="Total Views"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/totalView"
+                android:id="@+id/total_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0"
+                android:textColor="?attr/fade_dark"
                 android:textSize="18sp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -103,7 +111,7 @@
         android:id="@+id/server_2_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Now"
+        android:text="@string/show_ad"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,7 +124,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
-        android:text="Show Now"
+        android:text="@string/show_ad"
         android:textAllCaps="false"
         app:layout_constraintBaseline_toBaselineOf="@+id/server_2_btn"
         app:layout_constraintEnd_toStartOf="@+id/server_2_btn"
@@ -129,6 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Server-1"
+        android:textColor="?attr/fade_dark"
         app:layout_constraintBottom_toTopOf="@+id/server_1_btn"
         app:layout_constraintEnd_toEndOf="@+id/server_1_btn"
         app:layout_constraintStart_toStartOf="@+id/server_1_btn" />
@@ -139,6 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Server-2"
+        android:textColor="?attr/fade_dark"
         app:layout_constraintBottom_toTopOf="@+id/server_2_btn"
         app:layout_constraintEnd_toEndOf="@+id/server_2_btn"
         app:layout_constraintStart_toStartOf="@+id/server_2_btn" />
@@ -160,5 +170,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.13999999" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#BCD6F3"
+        android:padding="5dp"
+        android:text="প্রতি বিজ্ঞানপনে ০.৫০ টাকা করে আয় করুন "
+        android:textColor="@color/light_blue"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
