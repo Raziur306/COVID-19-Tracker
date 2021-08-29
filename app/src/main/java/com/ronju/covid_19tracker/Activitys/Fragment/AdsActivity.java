@@ -42,7 +42,7 @@ public class AdsActivity extends Fragment {
     private final String INTERSTITIAL_ID = "Interstitial_Android";
     Dialog unitDialog;
     Button server_1, server_2;
-    private boolean testsMode = true;
+    private boolean testsMode = false;
     UnityAdsListener unityAdsListener;
     FirebaseDatabase firebaseDatabase;
     FirebaseFirestore firebaseFirestore;
@@ -50,8 +50,8 @@ public class AdsActivity extends Fragment {
     String profile_id;
     FirebaseRemoteConfig mConfig;
     DatabaseReference firebaseReference;
-    String adsLimit;
-    boolean adsLimitFlag = false;
+    int adsLimit;
+    boolean adsLimitFlag = true;
     int adsCounter;
 
     @Override
@@ -93,17 +93,14 @@ public class AdsActivity extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 profile_id = documentSnapshot.getString("profile_id");
-
                 firebaseReference.child(profile_id).child("today_status").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                        Log.d("Ronju", "" + snapshot);
                         if (snapshot.exists()) {
 
                             if (!snapshot.child("date").getValue(String.class).equals(currentDate())) {
                                 firebaseReference.child(profile_id).child("today_status").child("date").setValue(currentDate());
-                                firebaseReference.child(profile_id).child("today_status").child("count").setValue("0");
+                                firebaseReference.child(profile_id).child("today_status").child("count").setValue(0);
                             }
                         }
                     }
@@ -127,8 +124,8 @@ public class AdsActivity extends Fragment {
             @Override
             public void onComplete(@NonNull Task<Boolean> task) {
                 if (task.isSuccessful()) {
-                    adsLimit = mConfig.getString("ads_limit");
-                    totalView.setText(adsLimit);
+                    adsLimit = (int) mConfig.getLong("ads_limit");
+                    totalView.setText(String.valueOf(adsLimit));
                 }
             }
         });
@@ -161,13 +158,12 @@ public class AdsActivity extends Fragment {
         public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
             server_1.setText("Preparing");
             if (!limitOver()) {
-                firebaseReference.child("today_status").child("count").setValue(adsCounter + 1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                firebaseReference.child(profile_id).child("today_status").child("count").setValue(1+adsCounter).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
 
                         ((TextView) unitDialog.findViewById(R.id.ads_dialog_text)).setText("Ad seen successfully");
                         unitDialog.show();
-
                     }
                 });
             }
@@ -185,8 +181,8 @@ public class AdsActivity extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    adsCounter = Integer.parseInt(snapshot.child("count").getValue(String.class));
-                    if (snapshot.child("count").getValue(String.class).equals(adsLimit)) {
+                    adsCounter = snapshot.child("count").getValue(Integer.class);
+                    if (adsCounter == adsLimit) {
                         ((TextView) unitDialog.findViewById(R.id.ads_dialog_text)).setText("বিজ্ঞাপন সিমা শেষ");
                         unitDialog.show();
                         adsLimitFlag = true;
