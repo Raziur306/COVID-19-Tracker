@@ -3,22 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
     android:layout_height="match_parent">
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+
 
         <LinearLayout
+            android:background="@drawable/circle_radius_bg"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/block_back"
+            android:layout_height="140dp"
+            android:backgroundTint="?attr/block_back"
             android:gravity="bottom|center_horizontal"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +24,7 @@
 
             <TextView
                 android:id="@+id/ads_dialog_text"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|center_horizontal"
                 android:minWidth="250dp"
@@ -38,14 +34,14 @@
                 android:paddingBottom="15dp"
                 android:textAlignment="center"
                 android:textColor="?attr/text_color"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <View
                 android:id="@+id/divider2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="15dp"
-                android:background="#74C8B9B8" />
+                android:background="#39C8B9B8" />
 
             <TextView
                 android:id="@+id/ads_dialog_cancel_btn"
@@ -53,11 +49,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal"
-                android:paddingBottom="5dp"
+                android:paddingBottom="10dp"
                 android:text="OK"
                 android:textColor="@color/app_native_color"
                 android:textSize="16sp" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

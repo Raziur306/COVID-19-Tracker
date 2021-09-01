@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -36,6 +38,7 @@ import com.ronju.covid_19tracker.Activitys.Fragment.LoginRegisterTabActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.ronju.covid_19tracker.R;
+import com.unity3d.ads.UnityAds;
 
 public class MainActivity extends AppCompatActivity {
     private NavigationView nav;
@@ -141,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.community_job:
                                 fragmentIndex = 6;
-                                if (FirebaseAuth.getInstance().getCurrentUser() != null && getApplicationContext().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE).getString("email",null)!=null)
+                                if (FirebaseAuth.getInstance().getCurrentUser() != null && getApplicationContext().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE).getString("email", null) != null)
                                     transaction.replace(R.id.fragmentViewer, new DashboardActivity()).commit();
                                 else
                                     transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
@@ -231,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 

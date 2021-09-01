@@ -27,6 +27,7 @@ public class LoadingDialog {
         dialog.setContentView(R.layout.ads_layout_dialog);
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+
         return dialog;
     }
 
