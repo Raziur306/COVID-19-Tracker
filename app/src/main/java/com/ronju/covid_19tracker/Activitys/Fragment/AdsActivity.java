@@ -182,7 +182,8 @@ public class AdsActivity extends Fragment {
 
         @Override
         public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
-            firebaseReference.child(profile_id).child("today_status").child("count").setValue(1 + adsCounter).addOnSuccessListener(new OnSuccessListener<Void>() {
+            adsCounter+=1;
+            firebaseReference.child(profile_id).child("today_status").child("count").setValue(adsCounter).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
                     currentBalance += perAdsRevanue;
