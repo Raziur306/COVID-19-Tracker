@@ -73,9 +73,9 @@
                 android:id="@+id/remaining_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:text="0"
-                android:layout_marginBottom="5dp"
                 android:textColor="?attr/fade_dark"
                 android:textSize="18sp" />
         </LinearLayout>

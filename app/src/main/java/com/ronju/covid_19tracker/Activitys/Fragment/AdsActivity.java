@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -54,6 +53,7 @@ public class AdsActivity extends Fragment {
     int adsLimit = 0;
     boolean adsLimitFlag = false;
     int adsCounter = 0;
+    long currentBalance, perAdsRevanue;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -116,12 +116,13 @@ public class AdsActivity extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 profile_id = documentSnapshot.getString("profile_id");
-                firebaseReference.child(profile_id).child("today_status").addListenerForSingleValueEvent(new ValueEventListener() {
+
+                firebaseReference.child(profile_id).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-
-                            if (!snapshot.child("date").getValue(String.class).equals(currentDate())) {
+                            currentBalance = snapshot.child("balance").getValue(Long.class);
+                            if (!snapshot.child("today_status").child("date").getValue(String.class).equals(currentDate())) {
                                 firebaseReference.child(profile_id).child("today_status").child("date").setValue(currentDate());
                                 firebaseReference.child(profile_id).child("today_status").child("count").setValue(0);
                             }
@@ -133,6 +134,7 @@ public class AdsActivity extends Fragment {
 
                     }
                 });
+
 
             }
         });
@@ -148,6 +150,7 @@ public class AdsActivity extends Fragment {
             public void onComplete(@NonNull Task<Boolean> task) {
                 if (task.isSuccessful()) {
                     adsLimit = (int) mConfig.getLong("ads_limit");
+                    perAdsRevanue = mConfig.getLong("user_revenue");
                     totalView.setText(String.valueOf(adsLimit));
                 }
             }
@@ -182,9 +185,12 @@ public class AdsActivity extends Fragment {
             firebaseReference.child(profile_id).child("today_status").child("count").setValue(1 + adsCounter).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
+                    currentBalance += perAdsRevanue;
+                    remainingView.setText(String.valueOf(adsLimit-adsCounter));
+                    firebaseReference.child(profile_id).child("balance").setValue(currentBalance);
                     ((TextView) unitDialog.findViewById(R.id.ads_dialog_text)).setText("Ad seen successfully");
                     unitDialog.show();
-                    if(!UnityAds.isReady(INTERSTITIAL_ID))
+                    if (!UnityAds.isReady(INTERSTITIAL_ID))
                         server_1.setText("Preparing");
                 }
             });
