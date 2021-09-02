@@ -1,7 +1,5 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
-import androidx.annotation.NonNull;
-import androidx.core.view.ContentInfoCompat;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -9,13 +7,11 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +31,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 
 public class VerificationActivity extends Fragment {
     private String email, phone, password, name;
@@ -124,6 +119,7 @@ public class VerificationActivity extends Fragment {
             Map<String, Object> user = new HashMap<>();
             user.put("profile_id", profileId);
             user.put("account_status", "verified");
+            user.put("device_id",null);
             documentReference.update(user);
 
             FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();

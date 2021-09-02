@@ -11,34 +11,37 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.view.textservice.TextInfo;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.ronju.covid_19tracker.Activitys.Fragment.AboutActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.BDdataActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.DashboardActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.LoginRegisterTabActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
+import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.R;
-import com.unity3d.ads.UnityAds;
 
 public class MainActivity extends AppCompatActivity {
     private NavigationView nav;
@@ -144,10 +147,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.community_job:
                                 fragmentIndex = 6;
-                                if (FirebaseAuth.getInstance().getCurrentUser() != null && getApplicationContext().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE).getString("email", null) != null)
-                                    transaction.replace(R.id.fragmentViewer, new DashboardActivity()).commit();
-                                else
-                                    transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
+                                deviceIdentifier();
                                 break;
                             case R.id.nav_about:
                                 fragmentIndex = 7;
@@ -180,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
                     editor.putInt("DarkMode", 0);
                 }
                 editor.apply();
-                editor.commit();
             }
         });
 //location
@@ -236,6 +235,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void deviceIdentifier() {
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null && getApplicationContext().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE).getString("email", null) != null) {
+
+            FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.getString("device_id").equals(Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID))) {
+                        transaction.replace(R.id.fragmentViewer, new DashboardActivity()).commit();
+                    } else {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("email", null);
+                        editor.apply();
+                        FirebaseAuth.getInstance().signOut();
+                        Dialog dialog = LoadingDialog.getUnitDialog(MainActivity.this);
+                        ((TextView) dialog.findViewById(R.id.ads_dialog_text)).setText("You are signed in from another device.");
+                        dialog.findViewById(R.id.ads_dialog_cancel_btn).setOnClickListener(v -> {
+                            dialog.dismiss();
+                        });
+                        dialog.show();
+                        transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
+
+                    }
+                }
+            });
+        } else {
+            transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
+        }
     }
 
 

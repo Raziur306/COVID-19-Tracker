@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.R;
 
@@ -41,6 +43,7 @@ public class LoginActivity extends Fragment {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     String userEmail, userPassword;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_login, container, false);
@@ -126,16 +129,16 @@ public class LoginActivity extends Fragment {
 
                     FirebaseUser user = mAuth.getCurrentUser();
                     if (user.isEmailVerified()) {
+                        FirebaseFirestore.getInstance().collection("users").document(mAuth.getCurrentUser().getUid()).update("device_id", Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID));
+
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer, new DashboardActivity()).commit();
-                    }
-                    else
-                    {
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer,new VerificationActivity()).commit();
+                    } else {
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentViewer, new VerificationActivity()).commit();
                     }
                 }
-                   loadingDialog.dismiss();
-                    loginWarning.setVisibility(View.VISIBLE);
-                    loginWarning.setText("Wrong/Invalid Email or Password");
+                loadingDialog.dismiss();
+                loginWarning.setVisibility(View.VISIBLE);
+                loginWarning.setText("Wrong/Invalid Email or Password");
 
             }
         });

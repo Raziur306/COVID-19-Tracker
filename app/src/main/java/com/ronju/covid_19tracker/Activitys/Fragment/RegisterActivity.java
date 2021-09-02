@@ -165,8 +165,9 @@ public class RegisterActivity extends Fragment {
         number = "+880" + editTextPhoneNumber.getText().toString();
         boolean valid = userInfoValidity(name, email, password, confirmPassword, number);
         if (!valid) {
-            disableScreenTouch();
+            enableScreenTouch();
             Toast.makeText(getContext(), "Recheck your info", Toast.LENGTH_SHORT).show();
+            loadingDialog.dismiss();
         } else {
             onEmailCheckListener();
         }
