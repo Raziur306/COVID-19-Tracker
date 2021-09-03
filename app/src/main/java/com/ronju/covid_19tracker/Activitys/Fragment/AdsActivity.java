@@ -155,8 +155,6 @@ public class AdsActivity extends Fragment {
                 }
             }
         });
-
-
     }
 
 
@@ -168,7 +166,7 @@ public class AdsActivity extends Fragment {
     }
 
 
-//unity ads listener
+    //unity ads listener
     public class UnityAdsListener implements IUnityAdsListener {
         @Override
         public void onUnityAdsReady(String s) {
@@ -179,17 +177,17 @@ public class AdsActivity extends Fragment {
         public void onUnityAdsStart(String s) {
 
         }
+
         @Override
         public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
-            adsCounter+=1;
+            adsCounter += 1;
 
             firebaseReference.child(profile_id).child("today_status").child("count").setValue(adsCounter).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful())
-                    {
+                    if (task.isSuccessful()) {
                         currentBalance += perAdsRevanue;
-                        remainingView.setText(String.valueOf(adsLimit-adsCounter));
+                        remainingView.setText(String.valueOf(adsLimit - adsCounter));
                         firebaseReference.child(profile_id).child("balance").setValue(currentBalance);
                         ((TextView) unitDialog.findViewById(R.id.ads_dialog_text)).setText("Ad seen successfully");
                         unitDialog.show();
