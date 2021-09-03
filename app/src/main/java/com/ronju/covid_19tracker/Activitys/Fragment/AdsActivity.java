@@ -168,7 +168,7 @@ public class AdsActivity extends Fragment {
     }
 
 
-    //unity ads listener
+//unity ads listener
     public class UnityAdsListener implements IUnityAdsListener {
         @Override
         public void onUnityAdsReady(String s) {
@@ -179,7 +179,6 @@ public class AdsActivity extends Fragment {
         public void onUnityAdsStart(String s) {
 
         }
-
         @Override
         public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
             adsCounter+=1;
@@ -199,14 +198,10 @@ public class AdsActivity extends Fragment {
                     }
                 }
             });
-
-
         }
 
         @Override
         public void onUnityAdsError(UnityAds.UnityAdsError unityAdsError, String s) {
-
-            initializeAdsUnit();
         }
     }
 
