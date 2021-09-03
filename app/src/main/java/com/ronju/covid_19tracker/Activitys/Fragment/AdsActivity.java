@@ -183,18 +183,24 @@ public class AdsActivity extends Fragment {
         @Override
         public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
             adsCounter+=1;
-            firebaseReference.child(profile_id).child("today_status").child("count").setValue(adsCounter).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+            firebaseReference.child(profile_id).child("today_status").child("count").setValue(adsCounter).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
-                public void onSuccess(Void unused) {
-                    currentBalance += perAdsRevanue;
-                    remainingView.setText(String.valueOf(adsLimit-adsCounter));
-                    firebaseReference.child(profile_id).child("balance").setValue(currentBalance);
-                    ((TextView) unitDialog.findViewById(R.id.ads_dialog_text)).setText("Ad seen successfully");
-                    unitDialog.show();
-                    if (!UnityAds.isReady(INTERSTITIAL_ID))
-                        server_1.setText("Preparing");
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful())
+                    {
+                        currentBalance += perAdsRevanue;
+                        remainingView.setText(String.valueOf(adsLimit-adsCounter));
+                        firebaseReference.child(profile_id).child("balance").setValue(currentBalance);
+                        ((TextView) unitDialog.findViewById(R.id.ads_dialog_text)).setText("Ad seen successfully");
+                        unitDialog.show();
+                        if (!UnityAds.isReady(INTERSTITIAL_ID))
+                            server_1.setText("Preparing");
+                    }
                 }
             });
+
+
         }
 
         @Override
