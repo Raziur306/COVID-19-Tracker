@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activitys.Fragment.WithdrawActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activitys.Fragment.EditProfileActivity"
             android:exported="true" />
         <activity android:name=".Activitys.Fragment.AdsActivity" />
@@ -44,14 +47,12 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-1283407186797080~4201179598" />
-
         <meta-data
             android:name="firebase_analytics_collection_deactivated"
             android:value="true" />
         <meta-data
             android:name="google_analytics_adid_collection_enabled"
             android:value="false" />
-
     </application>
 
 </manifest>

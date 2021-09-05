@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +52,7 @@ public class AdsActivity extends Fragment {
     int adsLimit = 0;
     boolean adsLimitFlag = false;
     int adsCounter = 0;
-    long currentBalance, perAdsRevanue;
+    long currentBalance, perAdsRevenue;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -134,8 +133,6 @@ public class AdsActivity extends Fragment {
 
                     }
                 });
-
-
             }
         });
 
@@ -150,7 +147,7 @@ public class AdsActivity extends Fragment {
             public void onComplete(@NonNull Task<Boolean> task) {
                 if (task.isSuccessful()) {
                     adsLimit = (int) mConfig.getLong("ads_limit");
-                    perAdsRevanue = mConfig.getLong("user_revenue");
+                    perAdsRevenue = mConfig.getLong("user_revenue");
                     totalView.setText(String.valueOf(adsLimit));
                 }
             }
@@ -186,7 +183,7 @@ public class AdsActivity extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        currentBalance += perAdsRevanue;
+                        currentBalance += perAdsRevenue;
                         remainingView.setText(String.valueOf(adsLimit - adsCounter));
                         firebaseReference.child(profile_id).child("balance").setValue(currentBalance);
                         ((TextView) unitDialog.findViewById(R.id.ads_dialog_text)).setText("Ad seen successfully");
