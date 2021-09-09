@@ -130,7 +130,7 @@ public class RegisterActivity extends Fragment {
                 } else {
                     confirmPasswordLayout.setError(null);
                     if (!s.toString().isEmpty() && s.toString().equals(password)) {
-                        confirmPasswordLayout.setBoxStrokeColor(ContextCompat.getColor(getContext(), R.color.green));
+                        confirmPasswordLayout.setBoxStrokeColor(ContextCompat.getColor(getContext(),R.color.green));
                     }
                 }
             }
