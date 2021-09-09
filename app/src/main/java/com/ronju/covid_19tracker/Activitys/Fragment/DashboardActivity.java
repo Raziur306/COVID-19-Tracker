@@ -97,6 +97,10 @@ public class DashboardActivity extends Fragment {
             dialog.dismiss();
         });
 
+        withdrawBtn.setOnClickListener(v->{
+            getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragmentViewer,new WithdrawActivity()).commit();
+        });
+
         return view;
     }
 
