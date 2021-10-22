@@ -1,6 +1,7 @@
 package com.ronju.covid_19tracker.Activitys.Fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.ronju.covid_19tracker.Adapter.LatestUpdateAdapter;
@@ -42,21 +44,18 @@ public class HomeActivity extends Fragment {
     private View view = null;
     private TextView globalAffected, globalNewAffected, globalDeath, globalNewDeath, globalRecovered, globalNewRecovered, countryAffected, countryNewAffected, countryName, countryDeath, countryNewDeath, countryNewRecovered, countryRecovered, changeCountry, date1, date2, date3;
     private SharedPreferences sharedPreferences;
-    Dialog loadingDialog;
     RecyclerView latestNewsRecycler;
     LatestUpdateAdapter mAdapter;
     ImageView countryFlag;
     AdView home_banner_ad_view;
+    ShimmerFrameLayout shimmerFrameLayout;
+    NestedScrollView nestedScrollView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_home, container, false);
         //showing toolbar
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-
-        //loading dialog
-        loadingDialog = LoadingDialog.getCustomLoadingDialog(getContext());
-        loadingDialog.show();
 
         //initialize view
         initView(view);
@@ -97,7 +96,6 @@ public class HomeActivity extends Fragment {
                 public void onErrorResponse() {
                     if (flag) {
                         Toast.makeText(getContext(), "Check Your Internet Connection", Toast.LENGTH_SHORT).show();
-                        loadingDialog.dismiss();
                         flag = false;
                     }
                     service();
@@ -141,10 +139,12 @@ public class HomeActivity extends Fragment {
                 date1.setText(new SimpleDateFormat("dd MMM, yyyy, hh:mm a").format(calendar.getTime()));
                 date2.setText(new SimpleDateFormat("dd MMM, yyyy, hh:mm a").format(calendar.getTime()));
                 date3.setText(new SimpleDateFormat("dd MMM, yyyy").format(calendar.getTime()));
-                loadingDialog.dismiss();
                 break;
             }
         }
+        shimmerFrameLayout.setVisibility(View.GONE);
+        shimmerFrameLayout.stopShimmer();
+        nestedScrollView.setVisibility(View.VISIBLE);
     }
 
     private Calendar setUpdatedTime(long updateTime) {
@@ -179,6 +179,8 @@ public class HomeActivity extends Fragment {
         date3 = view.findViewById(R.id.update_date3);
         changeCountry = view.findViewById(R.id.country_chooser);
         latestNewsRecycler = view.findViewById(R.id.latestNewsRecycler);
+        shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
+        nestedScrollView = view.findViewById(R.id.home_scrollView);
         //ads view
         home_banner_ad_view = view.findViewById(R.id.home_banner_ads_unit);
     }

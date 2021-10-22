@@ -13,6 +13,7 @@
         android:id="@+id/home_scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +103,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
-                            android:text="59656"
+
                             android:textColor="@android:color/holo_blue_light"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -149,7 +150,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
-                            android:text="59656"
+
                             android:textColor="@color/red"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -196,7 +197,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
-                            android:text="59656"
+
                             android:textColor="@color/green"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -244,7 +245,7 @@
                         android:id="@+id/update_date1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="30 Jun, 2021"
+
                         android:textColor="?attr/fade_dark"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -347,7 +348,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
-                            android:text="59656"
                             android:textColor="@android:color/holo_blue_light"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -367,7 +367,6 @@
                                 android:id="@+id/country_new_affected"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="5656"
                                 android:textColor="@android:color/holo_blue_light" />
 
                         </LinearLayout>
@@ -394,7 +393,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
-                            android:text="59656"
+
                             android:textColor="@color/red"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -414,7 +413,7 @@
                                 android:id="@+id/country_new_death"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="5656"
+
                                 android:textColor="@color/red" />
 
                         </LinearLayout>
@@ -441,7 +440,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
-                            android:text="59656"
+
                             android:textColor="@color/green"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -461,7 +460,7 @@
                                 android:id="@+id/country_new_recovered"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="5656"
+
                                 android:textColor="@color/green" />
 
                         </LinearLayout>
@@ -489,7 +488,7 @@
                         android:id="@+id/update_date2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="30 Jun, 2021"
+
                         android:textColor="?attr/fade_dark"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -522,7 +521,6 @@
                     android:layout_weight="1"
                     android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down"
                     android:gravity="right|center_vertical"
-                    android:text="30 Jun, 2021"
                     android:textColor="?attr/text_color"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -551,4 +549,21 @@
                 app:adUnitId="ca-app-pub-1283407186797080/6089858215" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.060000002">
+
+        <include layout="@layout/shimmer_activity_home" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

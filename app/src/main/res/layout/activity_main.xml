@@ -66,11 +66,29 @@
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
+        <LinearLayout
+            android:id="@+id/connectivity_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:background="@color/red"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="2dp"
+                android:text="No Internet! Please Check Your Connectivity."
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
         <FrameLayout
             android:id="@+id/fragmentViewer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar"
+            android:layout_below="@id/connectivity_layout"
             android:launchMode="singleTask" />
 
 

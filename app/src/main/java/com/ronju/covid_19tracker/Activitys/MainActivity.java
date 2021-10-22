@@ -14,16 +14,20 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.view.textservice.TextInfo;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +46,10 @@ import com.ronju.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.ronju.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.ronju.covid_19tracker.LoadingDialog;
 import com.ronju.covid_19tracker.R;
+import com.unity3d.services.core.api.Connectivity;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class MainActivity extends AppCompatActivity {
     private NavigationView nav;
@@ -52,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private SwitchCompat themeSwitchCompat;
     private SwitchCompat locationSwitchCompat;
     private SharedPreferences sharedPreferences;
+    private LinearLayout connectivityStatus;
 
 
     private int fragmentIndex = 0;
@@ -234,6 +243,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//checking connectivity
+
+        isConnected();
+
+    }
+
+    private void isConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED || connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            connectivityStatus.setVisibility(View.GONE);
+        } else {
+            connectivityStatus.setVisibility(View.VISIBLE);
+        }
+        new Handler(Looper.myLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isConnected();
+            }
+        }, 5000);
+
 
     }
 
@@ -300,6 +329,8 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         nav = findViewById(R.id.nav_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
+        connectivityStatus = findViewById(R.id.connectivity_layout);
+
     }
 
 }
