@@ -8,7 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.ronju.covid_19tracker"
+        applicationId "com.corona.covid_19tracker"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1

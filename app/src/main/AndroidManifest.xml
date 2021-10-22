@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ronju.covid_19tracker">
+    package="com.corona.covid_19tracker">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,28 +17,28 @@
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Activitys.Fragment.WithdrawActivity"
+            android:name="com.corona.covid_19tracker.Activitys.Fragment.WithdrawActivity"
             android:exported="true" />
         <activity
-            android:name=".Activitys.Fragment.EditProfileActivity"
+            android:name="com.corona.covid_19tracker.Activitys.Fragment.EditProfileActivity"
             android:exported="true" />
-        <activity android:name=".Activitys.Fragment.AdsActivity" />
-        <activity android:name=".Activitys.Fragment.DashboardActivity" />
-        <activity android:name=".Activitys.Fragment.VerificationActivity" />
-        <activity android:name=".Activitys.Fragment.RegisterActivity" />
-        <activity android:name=".Activitys.Fragment.LoginRegisterTabActivity" />
-        <activity android:name=".Activitys.Fragment.LoginActivity" />
-        <activity android:name=".Activitys.Fragment.CountryViewActivity" />
-        <activity android:name=".Activitys.Fragment.HealthCareActivity" />
-        <activity android:name=".Activitys.Fragment.BDdataActivity" />
-        <activity android:name=".Activitys.Fragment.AboutActivity" />
-        <activity android:name=".Activitys.Fragment.HomeActivity" />
+        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.AdsActivity" />
+        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.DashboardActivity" />
+        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.VerificationActivity" />
+        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.RegisterActivity" />
+        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.LoginRegisterTabActivity" />
+        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.LoginActivity" />
+        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.CountryViewActivity" />
+        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.HealthCareActivity" />
+        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.BDdataActivity" />
+        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.AboutActivity" />
+        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.HomeActivity" />
         <activity
-            android:name=".Activitys.MainActivity"
+            android:name="com.corona.covid_19tracker.Activitys.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activitys.SplashActivity"
+            android:name="com.corona.covid_19tracker.Activitys.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
