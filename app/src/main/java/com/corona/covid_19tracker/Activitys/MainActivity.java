@@ -43,8 +43,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.corona.covid_19tracker.Activitys.Fragment.AboutActivity;
 import com.corona.covid_19tracker.Activitys.Fragment.BDdataActivity;
-import com.corona.covid_19tracker.Activitys.Fragment.DashboardActivity;
-import com.corona.covid_19tracker.Activitys.Fragment.LoginRegisterTabActivity;
 import com.corona.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.corona.covid_19tracker.Activitys.Fragment.HomeActivity;
 import com.corona.covid_19tracker.LoadingDialog;
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private int fragmentIndex = 0;
-    private Fragment allFragment[] = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new LoginRegisterTabActivity(), new AboutActivity()};
+    private Fragment allFragment[] = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new AboutActivity()};
 
 
     //saving current Fragment activity
@@ -108,15 +106,7 @@ public class MainActivity extends AppCompatActivity {
         transaction = getSupportFragmentManager().beginTransaction();
 
 
-        if (fragmentIndex == 6) {
-            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                transaction.replace(R.id.fragmentViewer, new DashboardActivity()).commit();
-            } else {
-                transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-            }
-        } else {
-            transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-        }
+        transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
 
         nav.getMenu().getItem(0).setChecked(true);
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -157,13 +147,8 @@ public class MainActivity extends AppCompatActivity {
                                 fragmentIndex = 5;
                                 //transaction.replace(R.id.fragmentViewer, new ).commit();
                                 break;
-                            case R.id.community_job:
-                                fragmentIndex = 6;
-                                deviceIdentifier();
-                                showAds();
-                                break;
                             case R.id.nav_about:
-                                fragmentIndex = 7;
+                                fragmentIndex = 6;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
                                 showAds();
                                 break;
@@ -269,36 +254,6 @@ public class MainActivity extends AppCompatActivity {
         }, 5000);
 
 
-    }
-
-    private void deviceIdentifier() {
-
-        if (FirebaseAuth.getInstance().getCurrentUser() != null && getApplicationContext().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE).getString("email", null) != null) {
-
-            FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (documentSnapshot.getString("device_id").equals(Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID))) {
-                        transaction.replace(R.id.fragmentViewer, new DashboardActivity()).commit();
-                    } else {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("email", null);
-                        editor.apply();
-                        FirebaseAuth.getInstance().signOut();
-                        Dialog dialog = LoadingDialog.getUnitDialog(MainActivity.this);
-                        ((TextView) dialog.findViewById(R.id.ads_dialog_text)).setText("You are signed in from another device.");
-                        dialog.findViewById(R.id.ads_dialog_cancel_btn).setOnClickListener(v -> {
-                            dialog.dismiss();
-                        });
-                        dialog.show();
-                        transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-
-                    }
-                }
-            });
-        } else {
-            transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-        }
     }
 
 
