@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/background_color"
     tools:context=".Activitys.Fragment.BDdataActivity">
 
 
@@ -13,15 +14,17 @@
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:background="?attr/block_back"
         app:layout_constraintTop_toBottomOf="@+id/itemText1">
 
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/sl"
             android:text="District"
+            android:textColor="?attr/fade_dark"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -29,11 +32,13 @@
             android:id="@+id/cCase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:paddingRight="15dp"
+            android:layout_alignParentEnd="true"
+            android:paddingEnd="15dp"
             android:text="Affected"
+            android:textColor="?attr/fade_dark"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
 
         <TextView
             android:id="@+id/sl"
@@ -41,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
+            android:textColor="?attr/fade_dark"
             android:gravity="center"
             android:text="SL."
             android:textSize="16sp"
@@ -53,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:gravity="center"
+            android:textColor="?attr/fade_dark"
             android:text="জেলা"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -62,9 +69,13 @@
 
     <TextView
         android:id="@+id/itemText1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:textColor="?attr/fade_dark"
+        android:background="?attr/block_back"
         android:text="COVID-19 LIVE UPDATE OF BANGLADESH"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -79,7 +90,6 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
 

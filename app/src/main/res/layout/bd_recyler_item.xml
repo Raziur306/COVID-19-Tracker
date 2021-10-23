@@ -12,41 +12,38 @@
         android:id="@+id/disNameEng"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginStart="10dp"
+        android:textColor="?attr/fade_dark"
         android:layout_toEndOf="@+id/counter"
-        android:layout_marginLeft="10dp"
-        />
+      />
 
         <TextView
         android:id="@+id/confirmedCase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="TextView"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-         />
+            android:textColor="?attr/fade_dark"
+            android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/counter"
         android:layout_width="22dp"
+        android:textColor="?attr/fade_dark"
         android:layout_height="17dp"
-        android:gravity="center"
-        android:text="0"
-        android:layout_marginStart="10dp"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_alignParentTop="true"
-        />
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/disNameBn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:gravity="center"
         android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textColor="?attr/fade_dark"
 
- />
+        />
 
     <View
         android:id="@+id/divider3"
@@ -54,7 +51,7 @@
         android:layout_height="1dp"
         android:layout_below="@+id/disNameBn"
         android:layout_marginTop="7dp"
-        android:background="?android:attr/listDivider" />
+        android:background="@color/divider_transparent_white" />
 
 
 </RelativeLayout>
