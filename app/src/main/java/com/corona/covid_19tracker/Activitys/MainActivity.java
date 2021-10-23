@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -134,16 +135,17 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_prevention:
                                 fragmentIndex = 2;
                                 break;
-                            case R.id.nav_state_data:
+                            case R.id.nav_symptoms:
                                 fragmentIndex = 3;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
                                 showAds();
                                 break;
-                            case R.id.nav_symptoms:
+                            case R.id.nav_state_data:
                                 fragmentIndex = 4;
-                                //transaction.replace(R.id.fragmentViewer, new ).commit();
+                               transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
+                                Log.d("Checker","Pressed");
                                 break;
-                            case R.id.question:
+                            case R.id.nav_popular_question:
                                 fragmentIndex = 5;
                                 //transaction.replace(R.id.fragmentViewer, new ).commit();
                                 break;

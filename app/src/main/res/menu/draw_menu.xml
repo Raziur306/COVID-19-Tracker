@@ -20,7 +20,7 @@
             android:id="@+id/nav_state_data"
             android:title="BD State Data" />
         <item
-            android:id="@+id/question"
+            android:id="@+id/nav_popular_question"
             android:title="Popular Question" />
         <item
             android:id="@+id/nav_about"
