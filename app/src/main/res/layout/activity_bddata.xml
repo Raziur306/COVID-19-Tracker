@@ -24,7 +24,7 @@
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/sl"
             android:text="District"
-            android:textColor="?attr/fade_dark"
+            android:textColor="?attr/text_color"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -35,7 +35,7 @@
             android:layout_alignParentEnd="true"
             android:paddingEnd="15dp"
             android:text="Affected"
-            android:textColor="?attr/fade_dark"
+            android:textColor="?attr/text_color"
             android:textSize="16sp"
             android:textStyle="bold"
             tools:ignore="RtlSymmetry" />
@@ -46,9 +46,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
-            android:textColor="?attr/fade_dark"
             android:gravity="center"
             android:text="SL."
+            android:textColor="?attr/text_color"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent" />
@@ -59,8 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:textColor="?attr/fade_dark"
             android:text="জেলা"
+            android:textColor="?attr/text_color"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -74,7 +74,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:padding="15dp"
-        android:textColor="?attr/fade_dark"
+        android:textColor="?attr/text_color"
         android:background="?attr/block_back"
         android:text="COVID-19 LIVE UPDATE OF BANGLADESH"
         android:textSize="16sp"
