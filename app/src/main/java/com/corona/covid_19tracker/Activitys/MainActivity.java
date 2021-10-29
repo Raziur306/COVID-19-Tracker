@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showAds() {
         AdRequest adRequest = new AdRequest.Builder().build();
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, "ca-app-pub-1283407186797080/3578025695", adRequest, new InterstitialAdLoadCallback() {
             @Override
             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                 super.onAdLoaded(interstitialAd);
@@ -298,10 +298,16 @@ public class MainActivity extends AppCompatActivity {
                     ++adsShowCounter;
                 }
             }
-
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
+                new Handler(Looper.myLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        showAds();
+                    }
+                },50000);
+
             }
         });
     }

@@ -16,18 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name="com.corona.covid_19tracker.Activitys.Fragment.WithdrawActivity"
-            android:exported="true" />
-        <activity
-            android:name="com.corona.covid_19tracker.Activitys.Fragment.EditProfileActivity"
-            android:exported="true" />
-        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.AdsActivity" />
-        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.DashboardActivity" />
-        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.VerificationActivity" />
-        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.RegisterActivity" />
-        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.LoginRegisterTabActivity" />
-        <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.LoginActivity" />
         <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.CountryViewActivity" />
         <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.HealthCareActivity" />
         <activity android:name="com.corona.covid_19tracker.Activitys.Fragment.BDdataActivity" />
