@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.corona.covid_19tracker.Ads_Unit;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
@@ -59,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
     private SwitchCompat locationSwitchCompat;
     private SharedPreferences sharedPreferences;
     private LinearLayout connectivityStatus;
-    private int adsShowCounter = 0;
+    private final Ads_Unit adClass= new Ads_Unit(this);
 
 
     private int fragmentIndex = 0;
-    private Fragment allFragment[] = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new AboutActivity()};
+    private final Fragment[] allFragment = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new AboutActivity()};
 
 
     //saving current Fragment activity
@@ -105,10 +106,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         transaction = getSupportFragmentManager().beginTransaction();
-
-
         transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-
+        adClass.showAds();
         nav.getMenu().getItem(0).setChecked(true);
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -124,12 +123,12 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_home:
                                 fragmentIndex = 0;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-                                showAds();
+                                adClass.showAds();
                                 break;
                             case R.id.nav_health_status:
                                 fragmentIndex = 1;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-                                showAds();
+                                adClass.showAds();
 
                                 break;
                             case R.id.nav_prevention:
@@ -138,12 +137,12 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_symptoms:
                                 fragmentIndex = 3;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-                                showAds();
+                                adClass.showAds();
                                 break;
                             case R.id.nav_state_data:
                                 fragmentIndex = 4;
                                transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-                                Log.d("Checker","Pressed");
+                                adClass.showAds();
                                 break;
                             case R.id.nav_popular_question:
                                 fragmentIndex = 5;
@@ -152,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_about:
                                 fragmentIndex = 6;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-                                showAds();
+                                adClass.showAds();
                                 break;
                         }
                     }
@@ -287,30 +286,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void showAds() {
-        AdRequest adRequest = new AdRequest.Builder().build();
-        InterstitialAd.load(this, "ca-app-pub-1283407186797080/3578025695", adRequest, new InterstitialAdLoadCallback() {
-            @Override
-            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                super.onAdLoaded(interstitialAd);
-                if (interstitialAd != null && adsShowCounter < 3) {
-                    interstitialAd.show(MainActivity.this);
-                    ++adsShowCounter;
-                }
-            }
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                super.onAdFailedToLoad(loadAdError);
-                new Handler(Looper.myLooper()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        showAds();
-                    }
-                },50000);
 
-            }
-        });
-    }
 
 
     private void initView() {
