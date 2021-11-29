@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.corona.covid_19tracker.Activitys.Fragment.DonateActivity;
 import com.corona.covid_19tracker.Ads_Unit;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
@@ -60,11 +61,11 @@ public class MainActivity extends AppCompatActivity {
     private SwitchCompat locationSwitchCompat;
     private SharedPreferences sharedPreferences;
     private LinearLayout connectivityStatus;
-    private final Ads_Unit adClass= new Ads_Unit(this);
+    private final Ads_Unit adClass = new Ads_Unit(this);
 
 
     private int fragmentIndex = 0;
-    private final Fragment[] allFragment = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new AboutActivity()};
+    private final Fragment[] allFragment = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new DonateActivity(), new AboutActivity()};
 
 
     //saving current Fragment activity
@@ -141,15 +142,19 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.nav_state_data:
                                 fragmentIndex = 4;
-                               transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
+                                transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
                                 adClass.showAds();
                                 break;
                             case R.id.nav_popular_question:
                                 fragmentIndex = 5;
                                 //transaction.replace(R.id.fragmentViewer, new ).commit();
                                 break;
-                            case R.id.nav_about:
+                            case R.id.nav_donate:
                                 fragmentIndex = 6;
+                                transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
+                                break;
+                            case R.id.nav_about:
+                                fragmentIndex = 7;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
                                 adClass.showAds();
                                 break;
@@ -284,9 +289,6 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
-
-
 
 
     private void initView() {
