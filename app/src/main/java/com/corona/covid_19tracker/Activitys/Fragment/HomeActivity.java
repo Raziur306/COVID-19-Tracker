@@ -57,7 +57,6 @@ public class HomeActivity extends Fragment {
 
         //initialize view
         initView(view);
-        home_banner_ad_view.loadAd(new AdRequest.Builder().build());
         //shared preference
         sharedPreferences = getActivity().getSharedPreferences("covid-19_shp", Context.MODE_PRIVATE);
 
@@ -179,8 +178,6 @@ public class HomeActivity extends Fragment {
         latestNewsRecycler = view.findViewById(R.id.latestNewsRecycler);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
         nestedScrollView = view.findViewById(R.id.home_scrollView);
-        //ads view
-        home_banner_ad_view = view.findViewById(R.id.home_banner_ads_unit);
     }
 
 

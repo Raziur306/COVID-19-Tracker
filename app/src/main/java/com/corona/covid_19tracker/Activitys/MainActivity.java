@@ -1,6 +1,5 @@
 package com.corona.covid_19tracker.Activitys;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -21,14 +19,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -37,21 +32,11 @@ import com.corona.covid_19tracker.Activitys.Fragment.DonateActivity;
 import com.corona.covid_19tracker.Activitys.Fragment.P_QuestionActivity;
 import com.corona.covid_19tracker.Activitys.Fragment.PreventionActivity;
 import com.corona.covid_19tracker.Activitys.Fragment.SymptomActivity;
-import com.corona.covid_19tracker.Ads_Unit;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.corona.covid_19tracker.Activitys.Fragment.AboutActivity;
 import com.corona.covid_19tracker.Activitys.Fragment.BDdataActivity;
 import com.corona.covid_19tracker.Activitys.Fragment.HealthCareActivity;
 import com.corona.covid_19tracker.Activitys.Fragment.HomeActivity;
-import com.corona.covid_19tracker.LoadingDialog;
 import com.corona.covid_19tracker.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     private SwitchCompat locationSwitchCompat;
     private SharedPreferences sharedPreferences;
     private LinearLayout connectivityStatus;
-    private final Ads_Unit adClass = new Ads_Unit(this);
 
 
     private int fragmentIndex = 0;
@@ -111,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-        adClass.showAds();
         nav.getMenu().getItem(0).setChecked(true);
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -127,13 +110,10 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_home:
                                 fragmentIndex = 0;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-                                adClass.showAds();
                                 break;
                             case R.id.nav_health_status:
                                 fragmentIndex = 1;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-                                adClass.showAds();
-
                                 break;
                             case R.id.nav_prevention:
                                 fragmentIndex = 2;
@@ -142,16 +122,15 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_symptoms:
                                 fragmentIndex = 3;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-                                adClass.showAds();
                                 break;
                             case R.id.nav_state_data:
                                 fragmentIndex = 4;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-                                adClass.showAds();
+
                                 break;
                             case R.id.nav_popular_question:
                                 fragmentIndex = 5;
-                                transaction.replace(R.id.fragmentViewer,allFragment[fragmentIndex]).commit();
+                                transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
                                 break;
                             case R.id.nav_donate:
                                 fragmentIndex = 6;
@@ -160,7 +139,6 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_about:
                                 fragmentIndex = 7;
                                 transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
-                                adClass.showAds();
                                 break;
                         }
                     }
