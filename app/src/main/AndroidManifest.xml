@@ -17,6 +17,15 @@
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activitys.Fragment.SymptomActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.Fragment.P_QuestionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.Fragment.PreventionActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activitys.Fragment.DonateActivity"
             android:exported="false" />
         <activity android:name=".Activitys.Fragment.CountryViewActivity" />

@@ -34,6 +34,9 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 import com.corona.covid_19tracker.Activitys.Fragment.DonateActivity;
+import com.corona.covid_19tracker.Activitys.Fragment.P_QuestionActivity;
+import com.corona.covid_19tracker.Activitys.Fragment.PreventionActivity;
+import com.corona.covid_19tracker.Activitys.Fragment.SymptomActivity;
 import com.corona.covid_19tracker.Ads_Unit;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
@@ -65,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private int fragmentIndex = 0;
-    private final Fragment[] allFragment = {new HomeActivity(), new HealthCareActivity(), null, null, new BDdataActivity(), null, new DonateActivity(), new AboutActivity()};
+    private final Fragment[] allFragment = {new HomeActivity(), new HealthCareActivity(), new PreventionActivity(), new SymptomActivity(), new BDdataActivity(), new P_QuestionActivity(), new DonateActivity(), new AboutActivity()};
 
 
     //saving current Fragment activity
@@ -134,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.nav_prevention:
                                 fragmentIndex = 2;
+                                transaction.replace(R.id.fragmentViewer, allFragment[fragmentIndex]).commit();
                                 break;
                             case R.id.nav_symptoms:
                                 fragmentIndex = 3;
@@ -147,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.nav_popular_question:
                                 fragmentIndex = 5;
-                                //transaction.replace(R.id.fragmentViewer, new ).commit();
+                                transaction.replace(R.id.fragmentViewer,allFragment[fragmentIndex]).commit();
                                 break;
                             case R.id.nav_donate:
                                 fragmentIndex = 6;
