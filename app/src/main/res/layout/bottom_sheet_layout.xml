@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="?attr/background_color"
     android:background="@drawable/corner_shape"
+    android:backgroundTint="?attr/background_color"
     android:padding="15dp">
 
 
@@ -36,240 +36,238 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout9"
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayout13"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:layout_gravity="center"
-        android:background="@drawable/circle_radius_bg"
-        android:orientation="vertical"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout7"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout7"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout11"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout7">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:textColor="?attr/text_color"
-            android:text="Total Case"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/bottomSheet_country_affected"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="59656"
-            android:textColor="@android:color/holo_blue_light"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/fade_dark"
-                android:text="New+ "
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/bottomSheet_country_new_affected"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5656"
-                android:textColor="@android:color/holo_blue_light" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:layout_gravity="center"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/circle_radius_bg"
-        android:orientation="vertical"
-        android:padding="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout8"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout9"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Deaths"
-            android:textColor="?attr/text_color"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/bottomSheet_country_death"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="59656"
-            android:textColor="@color/red"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
         <LinearLayout
+            android:id="@+id/linearLayout9"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/circle_radius_bg"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New+ "
-                android:textColor="?attr/fade_dark"
-                android:textSize="13sp" />
+                android:layout_marginBottom="10dp"
+                android:text="Total Case"
+                android:textColor="?attr/text_color"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/bottomSheet_country_new_death"
+                android:id="@+id/bottomSheet_country_affected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5656"
-                android:textColor="@color/red" />
+                android:layout_marginBottom="3dp"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New+ "
+                    android:textColor="?attr/fade_dark"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/bottomSheet_country_new_affected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_blue_light" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/circle_radius_bg"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Deaths"
+                android:textColor="?attr/text_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bottomSheet_country_death"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/red"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New+ "
+                    android:textColor="?attr/fade_dark"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/bottomSheet_country_new_death"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/circle_radius_bg"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Recovered"
+                android:textColor="?attr/text_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bottomSheet_country_recovered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/green"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New+ "
+                    android:textColor="?attr/fade_dark"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/bottomSheet_country_new_recovered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/green" />
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout8"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:layout_gravity="center"
-        android:background="@drawable/circle_radius_bg"
-        android:orientation="vertical"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout7"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout7"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout7">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Recovered"
-            android:textColor="?attr/text_color"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/bottomSheet_country_recovered"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="59656"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout13">
 
         <LinearLayout
+            android:id="@+id/linearLayout11"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/circle_radius_bg"
+            android:orientation="vertical"
+            android:padding="15dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New+ "
-                android:textColor="?attr/fade_dark"
-                android:textSize="13sp" />
+                android:layout_marginBottom="10dp"
+                android:text="Tests"
+                android:textColor="?attr/text_color"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/bottomSheet_country_new_recovered"
+                android:id="@+id/bottomSheet_tests"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5656"
-                android:textColor="@color/green" />
+                android:layout_marginBottom="3dp"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
 
         </LinearLayout>
 
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout11"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:layout_gravity="center"
-        android:background="@drawable/circle_radius_bg"
-        android:orientation="vertical"
-        android:padding="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout12"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout12"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout9"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout12">
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/linearLayout12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Tests"
-            android:textColor="?attr/text_color"
-            android:textStyle="bold" />
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/circle_radius_bg"
+            android:orientation="vertical"
+            android:padding="15dp">
 
-        <TextView
-            android:id="@+id/bottomSheet_tests"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="59656"
-            android:textColor="@android:color/holo_blue_light"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Population"
+                android:textColor="?attr/text_color"
+                android:textStyle="bold" />
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout12"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/circle_radius_bg"
-        android:orientation="vertical"
-        android:padding="15dp"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout11"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="?attr/text_color"
-            android:layout_marginBottom="10dp"
-            android:text="Population"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/bottomSheet_population"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="59656"
-            android:textColor="@color/yellow"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/bottomSheet_population"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/yellow"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
+        </LinearLayout>
     </LinearLayout>
 
 

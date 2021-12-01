@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         locationSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(MainActivity.this, "Item Changed", Toast.LENGTH_SHORT).show();
+
             }
         });
 

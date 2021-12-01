@@ -18,8 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.corona.covid_19tracker.Adapter.LatestUpdateAdapter;
 import com.corona.covid_19tracker.DoInBackground.doInBackground;
 import com.corona.covid_19tracker.Model.WorldDataItem;
@@ -45,7 +43,6 @@ public class HomeActivity extends Fragment {
     RecyclerView latestNewsRecycler;
     LatestUpdateAdapter mAdapter;
     ImageView countryFlag;
-    AdView home_banner_ad_view;
     ShimmerFrameLayout shimmerFrameLayout;
     NestedScrollView nestedScrollView;
 
