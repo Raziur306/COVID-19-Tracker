@@ -80,7 +80,7 @@ public class LatestUpdateAdapter extends RecyclerView.Adapter<LatestUpdateAdapte
             death.setText(String.valueOf(latestData.get(position).getTotalDeaths()));
             newDeath.setText(String.valueOf(latestData.get(position).getTodayDeaths()));
             recovered.setText(String.valueOf(latestData.get(position).getTotalRecovered()));
-            newRecovered.setText(String.valueOf(latestData.get(position).getTotalRecovered()));
+            newRecovered.setText(String.valueOf(latestData.get(position).getTodayRecovered()));
             tests.setText(String.valueOf(latestData.get(position).getTests()));
             population.setText(String.valueOf(latestData.get(position).getTotalPopulation()));
 
