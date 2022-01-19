@@ -83,7 +83,6 @@ public class LatestUpdateAdapter extends RecyclerView.Adapter<LatestUpdateAdapte
             newRecovered.setText(String.valueOf(latestData.get(position).getTodayRecovered()));
             tests.setText(String.valueOf(latestData.get(position).getTests()));
             population.setText(String.valueOf(latestData.get(position).getTotalPopulation()));
-
             bottomSheetDialog.show();
 
         });

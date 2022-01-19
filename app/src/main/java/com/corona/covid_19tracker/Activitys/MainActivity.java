@@ -7,10 +7,8 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -25,9 +23,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import androidx.appcompat.widget.Toolbar;
-
 import com.corona.covid_19tracker.Activitys.Fragment.DonateActivity;
 import com.corona.covid_19tracker.Activitys.Fragment.P_QuestionActivity;
 import com.corona.covid_19tracker.Activitys.Fragment.PreventionActivity;
