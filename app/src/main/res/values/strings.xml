@@ -13,7 +13,7 @@
     <string name="secondQ">Why are you guys putting in time and resources to do this while not gaining a single penny from it?</string>
     <string name="secondA">Because it affects all of us. Today it\'s someone else who is getting infected; tomorrow it could be us. We need to prevent the spread of this virus. We need to document the data so that people with knowledge can use this data to make informed decisions.</string>
     <string name="developer">Developed By</string>
-    <string name="developerName">Md. Raziur Rahaman Ronju</string>
+    <string name="developerName">Md Raziur Rahaman Ronju</string>
     <string name="developerStudy">Department of CSE (IUBAT)</string>
 
     <!--drawer navigation open & close-->
@@ -21,5 +21,17 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="preparing">Preparing</string>
     <string name="show_ad">ভিডিও দেখুন</string>
+    <string name="SymptomDetails1">\u25CB Fever (below 99 degrees) \n\u25CB Sore throat \n\u25CB Headache \n\u25CB Thin closet, Diarrhea, Vomiting \n\u25CB No sense of smell \n\u25CB Dry cough \n\u25CB Fatigue / Weakness \n\u25CB Muscle pain \n\u25CB No taste in the mouth</string>
+    <string name="SymptomDetails2">\u25CB Fever (below 99 degrees) \n\u25CB Sore throat \n\u25CB Headache \n\u25CB Dry cough \n\u25CB Fatigue / Weakness \n\u25CB Muscle pain \n\u25CB No taste in the mouth \n\u25CB Thin closet, Diarrhea, Vomiting \n\u25CB No sense of smell</string>
+    <string name="SymptomDetails3">\u25CB With previous symptoms\n\u25CB Fever (101–102 degrees)\n\u25CB Feeling shivering in the body (Regularly)\n\u25CB Heavy cough\n\u25CB Shortness of breath (oxygen saturation below 94%)\n\u25CB Fatigue\n\u25CB Body Pain\n\u25CB Muscle pain</string>
+    <string name="SymptomDetails4">\u25CB With previous symptoms\n\u25CB Severe shortness of breath\n\u25CB Not able to eat\n\u25CB Dehydration\n\u25CB Frequent vomiting\n\u25CB Speaking incoherently / confusion / semi-conscious / subconscious\n\u25CB Bluish appearance / lips / tongue\n\u25CB Eye problems (e.g. watery eyes, swollen eyes, etc.)</string>
+    <string name="SymptomDetails5">\u25CB Fatigue\n\u25CB Severe shortness of breath\n\u25CB Nervous complications\n\u25CB Sleeping problem\n\u25CB Difficulty remembering / difficulty concentrating\n\u25CB Cough\n\u25CB Muscle pain\n\u25CB Rapid heartbeat\n\u25CB Depression / Anxiety \n\u25CB Rash\n\u25CB Hair fall\n\u25CB No test in the mouth\n\u25CB No sense of smell</string>
+    <string name="SymptomDetails6">\u25CB Swollen tongue\n\u25CB Sore throat\n\u25CB Chest pain\n\u25CB Feeling red on the soles of the feet\n\u25CB Eye irritation\n\u25CB Diarrhea \n\u25CB Pale color of hands and toes\n\u25CB Blow in the face\n\u25CB Inflammation of the palms of the hands\n\u25CB Hair fall\n\u25CB Headache\n\u25CB Skin Rash</string>
+    <string name="symptomTitle1">In case of suspected patient</string>
+    <string name="symptomTitle2">In case of mild symptoms</string>
+    <string name="symptomTitle3">In case of moderate symptoms</string>
+    <string name="symptomTitle4">In case of acute symptoms</string>
+    <string name="symptomTitle5">In case of post covid symptoms</string>
+    <string name="symptomTitle6">New symptoms of corona</string>
 
 </resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/circle_radius_bg"
+        android:backgroundTint="#c1c1c1" />
+
+    <View
+        android:layout_width="316dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/circle_radius_bg"
+        android:backgroundTint="#c1c1c1" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="256dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/circle_radius_bg"
+        android:backgroundTint="#c1c1c1" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="168dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/circle_radius_bg"
+        android:backgroundTint="#c1c1c1" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="107dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/circle_radius_bg"
+        android:backgroundTint="#c1c1c1" />
+
+
+</LinearLayout>

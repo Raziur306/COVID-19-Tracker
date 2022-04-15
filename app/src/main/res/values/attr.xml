@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="dark_theme">
-        <attr name="background_color" format="color"/>
-        <attr name="block_back" format="color"/>
-        <attr name="text_color" format="color"/>
-        <attr name="nav_text_color" format="color"/>
-        <attr name="toolbar_icon_color" format="color"/>
-        <attr name="nav_item_setting_title_text_color" format="color"/>
-        <attr name="fade_dark" format="color"/>
-        <attr name="divider_color" format="color"/>
+        <attr name="background_color" format="color" />
+        <attr name="block_back" format="color" />
+        <attr name="text_color" format="color" />
+        <attr name="nav_text_color" format="color" />
+        <attr name="toolbar_icon_color" format="color" />
+        <attr name="nav_item_setting_title_text_color" format="color" />
+        <attr name="fade_dark" format="color" />
+        <attr name="divider_color" format="color" />
+        <attr name="blue_and_white" format="color"/>
     </declare-styleable>
 
 </resources>

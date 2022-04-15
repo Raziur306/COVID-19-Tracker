@@ -23,7 +23,7 @@
         <item name="nav_item_setting_title_text_color">@color/black</item>
         <item name="fade_dark">#5A5B5C</item>
         <item name="divider_color">@color/divider_transparent_white</item>
-
+        <item name="blue_and_white">#3334A0</item>
     </style>
 
 
@@ -40,6 +40,7 @@
         <item name="toolbar_icon_color">@color/white</item>
         <item name="nav_item_setting_title_text_color">@color/fade_white</item>
         <item name="fade_dark">@color/fade_white</item>
+        <item name="blue_and_white">@color/white</item>
 
     </style>
 
@@ -75,18 +76,6 @@
         <item name="editTextColor">?text_color</item>
     </style>
 
-
-    <!--   login panel textInput-->
-    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="boxStrokeColor">@color/light_blue</item>
-        <item name="hintTextColor">@color/light_blue</item>
-        <item name="android:textColorHint">@color/fade_light_blue</item>
-        <item name="boxCornerRadiusBottomEnd">10dp</item>
-        <item name="boxCornerRadiusBottomStart">10dp</item>
-        <item name="boxCornerRadiusTopEnd">10dp</item>
-        <item name="boxCornerRadiusTopStart">10dp</item>
-        <item name="backgroundTint">@color/dark_blue</item>
-    </style>
 
 
     <!--    loginButton-->

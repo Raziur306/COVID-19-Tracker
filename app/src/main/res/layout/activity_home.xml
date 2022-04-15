@@ -6,8 +6,10 @@
     android:layout_height="match_parent"
     android:background="?attr/background_color"
     android:elevation="2dp"
-    android:padding="15dp"
-    tools:context=".Activitys.Fragment.HomeActivity">
+    android:paddingStart="15dp"
+    android:paddingTop="15dp"
+    android:paddingEnd="15dp"
+    tools:context=".Activity.Fragment.HomeActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/home_scrollView"
