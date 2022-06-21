@@ -27,8 +27,9 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val insetsController = window.insetsController
-            insetsController?.hide(WindowInsets.Type.statusBars())
+            window.decorView.windowInsetsController?.hide(
+                android.view.WindowInsets.Type.statusBars()
+            );
         } else {
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -92,7 +93,7 @@ class SplashActivity : AppCompatActivity() {
     //start activity
     private fun startMainActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
-           val mainActivity = Intent(applicationContext, MainActivity::class.java)
+            val mainActivity = Intent(applicationContext, MainActivity::class.java)
             startActivity(mainActivity)
             finish()
         }, 2250)

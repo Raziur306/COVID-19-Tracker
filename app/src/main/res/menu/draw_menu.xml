@@ -6,40 +6,43 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:title="Home" />
+            android:title="@string/home" />
         <item
             android:id="@+id/nav_health_status"
-            android:title="Health Status" />
+            android:title="@string/health_status" />
         <item
             android:id="@+id/nav_prevention"
-            android:title="Preventions" />
+            android:title="@string/preventions" />
         <item
             android:id="@+id/nav_symptoms"
-            android:title="Symptoms" />
+            android:title="@string/symptoms" />
         <item
             android:id="@+id/nav_state_data"
-            android:title="BD State Data" />
+            android:title="@string/bd_state_data" />
+        <!--        <item-->
+        <!--            android:id="@+id/nav_popular_question"-->
+        <!--            android:title="@string/popular_question" />-->
         <item
-            android:id="@+id/nav_popular_question"
-            android:title="Popular Question" />
+            android:id="@+id/nav_policy"
+            android:title="@string/privacy_policy" />
         <item
             android:id="@+id/nav_about"
-            android:title="About" />
+            android:title="@string/about" />
     </group>
-    <item android:title="SETTINGS">
+    <item android:title="@string/settings">
         <menu>
-            <item
-                android:id="@+id/notification_menu"
-                android:title="Notification"
-               app:actionLayout="@layout/nav_switch_button" />
-            <item
-                android:id="@+id/location_menu"
-                android:title="Location"
-                app:actionLayout="@layout/nav_switch_button" />
+            <!--            <item-->
+            <!--                android:id="@+id/notification_menu"-->
+            <!--                android:title="Notification"-->
+            <!--               app:actionLayout="@layout/nav_switch_button" />-->
+            <!--            <item-->
+            <!--                android:id="@+id/location_menu"-->
+            <!--                android:title="Location"-->
+            <!--                app:actionLayout="@layout/nav_switch_button" />-->
             <item
                 android:id="@+id/dark_menu"
-                android:title="Dark Mode"
-               app:actionLayout="@layout/nav_switch_button" />
+                android:title="@string/dark_mode"
+                app:actionLayout="@layout/nav_switch_button" />
         </menu>
     </item>
 </menu>

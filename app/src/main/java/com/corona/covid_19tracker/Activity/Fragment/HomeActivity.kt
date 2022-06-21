@@ -79,6 +79,24 @@ class HomeActivity : Fragment() {
             }
         })
 
+
+        val bundle = Bundle()
+        binding.countryDBoard.setOnClickListener {
+            bundle.putInt("value", 0)
+            activity?.supportFragmentManager?.beginTransaction()?.replace(
+                R.id.fragmentViewer, StatisticsFragment().apply {
+                    arguments = bundle
+                }, "statistics"
+            )?.addToBackStack(null)?.commit()
+        }
+        binding.globalDBoard.setOnClickListener {
+            bundle.putInt("value", 1)
+            activity?.supportFragmentManager?.beginTransaction()?.replace(
+                R.id.fragmentViewer, StatisticsFragment().apply {
+                    arguments = bundle
+                }, "statistics"
+            )?.addToBackStack(null)?.commit()
+        }
         return binding.root
     }
 

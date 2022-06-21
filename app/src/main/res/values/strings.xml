@@ -13,9 +13,8 @@
     <string name="secondQ">Why are you guys putting in time and resources to do this while not gaining a single penny from it?</string>
     <string name="secondA">Because it affects all of us. Today it\'s someone else who is getting infected; tomorrow it could be us. We need to prevent the spread of this virus. We need to document the data so that people with knowledge can use this data to make informed decisions.</string>
     <string name="developer">Developed By</string>
-    <string name="developerName">Md Raziur Rahaman Ronju</string>
-    <string name="developerStudy">Department of CSE (IUBAT)</string>
-
+    <string name="developerName">ERIT LAB</string>
+    <string name="developerStudy">BEST TECH, BEST FUTURE</string>
     <!--drawer navigation open & close-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -33,5 +32,24 @@
     <string name="symptomTitle4">In case of acute symptoms</string>
     <string name="symptomTitle5">In case of post covid symptoms</string>
     <string name="symptomTitle6">New symptoms of corona</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="settings">SETTINGS</string>
+    <string name="about">About</string>
+    <string name="popular_question">Popular Question</string>
+    <string name="bd_state_data">BD State Data</string>
+    <string name="symptoms">Symptoms</string>
+    <string name="preventions">Preventions</string>
+    <string name="health_status">Health Status</string>
+    <string name="home">Home</string>
+    <string name="privacy_policy">Privacy Policy</string>
+
+    <string name="suggestion_1">Cover your nose and mouth with a tissue if you don\'t have tissue use inner side of your elbow</string>
+    <string name="suggestion_2">Refrain from close contact Do not shake hands</string>
+    <string name="suggestion_3">Stay away from crowded place</string>
+    <string name="suggestion_4">Do not touch your eye,nose,or mouth if your hands are not clean</string>
+    <string name="suggestion_5">Wash your hands with soap and water at least 20 seconds</string>
+    <string name="suggestion_6">Use hand sanitizers if you can\'t wash your hands</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

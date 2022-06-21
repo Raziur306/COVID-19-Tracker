@@ -17,13 +17,17 @@
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/ic_baseline_settings_applications.xml" value="0.3728205128205128" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/ic_baseline_video_library.xml" value="0.3728205128205128" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/ic_baseline_watch_later.xml" value="0.3728205128205128" />
+        <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.308" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/ic_shield_corona.xml" value="0.37864583333333335" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/ic_symptoms1.xml" value="0.216" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/ic_vaccine_apply.xml" value="0.37864583333333335" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/ic_virus.xml" value="0.37864583333333335" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/rgb_background.xml" value="0.216" />
+        <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/round_corner_bg.xml" value="0.308" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/symtom_btn_background_without_rgb.xml" value="0.177" />
+        <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/tab_rect.xml" value="0.308" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/tack.xml" value="0.37864583333333335" />
+        <entry key="..\:/Android/COVID19Tracker/app/src/main/res/drawable/top_corner.xml" value="0.2095" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_about.xml" value="0.3569230769230769" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_ads.xml" value="0.3569230769230769" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_bddata.xml" value="0.3569230769230769" />
@@ -36,8 +40,9 @@
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_login.xml" value="0.3569230769230769" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_main.xml" value="0.3569230769230769" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_pquestion.xml" value="0.34479166666666666" />
-        <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_prevention.xml" value="0.206126356094448" />
+        <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_prevention.xml" value="0.33" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_register.xml" value="0.3569230769230769" />
+        <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_splash.xml" value="0.3489583333333333" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_symptom.xml" value="0.33" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_verification.xml" value="0.3625" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/activity_web_view.xml" value="0.34479166666666666" />
@@ -49,6 +54,9 @@
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/country_view_bg.xml" value="0.35185185185185186" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/custom_dialog.xml" value="0.3625" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/custom_loading_dialog.xml" value="0.3569230769230769" />
+        <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/fragment_country_statistic.xml" value="0.33489583333333334" />
+        <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/fragment_global_stastic.xml" value="0.1703125" />
+        <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/fragment_statistics.xml" value="0.3625" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/latest_update_recycler_bg.xml" value="0.34479166666666666" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/nav_header.xml" value="0.34479166666666666" />
         <entry key="..\:/Android/COVID19Tracker/app/src/main/res/layout/nav_switch_button.xml" value="0.34479166666666666" />

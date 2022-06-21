@@ -74,7 +74,7 @@
             android:layout_below="@+id/toolbar"
             android:background="@color/red"
             android:gravity="center"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -92,8 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/connectivity_layout"
-            android:launchMode="singleTask"
-            />
+            android:launchMode="singleTask" />
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/homeBanner"

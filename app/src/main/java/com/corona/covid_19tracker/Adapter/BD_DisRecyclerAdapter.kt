@@ -1,17 +1,12 @@
 package com.corona.covid_19tracker.Adapter
 
-import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import android.view.LayoutInflater
-import com.corona.covid_19tracker.R
-import android.widget.TextView
 import com.corona.covid_19tracker.Model.DistrictDataModel
 import com.corona.covid_19tracker.databinding.BdRecylerItemBinding
-import java.lang.String
-import java.util.*
 
 class BD_DisRecyclerAdapter(val districtDataModel: DistrictDataModel) :
     RecyclerView.Adapter<BD_DisRecyclerAdapter.ViewHolder>() {

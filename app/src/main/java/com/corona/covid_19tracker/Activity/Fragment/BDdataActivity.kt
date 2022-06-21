@@ -58,7 +58,8 @@ class BDdataActivity : Fragment() {
                     is Response.Error -> {
                         viewModel.getResult()
                         if (counter == 1)
-                            Toast.makeText(context, it.errorMessage, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), it.errorMessage, Toast.LENGTH_SHORT)
+                                .show()
                         viewModel.getResult()
                         ++counter
                     }

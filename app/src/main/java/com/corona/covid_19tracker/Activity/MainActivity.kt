@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.corona.covid_19tracker.Activity.Fragment.*
 import com.corona.covid_19tracker.Encryption.Encrypter
 import com.corona.covid_19tracker.R
+import com.corona.covid_19tracker.Units.Unit
 import com.corona.covid_19tracker.databinding.ActivityMainBinding
 import com.corona.covid_19tracker.utils.NetworkUtils
 
@@ -111,18 +112,25 @@ class MainActivity : AppCompatActivity() {
                         transaction!!.replace(R.id.fragmentViewer, allFragment[fragmentIndex])
                             .commit()
                     }
-                    R.id.nav_popular_question -> {
-                        fragmentIndex = 5
-                        transaction!!.replace(R.id.fragmentViewer, allFragment[fragmentIndex])
-                            .commit()
+//                    R.id.nav_popular_question -> {
+//                        fragmentIndex = 5
+//                        transaction!!.replace(R.id.fragmentViewer, allFragment[fragmentIndex])
+//                            .commit()
+                    //       }
+                    R.id.nav_policy -> {
+                        val intent = Intent(this, WebViewActivity::class.java)
+                        intent.putExtra("url", Unit.PRIVACY_POLICY)
+                        startActivity(intent)
                     }
+
                     R.id.nav_about -> {
                         fragmentIndex = 6
                         transaction!!.replace(R.id.fragmentViewer, allFragment[fragmentIndex])
                             .commit()
                     }
+
                 }
-            }, 300)
+            }, 350)
             true
         }
 
@@ -133,24 +141,24 @@ class MainActivity : AppCompatActivity() {
 //settings
         //dark_mode
         themeSwitchCompat =
-            binding.navMenu.menu.findItem(R.id.dark_menu).actionView.findViewById<View>(R.id.nav_switch_item) as SwitchCompat
+            binding.navMenu.menu.findItem(R.id.dark_menu).actionView?.findViewById<View>(R.id.nav_switch_item) as SwitchCompat
         if ((application as Encrypter).getMode() == true) {
             themeSwitchCompat!!.isChecked = true
         }
         themeSwitchCompat!!.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                onNightModeChanged(AppCompatDelegate.MODE_NIGHT_YES)
                 (application as Encrypter).setMode(true)
+                Toast.makeText(this@MainActivity, "Dark Mode Enabled", Toast.LENGTH_SHORT).show()
             } else {
-                onNightModeChanged(AppCompatDelegate.MODE_NIGHT_NO)
                 (application as Encrypter).setMode(false)
+                Toast.makeText(this@MainActivity, "Dark Mode Disabled", Toast.LENGTH_SHORT).show()
             }
+            recreate()
         }
         //location
-        locationSwitchCompat =
-            binding.navMenu.menu.findItem(R.id.location_menu).actionView.findViewById<View>(R.id.nav_switch_item) as SwitchCompat
-        locationSwitchCompat!!.setOnCheckedChangeListener { _, _ -> }
-
+//        locationSwitchCompat =
+//            binding.navMenu.menu.findItem(R.id.location_menu).actionView.findViewById<View>(R.id.nav_switch_item) as SwitchCompat
+//        locationSwitchCompat!!.setOnCheckedChangeListener { _, _ -> }
 
 
         supportFragmentManager.addOnBackStackChangedListener {
@@ -209,14 +217,14 @@ class MainActivity : AppCompatActivity() {
     private var updateWidgetRunnable: Runnable = Runnable {
         run {
             networkUtils.checkInternetConnection()
-            handler.postDelayed(updateWidgetRunnable, 1000)
+            handler.postDelayed(updateWidgetRunnable, 2000)
         }
 
     }
 
     override fun onResume() {
         super.onResume()
-        handler.postDelayed(updateWidgetRunnable, 1000)
+        handler.postDelayed(updateWidgetRunnable, 2000)
     }
 
     override fun onPause() {
@@ -224,16 +232,6 @@ class MainActivity : AppCompatActivity() {
         handler.removeCallbacks(updateWidgetRunnable);
     }
 
-
-    override fun onNightModeChanged(mode: Int) {
-        super.onNightModeChanged(mode)
-        if (mode == AppCompatDelegate.MODE_NIGHT_YES) {
-            Toast.makeText(this@MainActivity, "Dark Mode Enabled", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(this@MainActivity, "Dark Mode Disabled", Toast.LENGTH_LONG).show()
-        }
-        recreate()
-    }
 
     fun clickDrawerCloser() {
         binding.drawerLayout.closeDrawer(GravityCompat.START)

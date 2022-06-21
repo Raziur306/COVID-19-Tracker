@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="?attr/background_color"
     android:layout_height="match_parent"
+    android:background="?attr/background_color"
     tools:context=".Activity.Fragment.HealthCareActivity">
 
     <TextView
@@ -12,9 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Health Tips"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="?attr/text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
@@ -123,7 +123,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        android:background="@drawable/button_bg_layout"
+                        android:background="@drawable/round_corner_bg"
                         android:backgroundTint="#E84545"
                         android:drawableStart="@drawable/ic_baseline_call"
                         android:padding="10dp"
@@ -138,7 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:background="@drawable/button_bg_layout"
+                        android:background="@drawable/round_corner_bg"
                         android:backgroundTint="#FFB259"
                         android:drawableStart="@drawable/ic_baseline_format_list_numbered"
                         android:padding="10dp"
@@ -158,138 +158,6 @@
                 android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Prevention"
-                        android:textSize="20sp"
-                        android:textColor="?attr/text_color"
-                        android:textStyle="bold" />
-
-
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scrollbars="none">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="15dp"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/ic_wear_mask" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:minLines="2"
-                                    android:text="Wear Mask" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="15dp"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/ic_wash_hands" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:minLines="2"
-                                    android:text="Wash your hands" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="15dp"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/ic_disinfect_surface" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:minLines="2"
-                                    android:text="Disinfect Surface" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="15dp"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/ic_stay_home"
-                                    android:scaleType="centerCrop" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:minLines="2"
-                                    android:text="Stay     Home" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/ic_social_distance" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-
-                                    android:minLines="2"
-                                    android:text="Non Contact
-" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-
-                    </HorizontalScrollView>
-
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -330,7 +198,7 @@
                                 android:id="@+id/ownTestBtn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/button_bg_layout"
+                                android:background="@drawable/round_corner_bg"
                                 android:backgroundTint="#68E3E2DA"
                                 android:padding="14dp"
                                 android:text="Test Now"
@@ -384,7 +252,7 @@
                                 android:id="@+id/applyForTest"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/button_bg_layout"
+                                android:background="@drawable/round_corner_bg"
                                 android:backgroundTint="#68E3E2DA"
                                 android:padding="14dp"
 
@@ -437,7 +305,7 @@
                                 android:id="@+id/applyVaccine"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/button_bg_layout"
+                                android:background="@drawable/round_corner_bg"
                                 android:backgroundTint="#68E3E2DA"
                                 android:padding="14dp"
 
