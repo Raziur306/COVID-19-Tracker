@@ -32,6 +32,7 @@ import java.util.*
 
 class HomeActivity : Fragment() {
     private var counter = 0
+    private val statisticBundle = Bundle()
     private lateinit var binding: ActivityHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,21 +81,17 @@ class HomeActivity : Fragment() {
         })
 
 
-        val bundle = Bundle()
+
         binding.countryDBoard.setOnClickListener {
-            bundle.putInt("value", 0)
+            statisticBundle.putInt("value", 1)
             activity?.supportFragmentManager?.beginTransaction()?.replace(
-                R.id.fragmentViewer, StatisticsFragment().apply {
-                    arguments = bundle
-                }, "statistics"
+                R.id.fragmentViewer, StatisticsFragment(statisticBundle), "statistics"
             )?.addToBackStack(null)?.commit()
         }
         binding.globalDBoard.setOnClickListener {
-            bundle.putInt("value", 1)
+            statisticBundle.putInt("value", 0)
             activity?.supportFragmentManager?.beginTransaction()?.replace(
-                R.id.fragmentViewer, StatisticsFragment().apply {
-                    arguments = bundle
-                }, "statistics"
+                R.id.fragmentViewer, StatisticsFragment(statisticBundle), "statistics"
             )?.addToBackStack(null)?.commit()
         }
         return binding.root
@@ -112,6 +109,13 @@ class HomeActivity : Fragment() {
                     Glide.with(it1.applicationContext).load(value[it].countryInfo.flag)
                         .into(binding.countryFlagImg)
                 }
+
+                statisticBundle.putInt("CnewCase", value[it].todayCases)
+                statisticBundle.putInt("CnewDeath", value[it].todayDeaths)
+                statisticBundle.putInt("CnewRecover", value[it].todayRecovered)
+                statisticBundle.putInt("Cactive", value[it].active)
+                statisticBundle.putInt("Cserious", value[it].critical)
+
                 binding.countryName.text = value[it].country
                 binding.countryAffected.text = value[it].cases.toString()
                 binding.countryRecovered.text = value[it].recovered.toString()
@@ -122,6 +126,10 @@ class HomeActivity : Fragment() {
                 val calendar = setUpdatedTime(value[it].updated)
                 binding.updateDate1.text =
                     SimpleDateFormat("dd MMM, yyyy, hh:mm a").format(calendar.time).toString()
+                statisticBundle.putString(
+                    "Date",
+                    SimpleDateFormat("dd MMM, yyyy, hh:mm a").format(calendar.time).toString()
+                )
                 binding.updateDate2.text =
                     SimpleDateFormat("dd MMM, yyyy, hh:mm a").format(calendar.time).toString()
                 binding.updateDate3.text =
@@ -129,18 +137,22 @@ class HomeActivity : Fragment() {
                 binding.shimmerViewContainer.stopShimmer()
                 binding.shimmerViewContainer.visibility = View.INVISIBLE
                 binding.homeScrollView.visibility = View.VISIBLE
+
+
                 return
             }
         }
     }
 
-    private suspend fun totalValue(value: CountryDataModel) {
+    private fun totalValue(value: CountryDataModel) {
         var totalNewCase = 0
         var totalNewDeath = 0
         var totalNewRecover = 0
         var totalCase = 0;
         var totalDeath = 0
         var totalRecover = 0
+        var critical = 0
+        var active = 0
         (0 until value.size).forEach {
             totalNewCase += value[it].todayCases
             totalNewDeath += value[it].todayDeaths
@@ -148,7 +160,14 @@ class HomeActivity : Fragment() {
             totalCase += value[it].cases
             totalDeath += value[it].deaths
             totalRecover += value[it].recovered
+            critical += value[it].critical
+            active += value[it].active
         }
+        statisticBundle.putInt("GnewCase", totalNewCase)
+        statisticBundle.putInt("GnewDeath", totalNewDeath)
+        statisticBundle.putInt("GnewRecover", totalNewRecover)
+        statisticBundle.putInt("Gactive", active)
+        statisticBundle.putInt("Gserious", critical)
         setGlobal(totalNewCase, totalNewDeath, totalNewRecover, totalCase, totalDeath, totalRecover)
     }
 
