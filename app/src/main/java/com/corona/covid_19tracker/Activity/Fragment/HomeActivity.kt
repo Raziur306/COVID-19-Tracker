@@ -26,9 +26,9 @@ import com.corona.covid_19tracker.utils.NetworkUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.Exception
 
 class HomeActivity : Fragment() {
     private var counter = 0
@@ -80,20 +80,26 @@ class HomeActivity : Fragment() {
             }
         })
 
-
-
         binding.countryDBoard.setOnClickListener {
             statisticBundle.putInt("value", 1)
-            activity?.supportFragmentManager?.beginTransaction()?.replace(
-                R.id.fragmentViewer, StatisticsFragment(statisticBundle), "statistics"
-            )?.addToBackStack(null)?.commit()
+            requireActivity().supportFragmentManager.beginTransaction().replace(
+                R.id.fragmentViewer, StatisticsFragment().apply {
+                    arguments = statisticBundle
+                }, "statistics"
+            ).addToBackStack(null).commit()
         }
         binding.globalDBoard.setOnClickListener {
             statisticBundle.putInt("value", 0)
-            activity?.supportFragmentManager?.beginTransaction()?.replace(
-                R.id.fragmentViewer, StatisticsFragment(statisticBundle), "statistics"
-            )?.addToBackStack(null)?.commit()
+            requireActivity().supportFragmentManager.beginTransaction().replace(
+                R.id.fragmentViewer, StatisticsFragment().apply {
+                    arguments = statisticBundle
+                }, "statistics"
+            ).addToBackStack(null).commit()
         }
+
+
+
+
         return binding.root
     }
 

@@ -14,7 +14,8 @@ class BDdataRepository(private val districtDataService: DistrictDataService) {
             val result = districtDataService.getDistrictData()
             if (result.body() != null) {
                 districtLiveData.postValue(Response.Success(result.body()))
-            }
+            } else
+                districtLiveData.postValue(Response.Error("Server Communication Failed"))
         } catch (e: Exception) {
             districtLiveData.postValue(Response.Error("Server Communication Failed"))
         }

@@ -74,12 +74,30 @@ class Encrypter : Application() {
 
     }
 
-    fun setAdDate(value: String) {
-        editor.putString("date", value)
+    fun setNativeAdOnoff(value: Boolean) {
+        editor.putBoolean("nativeOnOff", value)
         editor.apply()
     }
 
-    fun getDateOfAd(): String? {
-        return sharedPreferences?.getString("date", "")
+    fun getNativeOnOff(value: Boolean): Boolean? {
+        return sharedPreferences?.getBoolean("nativeOnOff", false)
+    }
+
+    fun setBannerOnOff(value: Boolean) {
+        editor.putBoolean("bannerOnOff", value)
+        editor.apply()
+    }
+
+    fun getBannerOnOff(): Boolean? {
+        return sharedPreferences?.getBoolean("bannerOnOff", false)
+    }
+
+    fun setRewardedAdCount(value: Int) {
+        editor.putInt("rewarded", value)
+        editor.apply()
+    }
+
+    fun getRewardedAdCount(): Int? {
+        return sharedPreferences?.getInt("rewarded", 0)
     }
 }

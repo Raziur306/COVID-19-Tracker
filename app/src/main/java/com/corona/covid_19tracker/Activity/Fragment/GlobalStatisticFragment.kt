@@ -8,18 +8,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.corona.covid_19tracker.R
-import com.corona.covid_19tracker.databinding.FragmentCountryStatisticBinding
 import com.corona.covid_19tracker.databinding.FragmentGlobalStatisticBinding
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 
-class GlobalStatisticFragment(val bundle: Bundle) : Fragment() {
+class GlobalStatisticFragment() : Fragment() {
+    private lateinit var bundle: Bundle
     private lateinit var binding: FragmentGlobalStatisticBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        arguments.let {
+            if (it != null) {
+                bundle = it
+            }
+        }
+
         binding = FragmentGlobalStatisticBinding.inflate(layoutInflater)
         binding.affected.text = bundle.getInt("GnewCase").toString()
         binding.recovered.text = bundle.getInt("GnewRecover").toString()

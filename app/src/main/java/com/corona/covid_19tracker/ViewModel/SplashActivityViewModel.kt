@@ -1,29 +1,26 @@
 package com.corona.covid_19tracker.ViewModel
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import com.corona.covid_19tracker.Model.ControllerModel
 import com.corona.covid_19tracker.Model.CountryDataModel
-import com.corona.covid_19tracker.Repository.CountryRepository
 import com.corona.covid_19tracker.Repository.Response
+import com.corona.covid_19tracker.Repository.SplashRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
-class HomeFragmentViewModel(private val repository: CountryRepository) :
-    ViewModel() {
+
+class SplashActivityViewModel(private val repository: SplashRepository) : ViewModel() {
     init {
-        getData();
+        getData()
     }
 
-    fun getData() {
+    private fun getData() {
         GlobalScope.launch(Dispatchers.IO) {
             repository.getResult()
-
         }
     }
 
-    val result: LiveData<Response<CountryDataModel>> get() = repository.liveData
-
+    val result: LiveData<Response<ControllerModel>> get() = repository.liveData
 }

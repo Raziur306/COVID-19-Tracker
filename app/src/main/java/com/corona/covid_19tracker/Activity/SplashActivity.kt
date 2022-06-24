@@ -1,5 +1,7 @@
 package com.corona.covid_19tracker.Activity
 
+import android.app.Activity
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.view.animation.Animation
 import android.os.Bundle
@@ -14,7 +16,16 @@ import android.os.Handler
 import android.os.Looper
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.corona.covid_19tracker.Api.ControlDataService
+import com.corona.covid_19tracker.Api.ControllerDataRetrofitHelper
 import com.corona.covid_19tracker.BuildConfig
+import com.corona.covid_19tracker.Encryption.Encrypter
+import com.corona.covid_19tracker.Repository.Response
+import com.corona.covid_19tracker.Repository.SplashRepository
+import com.corona.covid_19tracker.ViewModel.SplashActivityViewModel
+import com.corona.covid_19tracker.ViewModel.SplashActivityViewModelFactory
 import com.corona.covid_19tracker.databinding.ActivitySplashBinding
 import com.google.android.gms.ads.MobileAds
 import java.lang.Exception
@@ -38,9 +49,43 @@ class SplashActivity : AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        MobileAds.initialize(this) {}
         animView()
-        checkForUpdate()
+        MobileAds.initialize(this) {}
+        val controllerDataService =
+            ControllerDataRetrofitHelper.getInstance().create(ControlDataService::class.java)
+        val repository = SplashRepository(controllerDataService)
+        val viewModel = ViewModelProvider(
+            this, SplashActivityViewModelFactory(repository)
+        ).get(
+            SplashActivityViewModel::class.java
+        )
+        val encrypter = applicationContext as Encrypter
+        viewModel.result.observe(this, Observer {
+            when (it) {
+                is Response.Loading -> {}
+                is Response.Success -> {
+                    it.data.let {
+                        if (it != null) {
+                            encrypter.writeLatestVersionCode(it.data[0].version_code)
+                            encrypter.setInterstitialAdsCount(it.data[0].interstitial_ad_limit)
+                            encrypter.setBannerOnOff(it.data[0].banner_ad_on_off)
+                            encrypter.setBannerOnOff(it.data[0].native_on_off)
+                            encrypter.setRewardedAdCount(it.data[0].reward_ad_limit)
+                            if (BuildConfig.VERSION_CODE != it.data[0].version_code)
+                                lunchAlertDialog()
+                            else
+                                startMainActivity()
+                        } else
+                            startMainActivity()
+                    }
+                }
+                is Response.Error -> {
+                    startMainActivity()
+                }
+            }
+        })
+
+
     }
 
     private fun animView() {
@@ -57,11 +102,6 @@ class SplashActivity : AppCompatActivity() {
         binding.img8.animation = zoomAnimation
         binding.img9.animation = zoomAnimation
         binding.img10.animation = zoomAnimation
-    }
-
-
-    private fun checkForUpdate() {
-        startMainActivity()
     }
 
     private fun lunchAlertDialog() {

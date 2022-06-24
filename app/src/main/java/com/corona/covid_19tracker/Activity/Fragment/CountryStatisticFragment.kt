@@ -12,12 +12,20 @@ import com.corona.covid_19tracker.databinding.FragmentCountryStatisticBinding
 import com.github.mikephil.charting.data.*
 
 
-class CountryStatisticFragment(val bundle: Bundle) : Fragment() {
+class CountryStatisticFragment() : Fragment() {
     private lateinit var binding: FragmentCountryStatisticBinding
+    private lateinit var bundle: Bundle
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        arguments.let {
+            if (it != null) {
+                bundle = it
+            }
+        }
+
         binding = FragmentCountryStatisticBinding.inflate(layoutInflater)
         binding.affected.text = bundle.getInt("CnewCase").toString()
         binding.recovered.text = bundle.getInt("CnewRecover").toString()

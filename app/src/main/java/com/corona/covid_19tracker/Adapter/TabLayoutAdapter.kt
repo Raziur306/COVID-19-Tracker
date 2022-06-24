@@ -10,7 +10,7 @@ import com.corona.covid_19tracker.Activity.Fragment.GlobalStatisticFragment
 
 class TabLayoutAdapter(
     activity: FragmentActivity,
-    val bundle: Bundle
+    val arg: Bundle
 ) :
     FragmentStateAdapter(activity) {
     override fun getItemCount(): Int {
@@ -20,12 +20,18 @@ class TabLayoutAdapter(
     override fun createFragment(position: Int): Fragment {
         when (position) {
             0 -> {
-                return GlobalStatisticFragment(bundle)
+                return GlobalStatisticFragment().apply {
+                    arguments = arg
+                }
             }
             1 -> {
-                return CountryStatisticFragment(bundle)
+                return CountryStatisticFragment().apply {
+                    arguments = arg
+                }
             }
         }
-        return GlobalStatisticFragment(bundle)
+        return GlobalStatisticFragment().apply {
+            arguments = arg
+        }
     }
 }

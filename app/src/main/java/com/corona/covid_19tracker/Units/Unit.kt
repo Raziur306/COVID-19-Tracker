@@ -8,4 +8,5 @@ object Unit {
     val TEST_BY_OWN = "https://corona.gov.bd/corona-symptom"
     val APPLY_VACCINE = "https://surokkha.gov.bd"
     val BRAC_TEST_APPLY = "https://coronatest.brac.net"
+    val CONTROL_API = "https://raziur306.github.io"
 }

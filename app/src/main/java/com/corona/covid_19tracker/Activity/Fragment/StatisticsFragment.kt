@@ -11,7 +11,7 @@ import com.corona.covid_19tracker.Adapter.TabLayoutAdapter
 import com.corona.covid_19tracker.databinding.FragmentStatisticsBinding
 import com.google.android.material.tabs.TabLayout
 
-class StatisticsFragment(val bundle: Bundle) : Fragment() {
+class StatisticsFragment() : Fragment() {
     private lateinit var binding: FragmentStatisticsBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +21,7 @@ class StatisticsFragment(val bundle: Bundle) : Fragment() {
         binding = FragmentStatisticsBinding.inflate(layoutInflater)
         (activity as AppCompatActivity).supportActionBar?.title = "Statistics"
 
-        binding.viewPager2.adapter = TabLayoutAdapter(requireActivity(), bundle)
+        binding.viewPager2.adapter = arguments?.let { TabLayoutAdapter(requireActivity(), it) }
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 binding.viewPager2.currentItem = tab!!.position
@@ -44,8 +44,7 @@ class StatisticsFragment(val bundle: Bundle) : Fragment() {
                 binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position))
             }
         })
-        binding.viewPager2.currentItem = bundle.getInt("value",0)
-
+        binding.viewPager2.currentItem = arguments?.getInt("value", 0) ?: 0
         return binding.root
     }
 
