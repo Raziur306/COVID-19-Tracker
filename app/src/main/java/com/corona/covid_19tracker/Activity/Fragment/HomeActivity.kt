@@ -22,6 +22,7 @@ import com.corona.covid_19tracker.Repository.Response
 import com.corona.covid_19tracker.ViewModel.HomeFragmentViewModel
 import com.corona.covid_19tracker.ViewModel.HomeFragmentViewModelFactory
 import com.corona.covid_19tracker.databinding.ActivityHomeBinding
+import com.corona.covid_19tracker.utils.AdsTask
 import com.corona.covid_19tracker.utils.NetworkUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +33,7 @@ import kotlin.Exception
 
 class HomeActivity : Fragment() {
     private var counter = 0
+    private var countAd = 0
     private val statisticBundle = Bundle()
     private lateinit var binding: ActivityHomeBinding
     override fun onCreateView(
@@ -40,6 +42,8 @@ class HomeActivity : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = ActivityHomeBinding.inflate(layoutInflater)
+        val adTasks = AdsTask(requireContext())
+
         //showing toolbar
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
         binding.countryChooser.setOnClickListener {
@@ -81,6 +85,11 @@ class HomeActivity : Fragment() {
         })
 
         binding.countryDBoard.setOnClickListener {
+            if (countAd == 0) {
+                adTasks.showInterstitialAds()
+                countAd++
+            }
+
             statisticBundle.putInt("value", 1)
             requireActivity().supportFragmentManager.beginTransaction().replace(
                 R.id.fragmentViewer, StatisticsFragment().apply {
@@ -89,6 +98,10 @@ class HomeActivity : Fragment() {
             ).addToBackStack(null).commit()
         }
         binding.globalDBoard.setOnClickListener {
+            if (countAd == 0) {
+                adTasks.showInterstitialAds()
+                countAd++
+            }
             statisticBundle.putInt("value", 0)
             requireActivity().supportFragmentManager.beginTransaction().replace(
                 R.id.fragmentViewer, StatisticsFragment().apply {
@@ -97,6 +110,9 @@ class HomeActivity : Fragment() {
             ).addToBackStack(null).commit()
         }
 
+
+        //banner
+        adTasks.setBannerAds(binding.adView)
 
 
 

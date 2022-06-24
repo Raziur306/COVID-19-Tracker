@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.corona.covid_19tracker.Activity.WebViewActivity
 import com.corona.covid_19tracker.Units.Unit
 import com.corona.covid_19tracker.databinding.ActivityHealthCareBinding
+import com.corona.covid_19tracker.utils.AdsTask
 
 class HealthCareActivity : Fragment() {
     private lateinit var binding: ActivityHealthCareBinding
@@ -49,6 +50,9 @@ class HealthCareActivity : Fragment() {
             startActivity(intent)
 
         }
+
+        //ad
+        AdsTask(requireContext()).setBannerAds(binding.adView)
         return binding.root
     }
 }

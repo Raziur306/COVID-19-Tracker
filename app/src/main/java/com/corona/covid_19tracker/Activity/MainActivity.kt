@@ -24,6 +24,7 @@ import com.corona.covid_19tracker.Encryption.Encrypter
 import com.corona.covid_19tracker.R
 import com.corona.covid_19tracker.Units.Unit
 import com.corona.covid_19tracker.databinding.ActivityMainBinding
+import com.corona.covid_19tracker.utils.AdsTask
 import com.corona.covid_19tracker.utils.NetworkUtils
 
 
@@ -63,8 +64,7 @@ class MainActivity : AppCompatActivity() {
             ContextCompat.getColor(this, R.color.black)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
+        val adsTask = AdsTask(this)
         binding.toolbar.title = ""
         setSupportActionBar(binding.toolbar)
         toggle = ActionBarDrawerToggle(
@@ -85,29 +85,36 @@ class MainActivity : AppCompatActivity() {
         binding.navMenu.setNavigationItemSelectedListener { item ->
             transaction = supportFragmentManager.beginTransaction()
             binding.drawerLayout.closeDrawer(GravityCompat.START)
+
+
             Handler(Looper.getMainLooper()).postDelayed({
                 when (item.itemId) {
                     R.id.nav_home -> {
+                        adsTask.showInterstitialAds()
                         fragmentIndex = 0
                         transaction!!.replace(R.id.fragmentViewer, allFragment[fragmentIndex])
                             .commit()
                     }
                     R.id.nav_health_status -> {
+                        adsTask.showInterstitialAds()
                         fragmentIndex = 1
                         transaction!!.replace(R.id.fragmentViewer, allFragment[fragmentIndex])
                             .commit()
                     }
                     R.id.nav_prevention -> {
+                        adsTask.showInterstitialAds()
                         fragmentIndex = 2
                         transaction!!.replace(R.id.fragmentViewer, allFragment[fragmentIndex])
                             .commit()
                     }
                     R.id.nav_symptoms -> {
+                        adsTask.showInterstitialAds()
                         fragmentIndex = 3
                         transaction!!.replace(R.id.fragmentViewer, allFragment[fragmentIndex])
                             .commit()
                     }
                     R.id.nav_state_data -> {
+                        adsTask.showInterstitialAds()
                         fragmentIndex = 4
                         transaction!!.replace(R.id.fragmentViewer, allFragment[fragmentIndex])
                             .commit()
@@ -118,12 +125,14 @@ class MainActivity : AppCompatActivity() {
 //                            .commit()
                     //       }
                     R.id.nav_policy -> {
+                        adsTask.showInterstitialAds()
                         val intent = Intent(this, WebViewActivity::class.java)
                         intent.putExtra("url", Unit.PRIVACY_POLICY)
                         startActivity(intent)
                     }
 
                     R.id.nav_about -> {
+                        adsTask.showInterstitialAds()
                         fragmentIndex = 6
                         transaction!!.replace(R.id.fragmentViewer, allFragment[fragmentIndex])
                             .commit()

@@ -15,13 +15,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.corona.covid_19tracker.Api.BdDataRetrofitHelper
 import com.corona.covid_19tracker.Api.DistrictDataService
-import com.corona.covid_19tracker.LoadingDialog
 import com.corona.covid_19tracker.Model.DistrictDataModel
 import com.corona.covid_19tracker.Repository.BDdataRepository
 import com.corona.covid_19tracker.Repository.Response
 import com.corona.covid_19tracker.ViewModel.BDdataActivityViewModel
 import com.corona.covid_19tracker.ViewModel.BDdataActivityViewModelFactory
 import com.corona.covid_19tracker.databinding.ActivityBddataBinding
+import com.corona.covid_19tracker.utils.AdsTask
 
 class BDdataActivity : Fragment() {
     private var recyclerView: RecyclerView? = null
@@ -66,6 +66,9 @@ class BDdataActivity : Fragment() {
                 }
             }
         })
+
+        //add
+        AdsTask(requireContext()).setBannerAds(binding.adView)
 
         return binding.root
     }

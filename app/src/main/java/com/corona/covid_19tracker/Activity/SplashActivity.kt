@@ -14,6 +14,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
@@ -29,6 +30,9 @@ import com.corona.covid_19tracker.ViewModel.SplashActivityViewModelFactory
 import com.corona.covid_19tracker.databinding.ActivitySplashBinding
 import com.google.android.gms.ads.MobileAds
 import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
@@ -60,16 +64,28 @@ class SplashActivity : AppCompatActivity() {
             SplashActivityViewModel::class.java
         )
         val encrypter = applicationContext as Encrypter
+
+        val dateFormat = SimpleDateFormat("yyyy.MM.dd");
+        val date = dateFormat.format(Date())
+        Log.d("Ronju", date)
+
+        if (date != encrypter.getAdDate()) {
+            encrypter.setAdDate(date)
+            encrypter.setInterstitialAdShown(0)
+            encrypter.setRewardAdsShown(0)
+        }
+
+
         viewModel.result.observe(this, Observer {
             when (it) {
                 is Response.Loading -> {}
                 is Response.Success -> {
                     it.data.let {
-                        if (it != null) {
+                        if (it != null && it.data.isNotEmpty()) {
                             encrypter.writeLatestVersionCode(it.data[0].version_code)
                             encrypter.setInterstitialAdsCount(it.data[0].interstitial_ad_limit)
                             encrypter.setBannerOnOff(it.data[0].banner_ad_on_off)
-                            encrypter.setBannerOnOff(it.data[0].native_on_off)
+                            encrypter.setNativeAdOnoff(it.data[0].native_on_off)
                             encrypter.setRewardedAdCount(it.data[0].reward_ad_limit)
                             if (BuildConfig.VERSION_CODE != it.data[0].version_code)
                                 lunchAlertDialog()
@@ -80,12 +96,14 @@ class SplashActivity : AppCompatActivity() {
                     }
                 }
                 is Response.Error -> {
-                    startMainActivity()
+                    if (BuildConfig.VERSION_CODE != encrypter.getLatestVersionCode())
+                        lunchAlertDialog()
+                    else
+
+                        startMainActivity()
                 }
             }
         })
-
-
     }
 
     private fun animView() {

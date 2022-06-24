@@ -35,14 +35,14 @@ class Encrypter : Application() {
         return sharedPreferences?.getBoolean("DarkMode", false)
     }
 
-    fun writeNotification(value: Boolean) {
-        editor.putBoolean("Notification", value)
-        editor.apply()
-    }
-
-    fun getNotification(): Boolean? {
-        return sharedPreferences?.getBoolean("Notification", true)
-    }
+//    fun writeNotification(value: Boolean) {
+//        editor.putBoolean("Notification", value)
+//        editor.apply()
+//    }
+//
+//    fun getNotification(): Boolean? {
+//        return sharedPreferences?.getBoolean("Notification", true)
+//    }
 
     fun writeLatestVersionCode(value: Int) {
         editor.putInt("latest_version_code", value)
@@ -79,7 +79,7 @@ class Encrypter : Application() {
         editor.apply()
     }
 
-    fun getNativeOnOff(value: Boolean): Boolean? {
+    fun getNativeOnOff(): Boolean? {
         return sharedPreferences?.getBoolean("nativeOnOff", false)
     }
 
@@ -100,4 +100,32 @@ class Encrypter : Application() {
     fun getRewardedAdCount(): Int? {
         return sharedPreferences?.getInt("rewarded", 0)
     }
+
+    fun setInterstitialAdShown(value: Int) {
+        editor.putInt("shownInter", value)
+        editor.apply()
+    }
+
+    fun getInterstitialAdShown(): Int? {
+        return sharedPreferences?.getInt("shownInter", 0)
+    }
+
+    fun setRewardAdsShown(value: Int) {
+        editor.putInt("rewarded", value)
+        editor.apply()
+    }
+
+    fun getRewardAdsShown(): Int? {
+        return sharedPreferences?.getInt("rewarded", 0)
+    }
+
+    fun setAdDate(value: String) {
+        editor.putString("adDate", value)
+        editor.apply()
+    }
+
+    fun getAdDate(): String? {
+        return sharedPreferences?.getString("adDate", "")
+    }
+
 }

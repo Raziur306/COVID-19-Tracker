@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.corona.covid_19tracker.Encryption.Encrypter
 import com.corona.covid_19tracker.R
 import com.corona.covid_19tracker.databinding.ActivityWebViewBinding
+import com.corona.covid_19tracker.utils.AdsTask
 
 class WebViewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWebViewBinding
@@ -72,6 +73,7 @@ class WebViewActivity : AppCompatActivity() {
             finish();
         }
 
+        AdsTask(this).setBannerAds(binding.adView)
 
     }
 

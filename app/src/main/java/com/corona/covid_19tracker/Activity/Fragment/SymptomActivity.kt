@@ -9,11 +9,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.corona.covid_19tracker.R
 import com.corona.covid_19tracker.databinding.ActivitySymptomBinding
+import com.corona.covid_19tracker.utils.AdsTask
 import com.google.android.gms.ads.AdRequest
 import com.google.android.material.color.MaterialColors
 
 class SymptomActivity : Fragment() {
     private lateinit var binding: ActivitySymptomBinding
+    private var countAd = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,7 +25,7 @@ class SymptomActivity : Fragment() {
         binding.sliderItem1.background =
             ContextCompat.getDrawable(requireActivity(), R.drawable.symptom_btn_background_with_rgb)
         binding.sliderItem1.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.symptomTitile.text = resources.getString(R.string.symptomTitle1)+" (Symptoms)"
+        binding.symptomTitile.text = resources.getString(R.string.symptomTitle1) + " (Symptoms)"
         binding.symptomDetails.text = resources.getString(R.string.SymptomDetails1)
         binding.symptomImg.setImageDrawable(
             ContextCompat.getDrawable(
@@ -32,8 +34,10 @@ class SymptomActivity : Fragment() {
             )
         )
 
+        val adTask = AdsTask(requireContext())
+
         binding.sliderItem1.setOnClickListener {
-            binding.symptomTitile.text = resources.getString(R.string.symptomTitle1)+" (Symptoms)"
+            binding.symptomTitile.text = resources.getString(R.string.symptomTitle1) + " (Symptoms)"
             binding.symptomDetails.text = resources.getString(R.string.SymptomDetails1)
             binding.symptomImg.setImageDrawable(
                 ContextCompat.getDrawable(
@@ -73,9 +77,14 @@ class SymptomActivity : Fragment() {
                 R.drawable.symptom_btn_background_without_rgb
             )
 
+
+            if (countAd == 0) {
+                adTask.showInterstitialAds()
+                countAd++
+            }
         }
         binding.sliderItem2.setOnClickListener {
-            binding.symptomTitile.text = resources.getString(R.string.symptomTitle2)+" (Symptoms)"
+            binding.symptomTitile.text = resources.getString(R.string.symptomTitle2) + " (Symptoms)"
             binding.symptomDetails.text = resources.getString(R.string.SymptomDetails2)
             binding.symptomImg.setImageDrawable(
                 ContextCompat.getDrawable(
@@ -116,7 +125,7 @@ class SymptomActivity : Fragment() {
             )
         }
         binding.sliderItem3.setOnClickListener {
-            binding.symptomTitile.text = resources.getString(R.string.symptomTitle3)+" (Symptoms)"
+            binding.symptomTitile.text = resources.getString(R.string.symptomTitle3) + " (Symptoms)"
             binding.symptomDetails.text = resources.getString(R.string.SymptomDetails3)
             binding.symptomImg.setImageDrawable(
                 ContextCompat.getDrawable(
@@ -157,7 +166,7 @@ class SymptomActivity : Fragment() {
             )
         }
         binding.sliderItem4.setOnClickListener {
-            binding.symptomTitile.text = resources.getString(R.string.symptomTitle4)+" (Symptoms)"
+            binding.symptomTitile.text = resources.getString(R.string.symptomTitle4) + " (Symptoms)"
             binding.symptomDetails.text = resources.getString(R.string.SymptomDetails4)
             binding.symptomImg.setImageDrawable(
                 ContextCompat.getDrawable(
@@ -198,7 +207,7 @@ class SymptomActivity : Fragment() {
             )
         }
         binding.sliderItem5.setOnClickListener {
-            binding.symptomTitile.text = resources.getString(R.string.symptomTitle5)+" (Symptoms)"
+            binding.symptomTitile.text = resources.getString(R.string.symptomTitle5) + " (Symptoms)"
             binding.symptomDetails.text = resources.getString(R.string.SymptomDetails5)
             binding.symptomImg.setImageDrawable(
                 ContextCompat.getDrawable(
@@ -237,9 +246,13 @@ class SymptomActivity : Fragment() {
                 requireActivity(),
                 R.drawable.symptom_btn_background_without_rgb
             )
+            if (countAd == 0) {
+                adTask.showInterstitialAds()
+                countAd++
+            }
         }
         binding.sliderItem6.setOnClickListener {
-            binding.symptomTitile.text = resources.getString(R.string.symptomTitle6)+" (Symptoms)"
+            binding.symptomTitile.text = resources.getString(R.string.symptomTitle6) + " (Symptoms)"
             binding.symptomDetails.text = resources.getString(R.string.SymptomDetails6)
             binding.symptomImg.setImageDrawable(
                 ContextCompat.getDrawable(
@@ -278,12 +291,15 @@ class SymptomActivity : Fragment() {
                 requireActivity(),
                 R.drawable.symptom_btn_background_without_rgb
             )
+            if (countAd == 0) {
+                adTask.showInterstitialAds()
+                countAd++
+            }
+
         }
 
 //admob ads
-        val adRequest = AdRequest.Builder().build()
-        binding.symptomBanner.visibility = View.VISIBLE
-        binding.symptomBanner.loadAd(adRequest)
+        adTask.nativeAdLoader(binding.myTemplate)
 
 
         return binding.root

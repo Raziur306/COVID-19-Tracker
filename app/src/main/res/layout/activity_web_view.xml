@@ -7,7 +7,7 @@
     tools:context=".Activity.WebViewActivity">
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/bankActivityBanner"
+        android:id="@+id/adView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -16,7 +16,7 @@
         android:foregroundGravity="center"
         android:visibility="gone"
         app:adSize="FULL_BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:adUnitId="@string/banner_ad_id"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -25,9 +25,9 @@
         android:id="@+id/backBtnWeb"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/red"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:background="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -62,7 +62,7 @@
         android:layout_height="0dp"
         android:background="@drawable/top_corner"
         android:backgroundTint="?attr/background_color"
-        app:layout_constraintBottom_toTopOf="@+id/bankActivityBanner"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backBtnWeb">

@@ -1,13 +1,11 @@
 package com.corona.covid_19tracker.Activity.Fragment
 
-import android.app.Dialog
 import com.corona.covid_19tracker.Adapter.CountryAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.corona.covid_19tracker.LoadingDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,9 +19,10 @@ import com.corona.covid_19tracker.Repository.Response
 import com.corona.covid_19tracker.ViewModel.CountryViewModel
 import com.corona.covid_19tracker.ViewModel.CountryViewModelFactory
 import com.corona.covid_19tracker.databinding.ActivityCountryViewBinding
+import com.corona.covid_19tracker.utils.AdsTask
 
 class CountryViewActivity : Fragment() {
-    private var loadingDialog: Dialog? = null
+
     private lateinit var binding: ActivityCountryViewBinding
     private var mAdapter: CountryAdapter? = null
     private var counter = 0
@@ -34,7 +33,6 @@ class CountryViewActivity : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = ActivityCountryViewBinding.inflate(layoutInflater)
-        loadingDialog = LoadingDialog.getCustomLoadingDialog(context)
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Choose your country"
         val countryDataService =
             CountryDataRetrofitHelper.getInstance().create(CountryDataService::class.java)
@@ -84,6 +82,7 @@ class CountryViewActivity : Fragment() {
                 }
 
             })
+        AdsTask(requireContext()).setBannerAds(binding.adView)
         return binding.root
     }
 

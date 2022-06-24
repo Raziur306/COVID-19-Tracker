@@ -18,8 +18,6 @@
     <!--drawer navigation open & close-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="preparing">Preparing</string>
-    <string name="show_ad">ভিডিও দেখুন</string>
     <string name="SymptomDetails1">\u25CB Fever (below 99 degrees) \n\u25CB Sore throat \n\u25CB Headache \n\u25CB Thin closet, Diarrhea, Vomiting \n\u25CB No sense of smell \n\u25CB Dry cough \n\u25CB Fatigue / Weakness \n\u25CB Muscle pain \n\u25CB No taste in the mouth</string>
     <string name="SymptomDetails2">\u25CB Fever (below 99 degrees) \n\u25CB Sore throat \n\u25CB Headache \n\u25CB Dry cough \n\u25CB Fatigue / Weakness \n\u25CB Muscle pain \n\u25CB No taste in the mouth \n\u25CB Thin closet, Diarrhea, Vomiting \n\u25CB No sense of smell</string>
     <string name="SymptomDetails3">\u25CB With previous symptoms\n\u25CB Fever (101–102 degrees)\n\u25CB Feeling shivering in the body (Regularly)\n\u25CB Heavy cough\n\u25CB Shortness of breath (oxygen saturation below 94%)\n\u25CB Fatigue\n\u25CB Body Pain\n\u25CB Muscle pain</string>
@@ -49,7 +47,5 @@
     <string name="suggestion_4">Do not touch your eye,nose,or mouth if your hands are not clean</string>
     <string name="suggestion_5">Wash your hands with soap and water at least 20 seconds</string>
     <string name="suggestion_6">Use hand sanitizers if you can\'t wash your hands</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

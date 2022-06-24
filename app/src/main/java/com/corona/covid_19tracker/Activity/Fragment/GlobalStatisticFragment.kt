@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.corona.covid_19tracker.R
 import com.corona.covid_19tracker.databinding.FragmentGlobalStatisticBinding
+import com.corona.covid_19tracker.utils.AdsTask
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
@@ -33,6 +34,11 @@ class GlobalStatisticFragment() : Fragment() {
         binding.active.text = bundle.getInt("Gactive").toString()
         binding.serious.text = bundle.getInt("Gserious").toString()
         showBar()
+
+        //ad
+        AdsTask(requireContext()).nativeAdLoader(binding.myTemplate)
+
+
         return binding.root
     }
 
