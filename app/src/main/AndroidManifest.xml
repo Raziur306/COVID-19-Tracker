@@ -18,29 +18,10 @@
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".StatisticsFragment"
-            android:exported="false" />
-        <activity
             android:name=".Activity.WebViewActivity"
             android:exported="false"
             android:hardwareAccelerated="true" />
-        <activity
-            android:name=".Activity.Fragment.SymptomActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.Fragment.P_QuestionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.Fragment.PreventionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.Fragment.DonateActivity"
-            android:exported="false" />
-        <activity android:name=".Activity.Fragment.CountryViewActivity" />
-        <activity android:name=".Activity.Fragment.HealthCareActivity" />
-        <activity android:name=".Activity.Fragment.BDdataActivity" />
-        <activity android:name=".Activity.Fragment.AboutActivity" />
-        <activity android:name=".Activity.Fragment.HomeActivity" />
+
         <activity
             android:name=".Activity.MainActivity"
             android:hardwareAccelerated="true"
@@ -59,7 +40,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-1283407186797080~4201179598" />
+            android:value="ca-app-pub-5808344878183418~1518930766" />
     </application>
 
 </manifest>

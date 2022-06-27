@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -26,6 +27,8 @@ import com.corona.covid_19tracker.Units.Unit
 import com.corona.covid_19tracker.databinding.ActivityMainBinding
 import com.corona.covid_19tracker.utils.AdsTask
 import com.corona.covid_19tracker.utils.NetworkUtils
+import com.google.android.material.internal.NavigationMenu
+import com.google.android.material.navigation.NavigationView
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,7 +46,8 @@ class MainActivity : AppCompatActivity() {
         PreventionActivity(),
         SymptomActivity(),
         BDdataActivity(),
-        P_QuestionActivity(),
+        WebFragment(),
+        // P_QuestionActivity(),
         AboutActivity()
     )
 
@@ -85,8 +89,6 @@ class MainActivity : AppCompatActivity() {
         binding.navMenu.setNavigationItemSelectedListener { item ->
             transaction = supportFragmentManager.beginTransaction()
             binding.drawerLayout.closeDrawer(GravityCompat.START)
-
-
             Handler(Looper.getMainLooper()).postDelayed({
                 when (item.itemId) {
                     R.id.nav_home -> {
@@ -126,9 +128,12 @@ class MainActivity : AppCompatActivity() {
                     //       }
                     R.id.nav_policy -> {
                         adsTask.showInterstitialAds()
-                        val intent = Intent(this, WebViewActivity::class.java)
-                        intent.putExtra("url", Unit.PRIVACY_POLICY)
-                        startActivity(intent)
+//                        val intent = Intent(this, WebViewActivity::class.java)
+//                        intent.putExtra("url", Unit.PRIVACY_POLICY)
+//                        startActivity(intent)
+                        fragmentIndex = 5
+                        transaction!!.replace(R.id.fragmentViewer, allFragment[fragmentIndex])
+                            .commit()
                     }
 
                     R.id.nav_about -> {
@@ -142,7 +147,6 @@ class MainActivity : AppCompatActivity() {
             }, 350)
             true
         }
-
         binding.navMenu.getHeaderView(0).findViewById<ImageView>(R.id.drawer_nav_closer)
             .setOnClickListener {
                 binding.drawerLayout.closeDrawer(GravityCompat.START)

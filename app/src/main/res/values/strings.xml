@@ -47,5 +47,7 @@
     <string name="suggestion_4">Do not touch your eye,nose,or mouth if your hands are not clean</string>
     <string name="suggestion_5">Wash your hands with soap and water at least 20 seconds</string>
     <string name="suggestion_6">Use hand sanitizers if you can\'t wash your hands</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

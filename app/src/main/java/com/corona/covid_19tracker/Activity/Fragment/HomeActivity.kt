@@ -110,6 +110,10 @@ class HomeActivity : Fragment() {
             ).addToBackStack(null).commit()
         }
 
+        binding.reportBtn.setOnClickListener {
+            Toast.makeText(context, "Coming Soon", Toast.LENGTH_SHORT).show()
+        }
+
 
         //banner
         adTasks.setBannerAds(binding.adView)
@@ -121,11 +125,9 @@ class HomeActivity : Fragment() {
 
     private fun setValue(value: CountryDataModel) {
         var countryId: Int = 50
-        try {
-            countryId = (requireActivity().application as Encrypter).getDefaultCountry()!!
-        } catch (e: Exception) {
-        }
+        countryId = (requireActivity().application as Encrypter).getDefaultCountry()!!
         (0 until value.size).forEach {
+
             if (value[it].countryInfo._id == countryId) {
                 context?.let { it1 ->
                     Glide.with(it1.applicationContext).load(value[it].countryInfo.flag)

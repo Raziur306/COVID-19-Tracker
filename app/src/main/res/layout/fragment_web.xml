@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.WebViewActivity">
+    android:background="?attr/background_color"
+    tools:context=".Activity.Fragment.WebFragment">
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -21,42 +21,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/backBtnWeb"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/red"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:clickable="false"
-            android:foreground="?attr/selectableItemBackground"
-            app:srcCompat="@drawable/ic_baseline_arrow_back"
-            app:tint="@color/white"
-            tools:ignore="ContentDescription,UnusedAttribute" />
-
-        <TextView
-            android:id="@+id/tittleOfWeb"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:clickable="false"
-            android:foreground="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:ignore="UnusedAttribute" />
-    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -66,12 +30,14 @@
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backBtnWeb">
+        app:layout_constraintTop_toTopOf="parent">
 
         <WebView
             android:id="@+id/webLink"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,9 +52,9 @@
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/red"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/webLink"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/webLink" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

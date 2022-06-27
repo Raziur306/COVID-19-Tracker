@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.animation.Animation
 import android.os.Bundle
 import android.os.Build
-import android.view.WindowInsets
 import android.view.WindowManager
 import com.corona.covid_19tracker.R
 import android.content.DialogInterface
@@ -55,6 +54,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
         animView()
         MobileAds.initialize(this) {}
+
         val controllerDataService =
             ControllerDataRetrofitHelper.getInstance().create(ControlDataService::class.java)
         val repository = SplashRepository(controllerDataService)
@@ -67,8 +67,6 @@ class SplashActivity : AppCompatActivity() {
 
         val dateFormat = SimpleDateFormat("yyyy.MM.dd");
         val date = dateFormat.format(Date())
-        Log.d("Ronju", date)
-
         if (date != encrypter.getAdDate()) {
             encrypter.setAdDate(date)
             encrypter.setInterstitialAdShown(0)

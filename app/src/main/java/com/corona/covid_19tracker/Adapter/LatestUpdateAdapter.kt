@@ -13,6 +13,7 @@ import com.corona.covid_19tracker.Model.CountryDataModelItem
 import com.corona.covid_19tracker.R
 import com.corona.covid_19tracker.databinding.BottomSheetLayoutBinding
 import com.corona.covid_19tracker.databinding.LatestUpdateRecyclerBgBinding
+import com.corona.covid_19tracker.utils.AdsTask
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlin.Int
 
@@ -58,6 +59,7 @@ class LatestUpdateAdapter(private val data: CountryDataModel) :
         holder.itemView.setOnClickListener { v: View ->
             val bottomSheetBinding =
                 BottomSheetLayoutBinding.inflate(LayoutInflater.from(v.context))
+            AdsTask(v.context).nativeAdLoader(bottomSheetBinding.myTemplate)
             val bottomSheetDialog = BottomSheetDialog(v.context, R.style.bottomSheetTheme)
             bottomSheetDialog.setContentView(bottomSheetBinding.root)
             bottomSheetBinding.bottomSheetCountryName.text = filteredData[position].country

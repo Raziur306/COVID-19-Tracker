@@ -81,15 +81,15 @@ class AdsTask(private val context: Context) {
 
     //native
     fun nativeAdLoader(view: TemplateView) {
-        val adLoader = AdLoader.Builder(context, context.getString(R.string.native_ad_id))
-            .forNativeAd { nativeAd ->
-                view.setNativeAd(nativeAd)
-                view.visibility = View.VISIBLE
-                Log.d("Ronju", "AdLoaded")
-            }
-            .build()
-
-        adLoader.loadAd(adRequest)
+        if (e.getNativeOnOff()!!) {
+            val adLoader = AdLoader.Builder(context, context.getString(R.string.native_ad_id))
+                .forNativeAd { nativeAd ->
+                    view.setNativeAd(nativeAd)
+                    view.visibility = View.VISIBLE
+                }
+                .build()
+            adLoader.loadAd(adRequest)
+        }
     }
 
 

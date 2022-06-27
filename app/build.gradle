@@ -4,15 +4,15 @@ plugins {
     id 'kotlin-kapt'
 }
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.corona.covid_19tracker"
         minSdkVersion 21
-        targetSdkVersion 31
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 33
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,9 +22,22 @@ android {
     }
 
     buildTypes {
+        debug {
+            resValue "string", "banner_ad_id", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "interstitial_ad_id", "ca-app-pub-3940256099942544/1033173712"
+            resValue "string", "native_ad_id", "ca-app-pub-5808344878183418/7443245638"
+            resValue "string", "rewarded_ad_id", "ca-app-pub-3940256099942544/2247696110"
+        }
+
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "banner_ad_id", "ca-app-pub-5808344878183418/2248724352"
+            resValue "string", "interstitial_ad_id", "ca-app-pub-5808344878183418/2448869055"
+            resValue "string", "native_ad_id", "ca-app-pub-5808344878183418/7443245638"
+            resValue "string", "rewarded_ad_id", "ca-app-pub-5808344878183418/6196542378"
+
         }
     }
     compileOptions {
@@ -45,10 +58,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson'
-
-    //mAndroid Chart
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-
 
     //glide
     implementation 'com.github.bumptech.glide:glide:4.13.0'
@@ -79,4 +88,6 @@ dependencies {
 
     //native ad
     implementation project(':nativetemplates')
+    implementation 'com.google.ads.mediation:facebook:6.11.0.1'
+
 }
